@@ -1,0 +1,134 @@
+<toolbar [data]="toolbar"></toolbar>
+
+<div class="container-fluid main-content">
+	<pane-set>
+		<pane title="First title" bgColor="#f8f8f8">
+			<ng-template pane-content>
+				<div class="sub-tabs">
+					<select class="form-control">
+						<option value="val 1">Saved filter 1</option>
+						<option value="val 2">Saved filter 2</option>
+						<option value="val 3">Saved filter 3</option>
+					</select>
+					<select class="form-control">
+						<option value="val 1">Saved filter 1</option>
+						<option value="val 2">Saved filter 2</option>
+						<option value="val 3">Saved filter 3</option>
+					</select>
+					<ngb-tabset activeId="first">
+						<ngb-tab title="Tree view" id="first">
+							<ng-template ngbTabContent>
+								<ngx-treeview [config]="config" [items]="items" (selectedChange)="onSelectedChange($event)">
+								</ngx-treeview>	
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab title="Search" id="second">
+							<ng-template ngbTabContent>
+								<div class="search-criteria">
+									<h5>All search criteria go here</h5>
+									<form>
+										<div class="form-group row">
+											<label for="location" class="col-sm-3 col-form-label col-form-label-sm">Location</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="location" placeholder="location">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="type" class="col-sm-3 col-form-label col-form-label-sm">Type</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="type" placeholder="Type">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="personnel" class="col-sm-3 col-form-label col-form-label-sm">Personnel</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="personnel" placeholder="Personnel">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="discipline" class="col-sm-3 col-form-label col-form-label-sm">Discipline</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="discipline" placeholder="Discipline">
+											</div>
+										</div>
+									</form>
+								</div>
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab title="Advanced search" id="Third">
+							<ng-template ngbTabContent>
+								<div class="search-criteria">
+									<h5>Advanced search criteria go here</h5>
+									<form>
+										<div class="form-group row">
+											<label for="location" class="col-sm-3 col-form-label col-form-label-sm">Location</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="location" placeholder="location">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="type" class="col-sm-3 col-form-label col-form-label-sm">Type</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="type" placeholder="Type">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="personnel" class="col-sm-3 col-form-label col-form-label-sm">Personnel</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control form-control-sm" id="personnel" placeholder="Personnel">
+											</div>
+										</div>
+									</form>
+								</div>
+							</ng-template>
+						</ngb-tab>
+					</ngb-tabset>
+				</div>
+				<button class="btn btn-primary btn-search">Search</button>	
+			</ng-template>
+		</pane>
+		<pane title="Second title" bgColor="#B9CCFF">
+			<ng-template pane-content>
+				<list-view></list-view>
+			</ng-template>
+		</pane>
+		<ng-template details>
+			<div class="sub-tabs">
+				<ngb-tabset activeId="first">
+					<ngb-tab title="Details" id="first">
+						<ng-template ngbTabContent>
+							<h4>Item details</h4>
+							<custom-form [(data)]="formData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+						</ng-template>
+					</ngb-tab>
+					<ngb-tab title="Activities & Events" id="second">
+						<ng-template ngbTabContent>
+							<pane-set>
+								<pane title="Activities & Events" bgColor="#e8d8e8" col="col-3">
+									<ng-template pane-content>
+										<list-view></list-view>
+									</ng-template>
+								</pane>
+								<ng-template details>
+									<ngb-tabset>
+										<ngb-tab title="Activity details" id="details">
+											<ng-template ngbTabContent>
+												<h4>Activities &amp; Events</h4>
+												<custom-form [(data)]="activityFormData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+											</ng-template>
+										</ngb-tab>
+										<ngb-tab title="Content" id="content">
+											<ng-template ngbTabContent>
+												Content goes here
+											</ng-template>
+										</ngb-tab>
+									</ngb-tabset>
+								</ng-template>
+							</pane-set>
+						</ng-template>
+					</ngb-tab>
+				</ngb-tabset>
+			</div>
+		</ng-template>
+	</pane-set>
+</div>

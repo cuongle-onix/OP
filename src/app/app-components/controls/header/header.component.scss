@@ -1,0 +1,40 @@
+@import '../../../../assets/css/standard';
+.header {
+	height: 50px;
+	background-color: $onix-main-color;
+	img {
+		margin-top: 10px;
+	}
+}
+
+.nav {
+	height: 100%;
+	.nav-item {
+		&:hover {
+			background-color: $onix-main-color-hover;
+		}
+		&.active {
+			background-color:$onix-main-color-selected;
+			position: relative;
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 45%;
+				width: 0; 
+				height: 0; 
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid #e4e4e4;
+			}
+		}
+		a {
+			font-size: 13pt;
+			color: #fff;
+			height: 100%;
+			padding: 10px 12px;
+		}
+	}
+}
+

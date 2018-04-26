@@ -1,0 +1,31 @@
+@import '../../../../assets/css/standard';
+
+.toolbar /deep/{
+	border-bottom: 1px solid $border-color;
+	.tab-pane {
+		height: 94px;
+		padding: 5px 10px;
+		display: flex;	
+	}
+	.nav-tabs {
+		background-color: #e4e4e4;
+		.nav-link {
+			font-size: 14px;
+			border: 0;
+			color: #000;
+			text-transform: uppercase;
+			&:hover, &.active {
+				color: $onix-main-color;
+			}
+		}
+	}
+}
+
+.filter-wrapper {
+	margin-right: 10px;
+}
+
+.filter {
+	width: 200px;
+	max-width: 100%;
+}

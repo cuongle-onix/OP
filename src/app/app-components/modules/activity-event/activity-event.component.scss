@@ -1,0 +1,14 @@
+@import '../../../../assets/css/standard';
+
+.filter {
+	margin-bottom: 20px;
+	h5 {
+		margin: 0 -15px 15px;
+		padding: 10px 15px;
+		color: #fff;
+		background-color: $onix-main-color;
+	}
+	select {
+		margin-bottom: 10px;
+	}
+}

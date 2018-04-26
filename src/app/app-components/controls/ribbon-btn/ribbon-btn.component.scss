@@ -1,0 +1,79 @@
+@import '../../../../assets/css/standard';
+
+.btn-ribbon {
+	border: 0;
+	background-color: #fff;
+	padding: 5px;
+	outline: 0;
+	&:hover {
+		background-color: $item-color-hover;
+	}
+	&:active {
+		background-color: $item-color-selected;
+	}
+	&:before {
+		content: "";
+		display: block;
+		width: 32px;
+		height: 32px;
+		background-image: url('#{$assets-url}/images/ribbon-menu-icons.png');
+		background-repeat: no-repeat;
+		margin: auto;
+	}
+	&.btn-new {
+		&:before {
+			background-position:  -35px top;
+		}
+		&:after {
+			content: "New";
+		}
+	}
+	&.btn-save {
+		&:before {
+			background-position: -69px top;
+		}
+		&:after {
+			content: "Save";
+		}
+	}
+	&.btn-delete {
+		&:before {
+			background-position: -137px top;
+		}
+		&:after {
+			content: "Delete";
+		}
+	}
+	&.btn-properties {
+		&:before {
+			background-position: -137px -69px;
+		}
+		&:after {
+			content: "Properties";
+		}
+	}
+	&.btn-report {
+		&:before {
+			background-position: -171px top;
+		}
+		&:after {
+			content: "Report";
+		}
+	}
+	&.btn-new-category {
+		&:before {
+			background-position: -205px -35px;
+		}
+		&:after {
+			content: "New category";
+		}
+	}
+	&.btn-new-type {
+		&:before {
+			background-position: -239px -35px;
+		}
+		&:after {
+			content: "New type";
+		}
+	}
+}

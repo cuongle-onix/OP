@@ -1,0 +1,54 @@
+@import '../../../../assets/css/standard';
+
+.pane {
+	position: relative;
+	padding: 0;
+	.fa-chevron-left {
+		&.rotate {
+			transform: rotate(180deg);
+		}
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		cursor: pointer;
+	}
+	.pane-title {
+		width: 40px;
+		height: 100%;
+		cursor: pointer;
+		> span {
+			white-space:nowrap;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: rotate(-90deg) translate(-50%, -50%);
+			transform-origin: left top;
+			float: left;
+			font-weight: bold;
+		} 
+	}
+}
+
+.pane-content {
+	padding: 0 15px 40px;
+	height: 100%;
+	overflow-y: auto;
+	/deep/ .btn-group {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		border-top: 1px solid $border-color;
+		.btn {
+			height: 40px;
+			min-width: 0;
+			&.refresh {
+				background-color: transparent;
+				border: 0;
+			}
+		}
+	}
+}
+.details {
+	padding: 0 15px;
+}

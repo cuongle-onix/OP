@@ -1,0 +1,15 @@
+@import '../../../../assets/css/standard';
+
+.ribbon-group {
+	border-right: 1px solid $border-color;
+	height: 100%;
+	padding: 0 10px 10px 0;
+	margin-right: 10px;
+	position: relative;
+	label {
+		display: block;
+		text-align: center;
+		color: #6c757d;
+		user-select: none;
+	}	
+}

@@ -1,0 +1,17 @@
+<div class="item" [class.selected]="data.isSelected">
+	<div class="item-body">
+		<h5>
+			<input type="checkbox" [checked]="data.isChecked" />
+			Activity item {{ data.id }}
+			<img src="{{ assetsUrl }}/images/{{ data.img }}" alt="Complete" class="float-right">
+		</h5>
+		<div class="description">
+			<label>Some item descrition</label>
+			<span class="float-right">01/12/2017</span>
+		</div>
+		<div class="details">
+			<label>Additional description</label>
+			<span class="float-right">RRX</span>
+		</div>
+	</div>
+</div>

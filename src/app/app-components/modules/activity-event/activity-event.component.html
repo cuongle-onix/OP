@@ -1,0 +1,154 @@
+<toolbar [data]="toolbar"></toolbar>
+
+<div class="container-fluid main-content">
+	<pane-set>
+		<pane title="Filter & search" bgColor="#f8f8f8">
+			<ng-template pane-content>
+				<section class="filter">
+					<h5>Filter &amp; Search</h5>
+					<filter 
+					[data]="storedFilters" 
+					[model]="selectedFilter" 
+					[placeholder]="'Stored Filter'"></filter>
+					<filter 
+					[data]="personnelFilters" 
+					[model]="selectedPersonnel" 
+					[placeholder]="'Personnel Filter'"></filter>
+				</section>
+				<section class="search">
+					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-0">
+						<ngb-panel>
+							<ng-template ngbPanelTitle>
+								<i class="fa fa-caret-right"></i>
+								Folders &amp; Categories
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<ngx-treeview
+								[config]="config" 
+								[items]="treeviewItems" 
+								(selectedChange)="onSelectedChange($event)"></ngx-treeview>
+							</ng-template>
+						</ngb-panel>
+						<ngb-panel>
+							<ng-template ngbPanelTitle>
+								<i class="fa fa-caret-right"></i>
+								Search
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<custom-form 
+								[data]="searchFormData" 
+								[formType]="FORM_TYPE.HORIZONTAL"></custom-form>
+							</ng-template>
+						</ngb-panel>
+						<ngb-panel>
+							<ng-template ngbPanelTitle>
+								<i class="fa fa-caret-right"></i>
+								Advanced search
+							</ng-template>
+							<ng-template ngbPanelContent>
+								<custom-form 
+								[data]="advancedSearchFormData" 
+								[formType]="FORM_TYPE.HORIZONTAL"></custom-form>
+							</ng-template>
+						</ngb-panel>
+					</ngb-accordion>
+				</section>
+				<div class="btn-group">
+					<button class="btn btn-primary col-9" (click)="onSearch()">Search</button>	
+					<button class="btn refresh col-3" title="Clear search"><i class="fa fa-refresh"></i></button>
+				</div>
+			</ng-template>
+		</pane>
+		<ng-template details>
+			<div class="sub-tabs">
+				<ngb-tabset activeId="activity-list" [destroyOnHide]="false">
+					<ngb-tab title="List" id="activity-list">
+						<ng-template ngbTabContent>
+							<pane-set>
+								<pane title="Activities" bgColor="#B9CCFF" col="col-3">
+									<ng-template pane-content>
+										<div class="group-by">
+											Group by:
+											<div ngbDropdown class="d-inline-block">
+												<button class="btn" ngbDropdownToggle>None</button>
+												<div ngbDropdownMenu>
+													<button class="dropdown-item">Personel</button>
+													<button class="dropdown-item">Status</button>
+												</div>
+											</div>
+										</div>
+										<div class="sort-by">
+											Sort by:
+											<div ngbDropdown class="d-inline-block">
+												<button class="btn" ngbDropdownToggle>None</button>
+												<div ngbDropdownMenu>
+													<button class="dropdown-item">Name</button>
+													<button class="dropdown-item">Date</button>
+												</div>
+											</div>
+											<span class="float-right">{{ listviewItems.length}} item(s)</span>
+										</div>
+										<list-view 
+										[items]="listviewItems" 
+										(onSelectItem)="onSelectIem($event)" 
+										(onCheckItem)="onCheckItem($event)"></list-view>
+									</ng-template>
+								</pane>
+								<ng-template details>
+									<div class="sub-tabs">
+										<ngb-tabset activeId="first">
+											<ng-container *ngIf="!checkedItems.length">
+												<ngb-tab title="Details" id="first">
+													<ng-template ngbTabContent>
+														<h4 class="pt-4">Item details</h4>
+														<custom-form [data]="detailsData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+													</ng-template>
+												</ngb-tab>
+												<ngb-tab title="Connected" id="connected">
+													<ng-template ngbTabContent>
+														Connected
+													</ng-template>
+												</ngb-tab>
+												<ngb-tab title="Personnel" id="personnel">
+													<ng-template ngbTabContent>
+														<h4 class="pt-4">Personnel details</h4>
+														<custom-form 
+														[(data)]="detailsData" 
+														(onSubmit)="onSubmitPersonnel($event)"></custom-form>
+													</ng-template>
+												</ngb-tab>
+											</ng-container>
+											<ng-container *ngIf="checkedItems.length">
+												<ngb-tab title="Grid view" id="grid-view">
+													<ng-template ngbTabContent>
+														<table-view [data]="checkedItems"></table-view>
+													</ng-template>
+												</ngb-tab>
+												<ngb-tab title="Options" id="opt">
+													<ng-template ngbTabContent>
+														<h4>{{ checkedItems.length }} item(s) selected</h4>
+														Options for multiple items go here
+													</ng-template>
+												</ngb-tab>
+											</ng-container>
+										</ngb-tabset>
+									</div>
+								</ng-template>				
+							</pane-set>
+						</ng-template>
+					</ngb-tab>
+					<ngb-tab title="Graphical" id="graphical">
+						<ng-template ngbTabContent>
+							Graphical goes here
+						</ng-template>
+					</ngb-tab>
+					<ngb-tab title="Analysis" id="analysis">
+						<ng-template ngbTabContent>
+							Analysis goes here
+						</ng-template>
+					</ngb-tab>
+				</ngb-tabset>				
+			</div>
+		</ng-template>
+	</pane-set>
+</div>

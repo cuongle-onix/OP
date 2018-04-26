@@ -1,0 +1,16 @@
+<form (ngSubmit)="submitFormEmit()" [formGroup]="form" [ngSwitch]="formType">
+	<ng-container *ngSwitchCase="FORM_TYPE.MIXED">
+		<div class="form-row" *ngFor="let row of data">
+			<div class="form-group col-sm-6" *ngFor="let control of row.controls">
+				<form-control [control]="control" [form]="form"></form-control>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container *ngSwitchCase="FORM_TYPE.HORIZONTAL">
+		<div class="form-group" *ngFor="let control of data">
+			<form-control [control]="control" [form]="form"></form-control>
+		</div>
+	</ng-container>
+	<ng-content></ng-content>
+</form>

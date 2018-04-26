@@ -1,0 +1,22 @@
+<div class="input-group filter">
+	<input
+	id="typeahead-focus"
+	type="text"
+	class="form-control"
+	placeholder="{{ placeholder }}"
+	[(ngModel)]="selectedItem"
+	[ngbTypeahead]="search"
+	(focus)="focus$.next($event.target.value)"
+	(click)="click$.next($event.target.value)"
+	#instance="ngbTypeahead"
+	/>
+	<div class="input-group-append filter-btn">
+		<div ngbDropdown class="d-inline-block" placement="bottom-right">
+			<button class="btn btn-toggle" ngbDropdownToggle>...</button>
+			<div ngbDropdownMenu>
+				<button class="dropdown-item">Save</button>
+				<button class="dropdown-item">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>

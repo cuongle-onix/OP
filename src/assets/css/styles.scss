@@ -1,0 +1,87 @@
+@import 'standard.scss';
+
+.main-content {
+	height: $content-height;
+}
+
+/* Custom css for filter and search*/
+
+.search {
+	margin: 0 -15px;
+	border-bottom: 1px solid $border-color;
+	max-height: calc(100% - 136px);
+    overflow-y: auto;
+	.card {
+		border: 0;
+	}
+	.card-header {
+		border-bottom: 0;
+		border-top: 1px solid $border-color;
+		padding: 0;
+		a {
+			padding: .75rem 1.25rem;
+			display: block;
+			text-decoration: none;
+			color: $onix-main-color;
+		}
+		.fa-caret-right {
+			margin-right: 5px;
+			color: #000;
+		}
+		&.active {
+			.fa-caret-right {
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
+
+/* Custom css for subtabs */
+.sub-tabs {
+	margin: 0 -15px;
+	height: 100%;
+	position: relative;
+	.nav-tabs {
+		border-bottom: 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+		display: -webkit-box;
+		display: -moz-box;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		.nav-link {
+			border: 0;
+			color: #000;
+			&.active {
+				border-bottom: 3px solid $onix-main-color;
+			}
+		}
+	}
+	.tab-content {
+		height: calc(100% - 32px);
+		overflow-y: auto;
+	}
+	.tab-pane {
+		padding: 0 15px;
+		height: 100%;
+		.splitter {
+			height: calc(100% - 32px);
+		}
+	}
+}
+
+/* Custom group and sort dropdown*/
+
+.group-by, .sort-by {
+	button.btn {
+		background-color: transparent;
+		min-width: 0;
+		padding: 0 0 5px;
+	}
+	.dropdown-item {
+		&:hover {
+			background-color: $item-color-hover;
+		}
+	}
+}

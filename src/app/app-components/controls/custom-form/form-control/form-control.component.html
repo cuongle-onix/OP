@@ -1,0 +1,18 @@
+<div [formGroup]="form" class="row">
+	<div class="col-sm-3">
+		<label [attr.for]="control.key">{{control.label}}</label>
+	</div>
+
+	<div [ngSwitch]="control.controlType" class="col-sm-9">
+
+		<input *ngSwitchCase="CONTROL_TYPE.TEXT_BOX" [formControlName]="control.key"
+		[id]="control.key" [type]="control.type" [(ngModel)]="control.value" class="form-control">
+
+		<select [id]="control.key" *ngSwitchCase="CONTROL_TYPE.SELECT" [formControlName]="control.key" [multiple]="control.multiple"  class="form-control">
+			<option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
+		</select>
+
+	</div> 
+
+	<div class="errorMessage" *ngIf="!isValid">{{control.label}} is required</div>
+</div>

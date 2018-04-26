@@ -1,0 +1,85 @@
+$assets-url: 'http://localhost:4200/assets';
+
+$onix-main-color: #AC193D;
+$onix-main-color-hover: #981515;
+$onix-main-color-selected: #981515;
+$border-color: #ddd;
+$content-height: calc(100% - 178px);
+
+$item-color-hover: #e7258217;
+$item-color-selected: #f99eb4;
+
+body, html {
+	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+	height: 100%;
+	font-size: 12px;
+	color: #000;
+}
+
+.btn {
+	border-radius: 0;
+	min-width: 74px;
+	height: 24px;
+	padding: 2px 10px;
+	border: 0;
+	outline: none;
+	box-shadow: none !important;
+	&:focus, &:active {
+		outline: none;
+	}
+}
+
+.btn-primary {
+	background-color: $onix-main-color;
+	&:hover, &:active, &:not(:disabled):not(.disabled):active {
+		background-color: $onix-main-color-hover;
+	}
+	&:active {
+		padding-top: 4px;
+	}
+}
+
+.btn-ribbon {
+	border: 0;
+	background-color: #fff;
+	padding: 5px;
+	outline: 0;
+	&:hover {
+		background-color: $item-color-hover;
+	}
+	&:active {
+		background-color: $item-color-selected;
+	}
+	> div {
+		background-image: url('#{$assets-url}/images/ribbon-menu-icons.png');
+		background-repeat: no-repeat;
+		height: 32px;
+		width: 32px;
+		margin: auto;
+	}
+	&.btn-new {
+		> div {
+			background-position:  -35px top;
+		}
+	}
+	&.btn-save {
+		> div {
+			background-position: -69px top;
+		}
+	}
+	&.btn-delete {
+		> div {
+			background-position: -137px top;
+		}
+	}
+	&.btn-properties {
+		> div {
+			background-position: -137px -69px;
+		}
+	}
+	&.btn-report {
+		> div {
+			background-position: -171px top;
+		}
+	}
+}

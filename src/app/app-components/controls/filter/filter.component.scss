@@ -1,0 +1,23 @@
+@import '../../../../assets/css/standard';
+
+.filter {
+	margin-bottom: 5px;
+}
+
+.filter-btn {
+	.d-inline-block {
+		border: 1px solid $border-color;
+		.btn-toggle {
+			min-width: 0;
+			background-color: transparent;
+			&:after {
+				border: 0;
+			}
+		}
+		.dropdown-item {
+			&:hover {
+				background-color: $item-color-hover;
+			}
+		}
+	}
+}

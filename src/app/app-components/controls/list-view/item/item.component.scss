@@ -1,0 +1,43 @@
+@import '../../../../../assets/css/standard';
+
+.item {
+	border-top: 1px solid $border-color;
+	&:hover {
+		background-color: $item-color-hover;
+	}
+	&.selected {
+		background-color: $item-color-selected;
+	}
+	.item-body {
+		padding: 10px 20px 10px 30px;
+		h5 {
+			font-size: 14px;
+			position: relative;
+			input {
+				position: absolute;
+				top: 0;
+				left: -18px;
+				width: 15px;
+				height: 15px;
+			}
+		}
+		.descrition {
+			font-size: 12px;
+		}
+
+		.details {
+			color: #464646;
+		}
+		label, .float-right {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		label {
+			max-width: 70%;
+		}
+		.float-right {
+			max-width: 30%;
+		}
+	}
+}

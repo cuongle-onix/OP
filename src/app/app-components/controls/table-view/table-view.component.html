@@ -1,0 +1,12 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col" *ngFor="let col of cols">{{ col }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of data">
+			<td *ngFor="let col of cols">{{ item[col] }}</td>
+		</tr>
+	</tbody>
+</table>
