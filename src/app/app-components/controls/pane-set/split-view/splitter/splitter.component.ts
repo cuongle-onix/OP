@@ -37,24 +37,24 @@ export class SplitterComponent implements OnInit {
 		return this._splitBehaviour;
 	}
 
-	private onMouseDown(e: MouseEvent): void {
+	onMouseDown(e: MouseEvent): void {
 		this.dragging = true;
 		this.startX = e.clientX;
 		this.startWidth = this.splitBehaviour.getElementWidth();
 	}
 
-	private onMouseUp(e: MouseEvent): void {
+	onMouseUp(e: MouseEvent): void {
 		this.dragging = false;
 	}
 
-	private onMouseMove(e: MouseEvent): void {
+	onMouseMove(e: MouseEvent): void {
 		if (this.dragging) {
 
 			this.positionChanged.emit(new Position(this.startWidth + e.clientX - this.startX, e.pageY));
 		}
 	}
 
-	private onMouseLeave(e: MouseEvent): void {
+	onMouseLeave(e: MouseEvent): void {
 		this.dragging = false;
 	}
 	

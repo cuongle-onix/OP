@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './app-components/controls/header/header.component';
 import { UserSettingsComponent } from './app-components/controls/user-settings/user-settings.component';
+import { ModalComponent } from './app-components/controls/modal/modal.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HeaderComponent,
 		UserSettingsComponent,
+		ModalComponent,
 	],
 	imports: [
 		BrowserModule,
