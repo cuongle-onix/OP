@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeviewItem } from 'ngx-treeview';
 import { TREEVIEW_CONFIG, TOOLBAR_BTN_TYPE } from '../../../const.global';
-import { Tab, RibbonGroup, RibbonButton, Filter } from '../../controls/toolbar/controls';
+import { Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/controls';
 
 @Component({
 	selector: 'personnel',
@@ -51,7 +51,7 @@ export class PersonnelComponent implements OnInit {
 		this.items = [itCategory, teenCategory];
 
 		this.toolbar = {
-			activeId: 'filter',
+			activeId: 'menu',
 			tabs: [
 				new Tab(
 					'Menu',
@@ -82,14 +82,7 @@ export class PersonnelComponent implements OnInit {
 									click: this.unknownClick.bind(this)
 								})
 							]
-						),
-						new Filter({
-							options: [
-								{ key: 'key1', value: 'Saved filter 1' },
-								{ key: 'key2', value: 'Saved filter 2' },
-								{ key: 'key3', value: 'Saved filter 2' }
-							]
-						})
+						)
 					]
 				),
 				new Tab(
@@ -103,32 +96,7 @@ export class PersonnelComponent implements OnInit {
 									type: TOOLBAR_BTN_TYPE.REPORT
 								})
 							]
-						),
-						new RibbonGroup(
-							{ label: 'Find' },
-							[
-								new Filter({
-									options: [
-										{ key: 'key1', value: 'Saved filter 1' },
-										{ key: 'key2', value: 'Saved filter 2' },
-										{ key: 'key3', value: 'Saved filter 2' }
-									]
-								})
-							]
 						)
-					]
-				),
-				new Tab(
-					'Filter',
-					'filter',
-					[
-						new Filter({
-							options: [
-								{ key: 'key1', value: 'Saved filter 1' },
-								{ key: 'key2', value: 'Saved filter 2' },
-								{ key: 'key3', value: 'Saved filter 2' }
-							]
-						})
 					]
 				)
 			]

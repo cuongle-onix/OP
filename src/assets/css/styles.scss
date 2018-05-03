@@ -1,39 +1,8 @@
 @import 'standard.scss';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .main-content {
 	height: $content-height;
-}
-
-/* Custom css for filter and search*/
-
-.search {
-	margin: 0 -15px;
-	border-bottom: 1px solid $border-color;
-	max-height: calc(100% - 136px);
-    overflow-y: auto;
-	.card {
-		border: 0;
-	}
-	.card-header {
-		border-bottom: 0;
-		border-top: 1px solid $border-color;
-		padding: 0;
-		a {
-			padding: .75rem 1.25rem;
-			display: block;
-			text-decoration: none;
-			color: $onix-main-color;
-		}
-		.fa-caret-right {
-			margin-right: 5px;
-			color: #000;
-		}
-		&.active {
-			.fa-caret-right {
-				transform: rotate(45deg);
-			}
-		}
-	}
 }
 
 /* Custom css for subtabs */
@@ -83,5 +52,28 @@
 		&:hover {
 			background-color: $item-color-hover;
 		}
+	}
+}
+
+/* Custom ng-select */
+.ng-select.custom {
+	position: relative;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	.ng-select-container {
+		border-radius: 0;
+		border-color: $border-color;
+		height: 29px;
+		min-height: 29px;
+	}
+
+	.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+		background-color: $item-color-hover;
+	}
+
+	.ng-arrow-wrapper .ng-arrow {
+		border-width: 6px 3px 2.5px;
+		border-color: #000 transparent transparent;
+		left: 6px;
 	}
 }

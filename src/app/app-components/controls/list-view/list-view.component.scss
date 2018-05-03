@@ -1,6 +1,7 @@
 @import '../../../../assets/css/standard';
 
 .list-container {
+	margin: 0 -15px;
+	overflow-y: auto;
 	border-bottom: 1px solid $border-color;
-	margin: 20px -15px 0;
 }

@@ -10,10 +10,7 @@
 								<ribbon-btn *ngSwitchCase="CONTROL_TYPE.RIBBON_BUTTON"
 								[type]="control.type"
 								(click)="control.click($event)"></ribbon-btn>
-
-								<select *ngSwitchCase="CONTROL_TYPE.FILTER" class="form-control filter" [multiple]="control.multiple">
-									<option *ngFor="let opt of control.options" [value]="opt.key">{{ opt.value }}</option>
-								</select>
+								
 							</ng-container>
 						</ribbon-group>
 					</ng-container>
@@ -24,11 +21,6 @@
 							<ribbon-btn *ngSwitchCase="CONTROL_TYPE.RIBBON_BUTTON"
 							[type]="ribbonGroup.type"
 							(click)="ribbonGroup.click($event)"></ribbon-btn>
-							<div class="filter-wrapper" *ngSwitchCase="CONTROL_TYPE.FILTER">
-								<select class="form-control filter" [multiple]="ribbonGroup.multiple">
-									<option *ngFor="let opt of ribbonGroup.options" [value]="opt.key">{{ opt.value }}</option>
-								</select>
-							</div>
 						</ng-container>
 					</ng-container>
 					

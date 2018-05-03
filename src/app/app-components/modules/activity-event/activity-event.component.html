@@ -7,16 +7,18 @@
 				<section class="filter">
 					<h5>Filter &amp; Search</h5>
 					<filter 
-					[data]="storedFilters" 
-					[model]="selectedFilter" 
-					[placeholder]="'Stored Filter'"></filter>
+					[data]="storedFilters"
+					placeholder="Stored Filter"></filter>
 					<filter 
 					[data]="personnelFilters" 
-					[model]="selectedPersonnel" 
-					[placeholder]="'Personnel Filter'"></filter>
+					placeholder="Personnel Filter"></filter>
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
+						<button class="btn btn-clear">Clear</button>
+					</div>
 				</section>
-				<section class="search">
-					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-0">
+				<section class="search flex-grow-1">
+					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-1" [destroyOnHide]="false">
 						<ngb-panel>
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
@@ -24,7 +26,7 @@
 							</ng-template>
 							<ng-template ngbPanelContent>
 								<ngx-treeview
-								[config]="config" 
+								[config]="TREEVIEW_CONFIG" 
 								[items]="treeviewItems" 
 								(selectedChange)="onSelectedChange($event)"></ngx-treeview>
 							</ng-template>
@@ -46,17 +48,37 @@
 								Advanced search
 							</ng-template>
 							<ng-template ngbPanelContent>
+								<div class="table-wrapper">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th scope="col">Field</th>
+												<th scope="col">Operator</th>
+												<th scope="col">Value</th>
+												<th scope="col">Has</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let row of searchCriteria; let i = index" (click)="selectCriteriaRow(i)" [class.selected]="i == selectedRowIndex">
+												<td>{{ row.field }}</td>
+												<td>{{ row.operator }}</td>
+												<td>{{ row.value }}</td>
+												<td>{{ row.has }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 								<custom-form 
 								[data]="advancedSearchFormData" 
 								[formType]="FORM_TYPE.HORIZONTAL"></custom-form>
+								<div class="d-flex justify-content-center">
+									<button class="btn btn-primary" (click)="addSearchCriteria()">Add to list</button>
+									<button class="btn btn-white" (click)="removeSearchCriteria()">Remove selected</button>
+								</div>
 							</ng-template>
 						</ngb-panel>
 					</ngb-accordion>
 				</section>
-				<div class="btn-group">
-					<button class="btn btn-primary col-9" (click)="onSearch()">Search</button>	
-					<button class="btn refresh col-3" title="Clear search"><i class="fa fa-refresh"></i></button>
-				</div>
 			</ng-template>
 		</pane>
 		<ng-template details>
@@ -67,7 +89,7 @@
 							<pane-set>
 								<pane title="Activities" bgColor="#B9CCFF" col="col-3">
 									<ng-template pane-content>
-										<div class="group-by">
+										<div class="group-by d-none">
 											Group by:
 											<div ngbDropdown class="d-inline-block">
 												<button class="btn" ngbDropdownToggle>None</button>
@@ -77,7 +99,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="sort-by">
+										<div class="sort-by d-none">
 											Sort by:
 											<div ngbDropdown class="d-inline-block">
 												<button class="btn" ngbDropdownToggle>None</button>
@@ -88,20 +110,20 @@
 											</div>
 											<span class="float-right">{{ listviewItems.length}} item(s)</span>
 										</div>
-										<list-view 
+										<list-view
 										[items]="listviewItems" 
 										(onSelectItem)="onSelectIem($event)" 
 										(onCheckItem)="onCheckItem($event)"></list-view>
 									</ng-template>
 								</pane>
-								<ng-template details>
+								<ng-template details *ngIf="selectedActivity">
 									<div class="sub-tabs">
-										<ngb-tabset activeId="first">
+										<ngb-tabset activeId="details">
 											<ng-container *ngIf="!checkedItems.length">
-												<ngb-tab title="Details" id="first">
+												<ngb-tab title="Details" id="details">
 													<ng-template ngbTabContent>
-														<h4 class="pt-4">Item details</h4>
-														<custom-form [data]="detailsData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+														<h4 class="pt-4">Activity details</h4>
+														<custom-form [data]="selectedActivity" (onSubmit)="onSubmitDetails($event)"></custom-form>
 													</ng-template>
 												</ngb-tab>
 												<ngb-tab title="Connected" id="connected">
@@ -113,7 +135,7 @@
 													<ng-template ngbTabContent>
 														<h4 class="pt-4">Personnel details</h4>
 														<custom-form 
-														[(data)]="detailsData" 
+														[(data)]="selectedActivity" 
 														(onSubmit)="onSubmitPersonnel($event)"></custom-form>
 													</ng-template>
 												</ngb-tab>

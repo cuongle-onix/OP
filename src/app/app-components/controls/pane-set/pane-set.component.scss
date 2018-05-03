@@ -30,23 +30,18 @@
 }
 
 .pane-content {
-	padding: 0 15px 40px;
+	padding: 0 15px;
 	height: 100%;
 	overflow-y: auto;
-	/deep/ .btn-group {
+	display: flex;
+	flex-direction: column;
+	/deep/ .fixed-bottom {
 		position: absolute;
 		left: 0;
 		bottom: 0;
 		width: 100%;
 		border-top: 1px solid $border-color;
-		.btn {
-			height: 40px;
-			min-width: 0;
-			&.refresh {
-				background-color: transparent;
-				border: 0;
-			}
-		}
+		height: 40px;
 	}
 }
 .details {

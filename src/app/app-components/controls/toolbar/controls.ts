@@ -49,18 +49,6 @@ export class RibbonGroup extends ControlBase<string> {
 	}
 }
 
-export class Filter extends ControlBase<string> {
-	controlType = CONTROL_TYPE.FILTER;
-	options: { key: string, value: string }[] = [];
-	multiple: boolean;
-
-	constructor(options: {} = {}) {
-		super(options);
-		this.options = options['options'] || [];
-		this.multiple = options['multiple'] || false;
-	}
-}
-
 export class RibbonButton extends ControlBase<string> {
 	controlType = CONTROL_TYPE.RIBBON_BUTTON;
 	type: string;

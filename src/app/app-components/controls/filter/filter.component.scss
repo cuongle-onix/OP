@@ -2,6 +2,10 @@
 
 .filter {
 	margin-bottom: 5px;
+	typeahead {
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
 }
 
 .filter-btn {

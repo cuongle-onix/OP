@@ -1,9 +1,9 @@
 export const ASSETS_URL = 'assets';
 
 export const TREEVIEW_CONFIG = {
-	hasAllCheckBox: true,
+	hasAllCheckBox: false,
 	hasFilter: false,
-	hasCollapseExpand: true,
+	hasCollapseExpand: false,
 	decoupleChildFromParent: false,
 	maxHeight: 500
 };
@@ -11,9 +11,10 @@ export const TREEVIEW_CONFIG = {
 export const CONTROL_TYPE = {
 	TEXT_BOX: 'textbox',
 	SELECT: 'select',
-	FILTER: 'filter',
+	TYPEAHEAD: 'typeahead',
 	BUTTON: 'button',
-	RIBBON_BUTTON: 'ribbonButton'
+	RIBBON_BUTTON: 'ribbonButton',
+	DATEPICKER: 'datepicker'
 };
 
 export const TOOLBAR_BTN_TYPE = {
@@ -36,3 +37,5 @@ export const DEFAULT_MODAL_CONFIG = {
 	keyboard: false,
 	size: 'lg'
 };
+
+export const OPERATORS = ['>=', '<=', '='];

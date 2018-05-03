@@ -1,3 +1,6 @@
 <div class="list-container">
-	<item *ngFor="let item of items" [data]="item" (click)="onClickItem(item, $event)"></item>
+	<item *ngFor="let item of items; let i = index" 
+	[focused]="i == selectedIndex" 
+	[data]="item" 
+	(click)="onClickItem(item, $event)"></item>
 </div>

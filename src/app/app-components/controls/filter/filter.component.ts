@@ -15,25 +15,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class FilterComponent implements OnInit {
 
-	@ViewChild('instance') instance: NgbTypeahead;
 	@Input() data: any[];
-	@Input() model: any;
-	@Input() placeholder: string;
+	@Input() placeholder: string = '';
 
-	focus$ = new Subject<string>();
-	click$ = new Subject<string>();
-
-	search = (text$: Observable<string>) =>
-		text$
-			.debounceTime(200).distinctUntilChanged()
-			.merge(this.focus$)
-			.merge(this.click$.filter(() => !this.instance.isPopupOpen()))
-			.map(term => (
-				term === '' ? 
-				this.data : this.data.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10)
-			);
-
-	constructor() { }
+	constructor() {
+	}
 
 	ngOnInit() {
 	}

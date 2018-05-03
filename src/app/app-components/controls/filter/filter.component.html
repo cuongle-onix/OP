@@ -1,15 +1,5 @@
 <div class="input-group filter">
-	<input
-	id="typeahead-focus"
-	type="text"
-	class="form-control"
-	placeholder="{{ placeholder }}"
-	[(ngModel)]="model"
-	[ngbTypeahead]="search"
-	(focus)="focus$.next($event.target.value)"
-	(click)="click$.next($event.target.value)"
-	#instance="ngbTypeahead"
-	/>
+	<typeahead [data]="data" [placeholder]="placeholder"></typeahead>
 	<div class="input-group-append filter-btn">
 		<div ngbDropdown class="d-inline-block" placement="bottom-right">
 			<button class="btn btn-toggle" ngbDropdownToggle>...</button>

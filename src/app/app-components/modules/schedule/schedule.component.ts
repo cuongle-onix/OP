@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TreeviewItem } from 'ngx-treeview';
 import { TREEVIEW_CONFIG, TOOLBAR_BTN_TYPE } from '../../../const.global';
 import { Select, Textbox, Row } from '../../controls/custom-form/form-control/controls';
-import { Tab, RibbonGroup, RibbonButton, Filter } from '../../controls/toolbar/controls';
+import { Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/controls';
 
 @Component({
 	selector: 'schedule',
@@ -54,7 +54,7 @@ export class ScheduleComponent implements OnInit {
 		this.items = [itCategory, teenCategory];
 
 		this.toolbar = {
-			activeId: 'filter',
+			activeId: 'menu',
 			tabs: [
 				new Tab(
 					'Menu',

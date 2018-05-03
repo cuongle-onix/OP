@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, Row } from './form-control/controls';
+import { ControlBase, Row, Textbox, Select } from './form-control/controls';
 import { FORM_TYPE } from '../../../const.global';
 
 @Component({
@@ -10,7 +10,7 @@ import { FORM_TYPE } from '../../../const.global';
 })
 export class CustomFormComponent implements OnInit {
 
-	@Input() data: any[];
+	@Input() data: any;
 	@Input() formType: string = FORM_TYPE.MIXED;
 	@Output() onSubmit: EventEmitter<any> = new EventEmitter();
 	form: FormGroup;

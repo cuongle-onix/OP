@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ASSETS_URL } from '../../../../const.global';
 
 @Component({
 	selector: 'item',
@@ -8,9 +7,16 @@ import { ASSETS_URL } from '../../../../const.global';
 })
 export class ItemComponent implements OnInit {
 
-	@Input() data: any;
-
-	assetsUrl: string = ASSETS_URL;
+	@Input() data: {
+		category: string,
+		type: string,
+		personnel: string,
+		fromDate: string,
+		toDate: string,
+		expireDate: string,
+		isSelected: boolean,
+		isChecked: boolean
+	};
 
 	constructor() { }
 

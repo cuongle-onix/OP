@@ -1,0 +1,12 @@
+@import '../../../../assets/css/standard';
+
+.input-group-text {
+	background-color: transparent;
+	margin-right: -1px;
+}
+
+select.form-control {
+	border: 1px solid $border-color;
+	border-right: 0;
+	padding: 0;
+}

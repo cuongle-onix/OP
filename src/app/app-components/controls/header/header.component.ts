@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ASSETS_URL } from '../../../const.global';
 
 @Component({
 	selector: 'header',
@@ -7,8 +6,6 @@ import { ASSETS_URL } from '../../../const.global';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-	assetsUrl: string = ASSETS_URL;
 
 	constructor() { }
 

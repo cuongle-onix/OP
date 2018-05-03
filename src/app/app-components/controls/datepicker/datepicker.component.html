@@ -1,0 +1,19 @@
+<div class="input-group">
+	<div class="input-group-append">
+		<ng-container [ngSwitch]="param">
+			<div class="input-group-text" *ngSwitchCase="ParamType.checkbox">
+				<input type="checkbox">
+			</div>
+			<select class="form-control" *ngSwitchCase="ParamType.operators" [(ngModel)]="selectedOperator">
+				<option *ngFor="let item of operators; let i = index" [value]="item">{{ item }}</option>
+			</select>
+		</ng-container>
+	</div>
+	<input class="form-control" placeholder="yyyy-mm-dd" 
+	placement="bottom-right" 
+	name="dp" 
+	[(ngModel)]="model" 
+	ngbDatepicker
+	#dp="ngbDatepicker" 
+	(click)="dp.toggle()">
+</div>
