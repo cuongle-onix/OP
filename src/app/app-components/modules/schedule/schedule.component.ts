@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeviewItem } from 'ngx-treeview';
 import { TREEVIEW_CONFIG, TOOLBAR_BTN_TYPE } from '../../../const.global';
-import { Select, Textbox, Row } from '../../controls/custom-form/form-control/controls';
+import { Select, Textbox, Row } from '../../controls/forms/dynamic-form/form-control/controls';
 import { Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/controls';
 
 @Component({

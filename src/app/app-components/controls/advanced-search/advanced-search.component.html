@@ -1,0 +1,64 @@
+<div class="table-wrapper">
+	<table class="table table-hover text-center">
+		<thead>
+			<tr>
+				<th scope="col">Field</th>
+				<th scope="col">Operator</th>
+				<th scope="col">Value</th>
+				<th scope="col">Has</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of searchCriteria; let i = index" (click)="selectCriteriaRow(i)" [class.selected]="i == selectedRowIndex">
+				<td>{{ row.field.value }}</td>
+				<td>{{ row.operator.value }}</td>
+				<td>{{ row.value.value }}</td>
+				<td>{{ row.has.value }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<form>
+	<div class="form-group">
+		<div class="row">
+			<label for="field" class="col-4">Field</label>
+			<div class="col-8">
+				<select name="field" id="field" class="form-control" [(ngModel)]="searchRow.field">
+					<option *ngFor="let item of fields" [value]="item.key">{{ item.value }}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+			<label for="field" class="col-4">Operator</label>
+			<div class="col-8">
+				<select name="operator" id="operator" class="form-control" [(ngModel)]="searchRow.operator">
+					<option *ngFor="let item of operators" [value]="item.key">{{ item.value }}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+			<label for="value" class="col-4">Value</label>
+			<div class="col-8">
+				<ng-select class="custom" id="value" [items]="values" [(ngModel)]="searchRow.value" name="type" bindValue="key" bindLabel="value"></ng-select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+			<label for="has" class="col-4">Has</label>
+			<div class="col-8">
+				<select name="has" id="has" class="form-control" [(ngModel)]="searchRow.has">
+					<option *ngFor="let item of has" [ngValue]="item.key">{{ item.value }}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="d-flex justify-content-center">
+	<button class="btn btn-primary" (click)="addSearchCriteria()">Add to list</button>
+	<button class="btn btn-white" (click)="removeSearchCriteria()">Remove selected</button>
+</div>

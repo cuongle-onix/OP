@@ -1,0 +1,145 @@
+<form (ngSubmit)="onSubmit()">
+	<div class="form-row">
+		<div class="form-group col-sm-2">
+			<img src="assets/images/avatar.jpg" alt="Avatar" class="avatar">
+		</div>
+		<div class="form-group col-sm-10">
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+						<div class="col-sm-9">
+							<input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="personnel.firstName">
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+						<div class="col-sm-9">
+							<input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="personnel.lastName">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="title" class="col-sm-3 col-form-label">Title</label>
+						<div class="col-sm-9">
+							<select name="title" id="title" class="form-control" [(ngModel)]="personnel.title">
+								<option value="mr">Mr.</option>
+								<option value="ms">Ms.</option>
+								<option value="mrs">Mrs.</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="initials" class="col-sm-3 col-form-label">Initials</label>
+						<div class="col-sm-9">
+							<input type="text" id="initials" name="initials" class="form-control" [(ngModel)]="personnel.initials">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="dateOfBirth" class="col-sm-3 col-form-label">Date of Birth</label>
+						<div class="col-sm-9">
+							<datepicker [model]="personnel.dateOfBirth"></datepicker>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="lastName" class="col-sm-3 col-form-label">Sex</label>
+						<div class="col-sm-9">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="male" id="male" value="male" [(ngModel)]="personnel.sex">
+								<label class="form-check-label" for="male">
+									Male
+								</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="female" id="female" value="female" [(ngModel)]="personnel.sex">
+								<label class="form-check-label" for="female">
+									Female
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="externalId" class="col-sm-3 col-form-label">External ID</label>
+						<div class="col-sm-9">
+							<input type="text" id="externalId" name="externalId" class="form-control" [(ngModel)]="personnel.externalId">
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="daWinciId" class="col-sm-3 col-form-label">DaWinci ID</label>
+						<div class="col-sm-9">
+							<input type="text" id="daWinciId" name="daWinciId" class="form-control" [(ngModel)]="personnel.daWinciId">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="socSecNo" class="col-sm-3 col-form-label">Soc Sec No.</label>
+						<div class="col-sm-9">
+							<input type="text" id="socSecNo" name="socSecNo" class="form-control" [(ngModel)]="personnel.socSecNo">
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<div class="row">
+						<label for="webLogonId" class="col-sm-3 col-form-label">Web Logon ID</label>
+						<div class="col-sm-9">
+							<input type="text" id="webLogonId" name="webLogonId" class="form-control" [(ngModel)]="personnel.webLogonId">
+						</div>
+					</div>
+				</div>
+			</div>
+			<h4>Address</h4><hr>
+			<div class="row form-group">
+				<label for="defaultAddress" class="col-sm-2 col-form-label">Default Address</label>
+				<div class="col-sm-10">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="home" id="home" value="home" [(ngModel)]="personnel.defaultAddress">
+						<label class="form-check-label" for="home">
+							Home
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="business" id="business" value="business" [(ngModel)]="personnel.defaultAddress">
+						<label class="form-check-label" for="business">
+							Business
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="homeAddress" class="col-sm-2 col-form-label">Home Address</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" name="homeAddress" id="homeAddress" [(ngModel)]="personnel.homeAddress"></textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<label for="businessAddress" class="col-sm-2 col-form-label">Business Address</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" name="businessAddress" id="businessAddress" [(ngModel)]="personnel.businessAddress"></textarea>
+				</div>
+			</div>
+			<a class="font-weight-bold view-details" href="#">View personnel details</a>
+		</div>
+	</div>
+</form>

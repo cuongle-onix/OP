@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TypeaheadComponent } from './typeahead.component';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { DropdownComponent } from './dropdown.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
-		NgSelectModule,
+		NgbModule,
 	],
 	declarations: [
-		TypeaheadComponent
+		DropdownComponent,
 	],
 	exports: [
-		TypeaheadComponent
+		DropdownComponent,
 	]
 })
-export class TypeaheadModule { }
+export class DropdownModule { }

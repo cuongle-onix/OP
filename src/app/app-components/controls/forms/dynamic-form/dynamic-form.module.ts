@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomFormComponent } from './custom-form.component';
+import { DynamicFormComponent } from './dynamic-form.component';
 import { FormControlComponent } from './form-control/form-control.component';
-import { TypeaheadModule } from '../typeahead/typeahead.module';
-import { DatepickerModule } from '../datepicker/datepicker.module';
+import { DatepickerModule } from '../../datepicker/datepicker.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		TypeaheadModule,
 		DatepickerModule,
+		NgSelectModule,
 	],
 	declarations: [
-		CustomFormComponent,
+		DynamicFormComponent,
 		FormControlComponent,
 	],
 	exports: [
-		CustomFormComponent,
+		DynamicFormComponent,
 	]
 })
-export class CustomFormModule { }
+export class DynamicFormModule { }

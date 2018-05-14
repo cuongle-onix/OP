@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlBase, Row, Textbox, Select } from './form-control/controls';
-import { FORM_TYPE } from '../../../const.global';
+import { FORM_TYPE } from '../../../../const.global';
 
 @Component({
-	selector: 'custom-form',
-	templateUrl: './custom-form.component.html',
-	styleUrls: ['./custom-form.component.scss']
+	selector: 'dynamic-form',
+	templateUrl: './dynamic-form.component.html',
+	styleUrls: ['./dynamic-form.component.scss']
 })
-export class CustomFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit {
 
 	@Input() data: any;
 	@Input() formType: string = FORM_TYPE.MIXED;

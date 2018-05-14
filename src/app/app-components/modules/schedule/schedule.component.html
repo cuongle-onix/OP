@@ -98,7 +98,7 @@
 					<ngb-tab title="Details" id="first">
 						<ng-template ngbTabContent>
 							<h4>Item details</h4>
-							<custom-form [(data)]="formData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+							<dynamic-form [data]="formData" (onSubmit)="onSubmitDetails($event)"></dynamic-form>
 						</ng-template>
 					</ngb-tab>
 					<ngb-tab title="Activities & Events" id="second">
@@ -114,7 +114,7 @@
 										<ngb-tab title="Activity details" id="details">
 											<ng-template ngbTabContent>
 												<h4>Activities &amp; Events</h4>
-												<custom-form [(data)]="activityFormData" (onSubmit)="onSubmitDetails($event)"></custom-form>
+												<dynamic-form [data]="activityFormData" (onSubmit)="onSubmitDetails($event)"></dynamic-form>
 											</ng-template>
 										</ngb-tab>
 										<ngb-tab title="Content" id="content">

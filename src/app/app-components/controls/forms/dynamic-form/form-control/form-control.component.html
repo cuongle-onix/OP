@@ -1,7 +1,5 @@
 <div [formGroup]="form" class="row">
-	<div class="col-sm-3">
-		<label [attr.for]="control.key">{{control.label}}</label>
-	</div>
+	<label class="col-sm-3 col-form-label" [attr.for]="control.key">{{control.label}}</label>
 
 	<div [ngSwitch]="control.controlType" class="col-sm-9">
 
@@ -11,10 +9,8 @@
 		<select *ngSwitchCase="CONTROL_TYPE.SELECT" [id]="control.key" [formControlName]="control.key" [multiple]="control.multiple" [(ngModel)]="selectedOpt" (change)="onOptionChange($event)" class="form-control">
 			<option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
 		</select>
-		
-		<typeahead *ngSwitchCase="CONTROL_TYPE.TYPEAHEAD" [data]="control.options" [placeholder]="control.placeholder"></typeahead>
 
-		<datepicker *ngSwitchCase="CONTROL_TYPE.DATEPICKER" [model]="control.model" [param]="control.param"></datepicker>
+		<datepicker *ngSwitchCase="CONTROL_TYPE.DATEPICKER" [model]="control.model"></datepicker>
 
 	</div> 
 

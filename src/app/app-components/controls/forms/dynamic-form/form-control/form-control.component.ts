@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ControlBase, Select } from './controls';
-import { CONTROL_TYPE } from '../../../../const.global';
+import { CONTROL_TYPE } from '../../../../../const.global';
 
 @Component({
 	selector: 'form-control',

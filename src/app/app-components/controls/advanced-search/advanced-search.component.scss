@@ -1,0 +1,20 @@
+@import '../../../../assets/css/standard';
+
+form {
+	.col-4 {
+		padding-right: 0;
+	}
+}
+
+.table-wrapper {
+	overflow-y: auto;
+	margin-bottom: 10px;
+	min-height: 90px;
+	border: 1px solid $border-color;
+	tr {
+		cursor: pointer;
+		&.selected {
+			background-color: rgba(0,0,0,.075);
+		}
+	}
+}

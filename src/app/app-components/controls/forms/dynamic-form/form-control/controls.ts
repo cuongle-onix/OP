@@ -1,9 +1,4 @@
-import { CONTROL_TYPE } from '../../../../const.global';
-
-export enum ParamType {
-	checkbox,
-	operators
-}
+import { CONTROL_TYPE } from '../../../../../const.global';
 
 export class ControlBase<T> {
 	value: T;
@@ -42,36 +37,40 @@ export class Select extends ControlBase<string> {
 export class Textbox extends ControlBase<string> {
 	controlType = CONTROL_TYPE.TEXT_BOX;
 	type: string;
+	model: any;
 
 	constructor(options: {} = {}) {
 		super(options);
 		this.type = options['type'] || 'text';
+		this.model = options['model'] || {};
 	}
 }
 
-export class Typeahead extends ControlBase<string> {
-	controlType = CONTROL_TYPE.TYPEAHEAD;
+export class NgSelect extends ControlBase<string> {
+	controlType = CONTROL_TYPE.NG_SELECT;
 	options: { key: string, value: string, isSelected: boolean }[] = [];
 	placeholder: string;
+	model: any;
 
 	constructor(options: {} = {}) {
 		super(options);
 		this.options = options['options'] || [];
 		this.placeholder = options['placeholder'] || '';
+		this.model = options['model'] || '';
 	}
 }
 
-export class Datepicker extends ControlBase<string> {
-	controlType = CONTROL_TYPE.DATEPICKER;
-	model: any;
-	param: ParamType;
+// export class Datepicker extends ControlBase<string> {
+// 	controlType = CONTROL_TYPE.DATEPICKER;
+// 	model: any;
+// 	param: ParamType;
 
-	constructor(options: {} = {}) {
-		super(options);
-		this.model = options['model'] || null;
-		this.param = options['param'];
-	}
-}
+// 	constructor(options: {} = {}) {
+// 		super(options);
+// 		this.model = options['model'] || {};
+// 		this.param = options['param'];
+// 	}
+// }
 
 export class Row {
 	controls: ControlBase<any>[];

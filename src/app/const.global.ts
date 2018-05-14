@@ -11,7 +11,7 @@ export const TREEVIEW_CONFIG = {
 export const CONTROL_TYPE = {
 	TEXT_BOX: 'textbox',
 	SELECT: 'select',
-	TYPEAHEAD: 'typeahead',
+	NG_SELECT: 'ng-select',
 	BUTTON: 'button',
 	RIBBON_BUTTON: 'ribbonButton',
 	DATEPICKER: 'datepicker'
@@ -24,7 +24,8 @@ export const TOOLBAR_BTN_TYPE = {
 	PROPERTIES: 'btn-properties',
 	REPORT: 'btn-report',
 	NEW_CATEGORY: 'btn-new-category',
-	NEW_TYPE: 'btn-new-type'
+	NEW_TYPE: 'btn-new-type',
+	VIEW_PERSONNEL: 'btn-view-personnel'
 };
 
 export const FORM_TYPE = {
@@ -39,3 +40,9 @@ export const DEFAULT_MODAL_CONFIG = {
 };
 
 export const OPERATORS = ['>=', '<=', '='];
+
+export const TREE_NODE_TYPE = {
+	FOLDER: 'folder',
+	DEPARTMENT: 'department',
+	SCOPES: 'scope'
+};

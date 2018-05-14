@@ -8,7 +8,7 @@ import { TreeviewModule } from 'ngx-treeview';
 import { PaneSetModule } from '../../controls/pane-set/pane-set.module';
 import { ListViewModule } from '../../controls/list-view/list-view.module';
 import { ToolbarModule } from '../../controls/toolbar/toolbar.module';
-import { CustomFormModule } from '../../controls/custom-form/custom-form.module';
+import { DynamicFormModule } from '../../controls/forms/dynamic-form/dynamic-form.module';
 
 @NgModule({
 	imports: [
@@ -19,7 +19,7 @@ import { CustomFormModule } from '../../controls/custom-form/custom-form.module'
 		PaneSetModule,
 		ListViewModule,
 		ToolbarModule,
-		CustomFormModule,
+		DynamicFormModule,
 	],
 	declarations: [
 		ScheduleComponent,

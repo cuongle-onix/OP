@@ -1,0 +1,31 @@
+<ngx-treeview
+[config]="TREEVIEW_CONFIG" 
+[items]="items"
+[itemTemplate]="itemTemplate" 
+(selectedChange)="onSelectedChange($event)"></ngx-treeview>
+
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
+
+	<i class="fa"
+	*ngIf="item.children" (click)="onCollapseExpand()" 
+	[class.fa-caret-right]="item.collapsed"
+	[class.fa-caret-down]="!item.collapsed"></i>
+
+	<input type="checkbox"
+	[(ngModel)]="item.checked"
+	[disabled]="item.disabled" 
+	[indeterminate]="item.indeterminate"
+	(ngModelChange)="onCheckedChange()" />
+	<ng-container [ngSwitch]="item.type">
+		<i class="fa" 
+		*ngSwitchCase="TREE_NODE_TYPE.FOLDER"
+		[class.fa-folder]="item.collapsed" 
+		[class.fa-folder-open]="!item.collapsed"></i>
+		<i class="fa fa-home" *ngSwitchCase="TREE_NODE_TYPE.DEPARTMENT"></i>
+		<i class="fa fa-list-alt" *ngSwitchCase="TREE_NODE_TYPE.SCOPES"></i>
+		<!-- <i class="fa fa-bars" *ngSwitchDefault></i> -->
+	</ng-container>
+	<label class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
+		{{item.text}}
+	</label>
+</ng-template>

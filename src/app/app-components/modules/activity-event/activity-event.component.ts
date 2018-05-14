@@ -1,8 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { TreeviewItem } from 'ngx-treeview';
-import { TREEVIEW_CONFIG, TOOLBAR_BTN_TYPE, FORM_TYPE, DEFAULT_MODAL_CONFIG, OPERATORS } from '../../../const.global';
-import { Select, Textbox, Row, Typeahead, Datepicker, ParamType } from '../../controls/custom-form/form-control/controls';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { CustomTreeviewItem } from '../../controls/custom-treeview/custom-treeview.component';
+import { TOOLBAR_BTN_TYPE } from '../../../const.global';
+import { Select, Textbox, Row, NgSelect } from '../../controls/forms/dynamic-form/form-control/controls';
 import { Toolbar, Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/controls';
+import { SearchComponent } from '../../controls/search/search.component';
+import { AdvancedSearchComponent } from '../../controls/advanced-search/advanced-search.component';
+
+enum ClearType {
+	all,
+	search,
+	advanced
+};
 
 @Component({
 	selector: 'activity-event',
@@ -11,17 +19,20 @@ import { Toolbar, Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/
 })
 export class ActivityEventComponent implements OnInit {
 
-	TREEVIEW_CONFIG = TREEVIEW_CONFIG;
-	treeviewItems: any;
+	@ViewChild(SearchComponent) searchForm: SearchComponent;
+	@ViewChild(AdvancedSearchComponent) advancedSearchForm: AdvancedSearchComponent;
+
+	clearType = ClearType;
+
+	allFolders: any[];
+	allDepartments: any[];
+	allScopes: any[];
 	listviewItems: any[];
 	toolbar: Toolbar;
 
 	selectedActivity: any;
+	selectedConnectedItemId: any;
 	checkedItems: any[] = [];
-	searchFormData: any[];
-	advancedSearchFormData: any[];
-
-	FORM_TYPE = FORM_TYPE;
 
 	storedFilters = [
 		{ key: 'f1', value: 'Stored filter 1', isSelected: false },
@@ -35,107 +46,249 @@ export class ActivityEventComponent implements OnInit {
 		{ key: 'p3', value: ' Personnel filter 3', isSelected: false }
 	];
 
-	fromDate: any;
-	toDate: any;
-	messagesDate: any;
+	searchCount: number;
+	advancedSearchCount: number;
 
-	fields = [
-		{ key: 'activity', value: 'Activity', isSelected: false },
-		{ key: 'all', value: 'All', isSelected: false },
-		{ key: 'cost', value: 'Cost', isSelected: false },
-		{ key: 'company', value: 'Company', isSelected: false },
-		{ key: 'location', value: 'Location', isSelected: false },
-		{ key: 'category', value: 'Category', isSelected: false }
-	];
-	operators = [
-		{ key: 0, value: OPERATORS[0], isSelected: false },
-		{ key: 1, value: OPERATORS[1], isSelected: false },
-		{ key: 2, value: OPERATORS[2], isSelected: false }
-	];
-	values = [
-		{ key: 'a1', value: 'A1', isSelected: false },
-		{ key: 'a2', value: 'A2', isSelected: false },
-		{ key: 'a3', value: 'A3', isSelected: false },
-		{ key: 'b1', value: 'B1', isSelected: false },
-		{ key: 'b2', value: 'B2', isSelected: false },
-		{ key: 'b3', value: 'B3', isSelected: false }
-	];
-	has = [
-		{ key: true, value: 'Has', isSelected: false },
-		{ key: false, value: 'Has not', isSelected: false }
-	];
+	folderCount: number;
+	departmentCount: number;
+	scopeCount: number;
 
-	searchCriteria: { field: string, operator: string, value: string, has: string }[] = [];
-	selectedRowIndex: number;
-
-	constructor() { }
+	constructor(private cdRef : ChangeDetectorRef) { }
 
 	ngOnInit() {
-		let itCategory = new TreeviewItem({
-			text: 'IT', value: 9, children: [
-				{
-					text: 'Programming', value: 91, children: [{
-						text: 'Frontend', value: 911, children: [
-							{ text: 'Angular 1', value: 9111 },
-							{ text: 'Angular 2', value: 9112 },
-							{ text: 'ReactJS', value: 9113 }
+		this.allFolders = [
+			new CustomTreeviewItem('folder', {
+				text: 'All Folders', value: 0, children: [
+					{
+						text: 'Anseltelse', value: 1, children: [
+							{ text: 'Ansaltkategori', value: 2 },
+							{ text: 'Arbeidsgiver', value: 3 },
+							{ text: 'Avdeling', value: 4 }
 						]
-					}, {
-						text: 'Backend', value: 912, children: [
-							{ text: 'C#', value: 9121 },
-							{ text: 'Java', value: 9122 },
-							{ text: 'Python', value: 9123, checked: false }
+					},
+					{
+						text: 'HR', value: 5, children: [
+							{ text: 'Avdelingsleder', value: 6 },
+							{ text: 'Discipline', value: 6 }
 						]
-					}]
-				},
-				{
-					text: 'Networking', value: 92, children: [
-						{ text: 'Internet', value: 921 },
-						{ text: 'Security', value: 922 }
-					]
-				}
-			]
-		});
-		let teenCategory = new TreeviewItem({
-			text: 'Teen', value: 2, disabled: true, children: [
-				{ text: 'Adventure', value: 21 },
-				{ text: 'Science', value: 22 }
-			]
-		});
-		this.treeviewItems = [itCategory, teenCategory];
+					}
+				]
+			})
+		];
+
+		this.allDepartments = [
+			new CustomTreeviewItem('department', {
+				text: 'All Departments', value: 7, children: [
+					{ text: '1 - Installasjon Land Sunnhorland', value: 8 },
+					{ text: '2 - Installasjon Marine', value: 9 },
+					{
+						text: 'Administasjon', value: 11, children: [
+							{ text: 'Drift', value: 12 },
+							{ text: 'Service', value: 13 },
+							{ text: 'Vedlikehold', value: 23 }
+						]
+					},
+					{ text: '3 - Oje & Gass', value: 10 },
+					{ text: 'None', value: 19 },
+				]
+			})
+		];
+
+		this.allScopes = [
+			new CustomTreeviewItem('scope', {
+				text: 'All Scopes', value: 22, children: [
+					{ text: 'Planlagt', value: 24 },
+					{ text: 'Historisk', value: 34 },
+					{ text: 'Normal', value: 44 }
+				]
+			})
+		];
 
 		this.listviewItems = [
 			{
+				id: 1,
 				category: 'Disiplin',
+				company: 'Marathon',
+				discipline: 'Formann',
+				location: 'Brinhild',
 				type: 'Elektrotermografi - Level 1 (Nor)',
+				status: 'offshore',
 				personnel: 'Amundsen-Færøy',
+				level: 'apache',
 				fromDate: '9/17/1997',
+				percent: 30,
 				toDate: '12/31/2013',
+				schedule: '',
 				expireDate: '05/03/2022',
+				group: '',
+				inLieuTo: '',
+				rotation: '5-2',
+				shift: 'Morgen',
+				scope: 'Normal',
+				comment: '',
+				internalComment: '',
+				connected: [
+					{
+						id: 10,
+						category: 'Children',
+						company: 'Apple',
+						discipline: 'Formann',
+						location: 'Brinhild',
+						type: 'Elektrotermografi - Level 1 (Nor)',
+						status: 'offshore',
+						personnel: 'Amundsen-Færøy',
+						level: 'apache',
+						fromDate: '9/17/1997',
+						percent: 30,
+						toDate: '12/31/2013',
+						schedule: '',
+						expireDate: '05/03/2022',
+						group: '',
+						inLieuTo: '',
+						rotation: '5-2',
+						shift: 'Morgen',
+						scope: 'Normal',
+						comment: '',
+						internalComment: '',
+						isSelected: false,
+						isChecked: false
+					},
+					{
+						id: 11,
+						category: 'Kurs',
+						company: 'Dell',
+						discipline: 'Formann',
+						location: 'Brinhild',
+						type: 'Elektrotermografi - Level 1 (Nor)',
+						status: 'offshore',
+						personnel: 'Amundsen-Færøy',
+						level: 'apache',
+						fromDate: '9/17/1997',
+						percent: 30,
+						toDate: '12/31/2013',
+						schedule: '',
+						expireDate: '05/03/2022',
+						group: '',
+						inLieuTo: '',
+						rotation: '5-2',
+						shift: 'Morgen',
+						scope: 'Normal',
+						comment: '',
+						internalComment: '',
+						isSelected: false,
+						isChecked: false
+					}
+				],
 				isSelected: false,
 				isChecked: false
 			},
 			{
+				id: 2,
 				category: 'Flyplass',
-				type: 'EMC grunnleggende (Nor)',
-				personnel: 'Allison Grainger',
-				fromDate: '12/19/2014',
+				company: 'Marathon',
+				discipline: 'Formann',
+				location: 'Brinhild',
+				type: 'Elektrotermografi - Level 1 (Nor)',
+				status: 'offshore',
+				personnel: 'Amundsen-Færøy',
+				level: 'apache',
+				fromDate: '9/17/1997',
+				percent: 30,
 				toDate: '12/31/2013',
+				schedule: '',
 				expireDate: '05/03/2022',
+				group: '',
+				inLieuTo: '',
+				rotation: '5-2',
+				shift: 'Morgen',
+				scope: 'Normal',
+				comment: '',
+				internalComment: '',
+				connected: [],
 				isSelected: false,
 				isChecked: false
 			},
 			{
+				id: 3,
 				category: 'Grieghallen',
-				type: 'Grunnleggende Sikkerhetskurs',
-				personnel: 'Anna Wesolowska',
-				fromDate: '7/1/1984',
-				toDate: '7/13/2013',
+				company: 'Marathon',
+				discipline: 'Formann',
+				location: 'Brinhild',
+				type: 'Elektrotermografi - Level 1 (Nor)',
+				status: 'offshore',
+				personnel: 'Amundsen-Færøy',
+				level: 'apache',
+				fromDate: '9/17/1997',
+				percent: 30,
+				toDate: '12/31/2013',
+				schedule: '',
 				expireDate: '05/03/2022',
+				group: '',
+				inLieuTo: '',
+				rotation: '5-2',
+				shift: 'Morgen',
+				scope: 'Normal',
+				comment: '',
+				internalComment: '',
+				connected: [
+					{
+						id: 12,
+						category: 'Children',
+						company: 'Apple',
+						discipline: 'Formann',
+						location: 'Brinhild',
+						type: 'Elektrotermografi - Level 1 (Nor)',
+						status: 'offshore',
+						personnel: 'Amundsen-Færøy',
+						level: 'apache',
+						fromDate: '9/17/1997',
+						percent: 30,
+						toDate: '12/31/2013',
+						schedule: '',
+						expireDate: '05/03/2022',
+						group: '',
+						inLieuTo: '',
+						rotation: '5-2',
+						shift: 'Morgen',
+						scope: 'Normal',
+						comment: '',
+						internalComment: '',
+						isSelected: false,
+						isChecked: false
+					},
+					{
+						id: 13,
+						category: 'Kurs',
+						company: 'Dell',
+						discipline: 'Formann',
+						location: 'Brinhild',
+						type: 'Elektrotermografi - Level 1 (Nor)',
+						status: 'offshore',
+						personnel: 'Amundsen-Færøy',
+						level: 'apache',
+						fromDate: '9/17/1997',
+						percent: 30,
+						toDate: '12/31/2013',
+						schedule: '',
+						expireDate: '05/03/2022',
+						group: '',
+						inLieuTo: '',
+						rotation: '5-2',
+						shift: 'Morgen',
+						scope: 'Normal',
+						comment: '',
+						internalComment: '',
+						isSelected: false,
+						isChecked: false
+					}
+				],
 				isSelected: false,
 				isChecked: false
-			},
+			}
 		];
+
+		this.selectedActivity = this.listviewItems[0];
+		this.selectedActivity.isSelected = true;
 
 		this.toolbar = new Toolbar(
 			[
@@ -160,15 +313,10 @@ export class ActivityEventComponent implements OnInit {
 								})
 							]
 						),
-						new RibbonGroup(
-							{ label: 'Properties' },
-							[
-								new RibbonButton({
-									type: TOOLBAR_BTN_TYPE.PROPERTIES,
-									click: this.unknownClick.bind(this)
-								})
-							]
-						)
+						new RibbonButton({
+							type: TOOLBAR_BTN_TYPE.VIEW_PERSONNEL,
+							click: this.unknownClick.bind(this)
+						})
 					]
 				),
 				new Tab(
@@ -186,142 +334,10 @@ export class ActivityEventComponent implements OnInit {
 						),
 					]
 				)
-			],
-			'menu'
+			]
 		);
 
-		this.searchFormData = [
-			new Typeahead({
-				label: 'Category',
-				options: [
-					{ key: 'cate1', value: 'Category 1', isSelected: false },
-					{ key: 'cate2', value: 'Category 2', isSelected: false },
-					{ key: 'cate3', value: 'Category 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Discipline',
-				options: [
-					{ key: 'd1', value: 'Discipline 1', isSelected: false },
-					{ key: 'd2', value: 'Discipline 2', isSelected: false },
-					{ key: 'd3', value: 'Discipline 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Type',
-				options: [
-					{ key: 't1', value: 'Type 1', isSelected: false },
-					{ key: 't2', value: 'Type 2', isSelected: false },
-					{ key: 't3', value: 'Type 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Personnel',
-				options: [
-					{ key: 'p1', value: 'Personnel 1', isSelected: false },
-					{ key: 'p2', value: 'Personnel 2', isSelected: false },
-					{ key: 'p3', value: 'Personnel 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Company',
-				options: [
-					{ key: 'c1', value: 'Company 1', isSelected: false },
-					{ key: 'c2', value: 'Company 2', isSelected: false },
-					{ key: 'c3', value: 'Company 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Location',
-				options: [
-					{ key: 'l1', value: 'Location 1', isSelected: false },
-					{ key: 'l2', value: 'Location 2', isSelected: false },
-					{ key: 'l3', value: 'Location 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Status',
-				options: [
-					{ key: 's1', value: 'Status 1', isSelected: false },
-					{ key: 's2', value: 'Status 2', isSelected: false },
-					{ key: 's3', value: 'Status 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Level',
-				options: [
-					{ key: 'l1', value: 'Level 1', isSelected: false },
-					{ key: 'l2', value: 'Level 2', isSelected: false },
-					{ key: 'l3', value: 'Level 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Schedule',
-				options: [
-					{ key: 's1', value: 'Schedule 1', isSelected: false },
-					{ key: 's2', value: 'Schedule 2', isSelected: false },
-					{ key: 's3', value: 'Schedule 3', isSelected: false }
-				]
-			}),
-			new Typeahead({
-				label: 'Group',
-				options: [
-					{ key: 'g1', value: 'Group 1', isSelected: false },
-					{ key: 'g2', value: 'Group 2', isSelected: false },
-					{ key: 'g3', value: 'Group 3', isSelected: false }
-				]
-			}),
-			new Datepicker({
-				label: 'From date',
-				key: 'fromDate',
-				model: this.fromDate,
-				param: ParamType.operators
-			}),
-			new Datepicker({
-				label: 'To date',
-				key: 'toDate',
-				model: this.fromDate,
-				param: ParamType.operators
-			}),
-			new Datepicker({
-				label: 'Expire date',
-				key: 'expireDate',
-				model: this.toDate,
-				param: ParamType.operators
-			}),
-			new Textbox({
-				label: 'Comment',
-				value: '',
-				key: 'comment'
-			}),
-			new Datepicker({
-				label: 'Messages',
-				model: this.messagesDate,
-				param: ParamType.checkbox
-			})
-		];
-
-		this.advancedSearchFormData = [
-			new Select({
-				label: 'Field',
-				options: this.fields
-			}),
-			new Select({
-				label: 'Operator',
-				options: this.operators
-			}),
-			new Typeahead({
-				label: 'Value',
-				options: this.values
-			}),
-			new Select({
-				label: 'Has',
-				options: this.has
-			})
-		];
-	}
-
-	onSelectedChange(event) {
+		this.cdRef.detectChanges();   
 	}
 
 	onClickNew(event) {
@@ -344,8 +360,29 @@ export class ActivityEventComponent implements OnInit {
 		console.log('on search item');
 	}
 
-	onSelectIem(event) {
-		this.selectedActivity = this.convertJsonToFormData(event.targetedItem);
+	clearSearch(type, event) {
+		event.stopPropagation();
+		event.preventDefault();
+		switch (type) {
+			case this.clearType.all:
+				this.searchForm.clearSearch();
+				this.advancedSearchForm.clearSearch();
+				break;
+			case this.clearType.search:
+				this.searchForm.clearSearch();
+				break;
+			case this.clearType.advanced:
+				this.advancedSearchForm.clearSearch();
+		}
+	}
+
+	onSelectItem(event) {
+		this.selectedActivity = event.targetedItem;
+	}
+
+	onSelectConnectedItem(event) {
+		let selectedConnectedItem = event.targetedItem;
+		this.selectedConnectedItemId = event.targetedItem.id;
 	}
 
 	onCheckItem(event) {
@@ -359,25 +396,15 @@ export class ActivityEventComponent implements OnInit {
 		}
 	}
 
-	addSearchCriteria() {
-		let field = this.fields.filter(item => item.isSelected == true)[0].value;
-		let operator = this.operators.filter(item => item.isSelected == true)[0].value;
-		let value = this.values.filter(item => item.isSelected == true)[0].value;
-		let isHas = this.has.filter(item => item.isSelected == true)[0].value;
-		this.searchCriteria.push({
-			field: field,
-			operator: operator,
-			value: value,
-			has: isHas
-		});
+	cancelChecked() {
+		for (let item of this.listviewItems) {
+			item.isChecked = false;
+		}
+		this.checkedItems = [];
 	}
 
-	selectCriteriaRow(index) {
-		this.selectedRowIndex = index;
-	}
-
-	removeSearchCriteria() {
-		this.searchCriteria.splice(this.selectedRowIndex, 1);
+	updateCount(countType, event) {
+		this[countType] = event;
 	}
 
 	private convertJsonToFormData(obj) {

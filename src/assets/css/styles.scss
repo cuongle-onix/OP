@@ -40,6 +40,26 @@
 	}
 }
 
+.child-tab {
+	.nav-tabs {
+		.nav-link {
+			&.active {
+				border-bottom: 3px solid $child-color;
+			}
+		}
+	}
+	.list-container {
+		.item {
+			&:hover {
+				background-color: $child-color-hover;
+			}
+			&.selected {
+				background-color: $child-color;
+			}
+		}
+	}
+}
+
 /* Custom group and sort dropdown*/
 
 .group-by, .sort-by {
@@ -71,9 +91,15 @@
 		background-color: $item-color-hover;
 	}
 
-	.ng-arrow-wrapper .ng-arrow {
-		border-width: 6px 3px 2.5px;
-		border-color: #000 transparent transparent;
-		left: 6px;
+	.ng-arrow-wrapper {
+		border-left: 1px solid $border-color;
+		width: 31px;
+		height: 100%;
+		.ng-arrow {
+			border-width: 6px 3px 2.5px;
+			border-color: #000 transparent transparent;
+			top: 5px;
+			left: 3px;
+		}
 	}
 }

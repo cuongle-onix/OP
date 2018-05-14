@@ -6,22 +6,36 @@
 		-ms-flex: 1 1 auto;
 		flex: 1 1 auto;
 	}
-}
-
-.filter-btn {
-	.d-inline-block {
-		border: 1px solid $border-color;
-		.btn-toggle {
-			min-width: 0;
-			background-color: transparent;
-			&:after {
-				border: 0;
-			}
-		}
+	/deep/ .dropdown-menu {
+		width: calc(100% - 30px);
 		.dropdown-item {
-			&:hover {
+			&:hover, &.active {
 				background-color: $item-color-hover;
+				color: #000;
 			}
 		}
 	}
+}
+.input-group-append {
+	border: 1px solid $border-color;
+	padding: 5px 6px;
+}
+
+.add-btn, .remove-btn {
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 17px;
+	height: 17px;
+	border: 0;
+	cursor: pointer;
+}
+
+.add-btn {
+	background-image: url(../../../../assets/images/save-icon.png);
+	padding: 0;
+}
+
+.remove-btn {
+	background-image: url(../../../../assets/images/data-area-small-icons.png);
+	background-position: -54px top;
 }

@@ -76,4 +76,12 @@
 			content: "New type";
 		}
 	}
+	&.btn-view-personnel {
+		&:before {
+			background: url('../../../../assets/images/user42.svg') no-repeat top left;
+		}
+		&:after {
+			content: "Personnel";
+		}
+	}
 }

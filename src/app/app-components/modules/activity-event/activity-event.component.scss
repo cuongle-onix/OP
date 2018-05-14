@@ -12,12 +12,12 @@
 		margin-bottom: 10px;
 	}
 	.btn-clear {
-		background: #fff url('#{$assets-url}/images/refresh-search-icon.png') no-repeat 5px center;
+		background: #fff url('../../../../assets/images/refresh-search-icon.png') no-repeat 5px center;
 		color: #000;
-		width: 20px;
 		border: 1px solid $border-color;
 		text-align: right;
 		margin-left: 5px;
+		padding-left: 30px;
 	}
 }
 
@@ -25,6 +25,15 @@
 	margin: 0 -15px;
 	max-height: calc(100% - 155px);
 	overflow-y: auto;
+	.btn-clear {
+		background: transparent url('../../../../assets/images/refresh-search-icon.png') no-repeat left center;
+		min-width: 0;
+		float: right;
+		margin-top: -3px;
+		&:active {
+			background: transparent url('../../../../assets/images/refresh-search-icon.png') no-repeat left center;
+		}
+	}
 	.card {
 		border: 0;
 		&:last-child {
@@ -51,13 +60,42 @@
 			}
 		}
 	}
-	.table-wrapper {
-		overflow-y: auto;
-		margin-bottom: 10px;
-		tr {
-			cursor: pointer;
-			&.selected {
-				background-color: rgba(0,0,0,.075);
+}
+
+.options-list {
+	max-width: 250px;
+	margin: 20vh auto 0;
+	.list-group-item {
+		border: 0;
+		padding: 0;
+		margin-bottom: 5px;
+		&:last-child {
+			text-align: center;
+			margin-top: 10px;
+			border-top: 1px solid $border-color;
+		}
+	}
+	button {
+		text-transform: uppercase;
+		border: 0;
+		background-color: transparent;
+		cursor: pointer;
+		span {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			margin-right: 5px;
+			position: relative;
+			top: 3px;
+		}
+		&.btn-delete {
+			span {
+				background: transparent url('../../../../assets/images/delete_16.png') no-repeat top left;
+			}
+		}
+		&.btn-change-status {
+			span {
+				background: url(../../../../assets/images/mul-selection-icons.png) -163px top no-repeat;
 			}
 		}
 	}

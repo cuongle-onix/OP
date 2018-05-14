@@ -1,12 +1,14 @@
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th scope="col" *ngFor="let col of cols">{{ col }}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let item of data">
-			<td *ngFor="let col of cols">{{ item[col] }}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col" *ngFor="let col of headerCols">{{ col }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of data">
+				<td *ngFor="let key of keys">{{ item[key] }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,6 +1,30 @@
-import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { ParamType } from '../custom-form/form-control/controls';
+import { Component, OnInit, Input, Output, HostListener, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { DatePipe } from '@angular/common'
+import * as moment from 'moment';
 import { OPERATORS } from '../../../const.global';
+import { DateService } from '../../../app-services/date.service';
+import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+
+export enum ParamType {
+	none,
+	checkbox,
+	operators
+}
+
+export class DatepickerModel {
+	paramType: ParamType;
+	date: string;
+	operator: any
+	constructor(options: {
+		paramType?: ParamType,
+		date?: string,
+		operator?: number
+	} = {}) {
+		this.paramType = options.paramType;
+		this.date = options.date != undefined ? options.date : null;
+		this.operator = options.operator;
+	}
+}
 
 @Component({
 	selector: 'datepicker',
@@ -10,8 +34,9 @@ import { OPERATORS } from '../../../const.global';
 
 export class DatepickerComponent implements OnInit {
 
-	@Input() model;
-	@Input() param: ParamType;
+	@Input() model: DatepickerModel;
+	@Output() onDateChange: EventEmitter<any> = new EventEmitter();
+
 	@ViewChild('dp') datepicker;
 
 	@HostListener('document:click', ['$event'])
@@ -20,19 +45,25 @@ export class DatepickerComponent implements OnInit {
 			this.datepicker.close();
 		}
 	}
-
+	dateModel: any;
 	operators = OPERATORS;
-	selectedOperator = OPERATORS[0];
-
 	ParamType = ParamType;
+	dateFormat: string;
 
-	constructor(private elementRef: ElementRef) { }
+	constructor(private elementRef: ElementRef, private dateService: DateService) { }
 
 	ngOnInit() {
+		this.dateFormat = this.dateService.getLocaleDateFormat();
+		this.dateModel = this.dateService.parse(this.model.date);
 	}
 
-	setOperator(index) {
-		this.selectedOperator = this.operators[index];
+	onChange(date: NgbDateStruct) {
+		if (date != null) {
+			this.dateModel = date;
+			let dateString = this.dateService.format(date);
+			this.onDateChange.emit(dateString);
+		} else {
+			this.onDateChange.emit('');
+		}
 	}
-
 }

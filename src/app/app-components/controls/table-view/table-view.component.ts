@@ -8,14 +8,31 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
 	@Input() data: any[];
-	cols: any[] = [];
+	keys: string[] = [];
+	headerCols: string[] = [];
 
 	constructor() { }
 
 	ngOnInit() {
 		for (let key in this.data[0]) {
-			this.cols.push(key);
+			if (key != 'isSelected' && key != 'isChecked' ) {
+				this.keys.push(key);
+				let col = this.toFormLabel(key);
+				this.headerCols.push(col);
+			}
 		}
+	}
+
+	private toFormLabel(str: string) {
+		var out = str.replace(/^\s*/, "");  // strip leading spaces
+		out = out.replace(/^[a-z]|[^\s][A-Z]/g, function(str, offset) {
+			if (offset == 0) {
+				return (str.toUpperCase());
+			} else {
+				return (str.substr(0, 1) + " " + str.substr(1).toUpperCase());
+			}
+		});
+		return (out);
 	}
 
 }

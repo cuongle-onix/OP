@@ -1,0 +1,36 @@
+@import '../../../../assets/css/standard';
+
+.dropdown-wrapper /deep/ {
+	.dropdown-menu {
+		width: calc(100% - 30px);
+		.dropdown-item {
+			&:hover, &.active {
+				background-color: $item-color-hover;
+				color: #000;
+			}
+		}
+	}
+}
+
+.input-group-append {
+	border: 1px solid $border-color;
+	padding: 5px 6px;
+}
+
+.add-btn, .remove-btn {
+	background-image: url(../../../../assets/images/data-area-small-icons.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 17px;
+	height: 17px;
+	border: 0;
+	cursor: pointer;
+}
+
+.add-btn {
+	background-position: top left;
+}
+
+.remove-btn {
+	background-position: -54px top;
+}
