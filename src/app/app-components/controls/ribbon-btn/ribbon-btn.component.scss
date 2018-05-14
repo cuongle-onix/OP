@@ -84,4 +84,12 @@
 			content: "Personnel";
 		}
 	}
+	&.btn-edit-view {
+		&:before {
+			background-position: -239px -35px;
+		}
+		&:after {
+			content: "Edit view";
+		}
+	}
 }

@@ -25,7 +25,8 @@ export const TOOLBAR_BTN_TYPE = {
 	REPORT: 'btn-report',
 	NEW_CATEGORY: 'btn-new-category',
 	NEW_TYPE: 'btn-new-type',
-	VIEW_PERSONNEL: 'btn-view-personnel'
+	VIEW_PERSONNEL: 'btn-view-personnel',
+	EDIT_VIEW: 'btn-edit-view'
 };
 
 export const FORM_TYPE = {

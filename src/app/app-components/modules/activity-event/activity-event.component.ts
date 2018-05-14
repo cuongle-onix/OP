@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CustomTreeviewItem } from '../../controls/custom-treeview/custom-treeview.component';
 import { TOOLBAR_BTN_TYPE } from '../../../const.global';
-import { Select, Textbox, Row, NgSelect } from '../../controls/forms/dynamic-form/form-control/controls';
-import { Toolbar, Tab, RibbonGroup, RibbonButton } from '../../controls/toolbar/controls';
+import { Textbox, Row } from '../../controls/forms/dynamic-form/form-control/controls';
+import { Toolbar, Tab, RibbonGroup, RibbonButton, NgSelect } from '../../controls/toolbar/controls';
 import { SearchComponent } from '../../controls/search/search.component';
 import { AdvancedSearchComponent } from '../../controls/advanced-search/advanced-search.component';
 
@@ -27,12 +27,15 @@ export class ActivityEventComponent implements OnInit {
 	allFolders: any[];
 	allDepartments: any[];
 	allScopes: any[];
-	listviewItems: any[];
+	activityList: any[];
+
 	toolbar: Toolbar;
 
 	selectedActivity: any;
 	selectedConnectedItemId: any;
+
 	checkedItems: any[] = [];
+	checkedConnectedItems: any[] = [];
 
 	storedFilters = [
 		{ key: 'f1', value: 'Stored filter 1', isSelected: false },
@@ -53,7 +56,7 @@ export class ActivityEventComponent implements OnInit {
 	departmentCount: number;
 	scopeCount: number;
 
-	constructor(private cdRef : ChangeDetectorRef) { }
+	constructor(private cdRef: ChangeDetectorRef) { }
 
 	ngOnInit() {
 		this.allFolders = [
@@ -89,7 +92,7 @@ export class ActivityEventComponent implements OnInit {
 						]
 					},
 					{ text: '3 - Oje & Gass', value: 10 },
-					{ text: 'None', value: 19 },
+					{ text: '(None)', value: 19 },
 				]
 			})
 		];
@@ -104,7 +107,7 @@ export class ActivityEventComponent implements OnInit {
 			})
 		];
 
-		this.listviewItems = [
+		this.activityList = [
 			{
 				id: 1,
 				category: 'Disiplin',
@@ -233,7 +236,7 @@ export class ActivityEventComponent implements OnInit {
 				connected: [
 					{
 						id: 12,
-						category: 'Children',
+						category: 'Children2',
 						company: 'Apple',
 						discipline: 'Formann',
 						location: 'Brinhild',
@@ -258,7 +261,7 @@ export class ActivityEventComponent implements OnInit {
 					},
 					{
 						id: 13,
-						category: 'Kurs',
+						category: 'Kurs2',
 						company: 'Dell',
 						discipline: 'Formann',
 						location: 'Brinhild',
@@ -287,7 +290,7 @@ export class ActivityEventComponent implements OnInit {
 			}
 		];
 
-		this.selectedActivity = this.listviewItems[0];
+		this.selectedActivity = this.activityList[0];
 		this.selectedActivity.isSelected = true;
 
 		this.toolbar = new Toolbar(
@@ -320,24 +323,34 @@ export class ActivityEventComponent implements OnInit {
 					]
 				),
 				new Tab(
-					'Other menu',
-					'other-menu',
+					'View',
+					'view',
 					[
 						new RibbonGroup(
-							{ label: 'Report' },
+							{ label: 'Change view' },
 							[
-								new RibbonButton({
-									type: TOOLBAR_BTN_TYPE.REPORT,
-									click: this.unknownClick.bind(this)
-								})
+								new NgSelect({
+									items: [
+										{ key: 'view1', value: 'View 1', isSelected: false },
+										{ key: 'view2', value: 'View 2', isSelected: false },
+										{ key: 'view3', value: 'View 3', isSelected: false }
+									],
+									model: null
+								}),
 							]
 						),
+						new RibbonButton({
+							type: TOOLBAR_BTN_TYPE.EDIT_VIEW,
+							click: this.unknownClick.bind(this)
+						}),
+
 					]
 				)
-			]
+			],
+			'view'
 		);
 
-		this.cdRef.detectChanges();   
+		this.cdRef.detectChanges();
 	}
 
 	onClickNew(event) {
@@ -346,14 +359,6 @@ export class ActivityEventComponent implements OnInit {
 
 	unknownClick(event) {
 		console.log('unknown click event in activity component');
-	}
-
-	onSubmitDetails(event) {
-		console.log('Submit details');
-	}
-
-	onSubmitPersonnel(event) {
-		console.log('Submit personnel');
 	}
 
 	onSearch(event) {
@@ -378,29 +383,37 @@ export class ActivityEventComponent implements OnInit {
 
 	onSelectItem(event) {
 		this.selectedActivity = event.targetedItem;
+		for (let item of this.selectedActivity.connected) {
+			item.isSelected = false;
+		}
+		this.selectedConnectedItemId = null;
 	}
 
 	onSelectConnectedItem(event) {
-		let selectedConnectedItem = event.targetedItem;
 		this.selectedConnectedItemId = event.targetedItem.id;
 	}
 
-	onCheckItem(event) {
+	onCheckItem(listName, event) {
 		let checkedItem = event.targetedItem;
 		if (checkedItem.isChecked) {
-			this.checkedItems.push(checkedItem);
-			//sorting array
-			this.checkedItems = this.listviewItems.filter(el => this.checkedItems.includes(el));
+			this[listName].push(checkedItem);
 		} else {
-			this.checkedItems = this.checkedItems.filter(item => item != checkedItem);
+			this[listName] = this[listName].filter(item => item != checkedItem);
 		}
 	}
 
 	cancelChecked() {
-		for (let item of this.listviewItems) {
+		for (let item of this.activityList) {
 			item.isChecked = false;
 		}
 		this.checkedItems = [];
+	}
+
+	cancelConnectedChecked() {
+		for (let item of this.selectedActivity.connected) {
+			item.isChecked = false;
+		}
+		this.checkedConnectedItems = [];
 	}
 
 	updateCount(countType, event) {

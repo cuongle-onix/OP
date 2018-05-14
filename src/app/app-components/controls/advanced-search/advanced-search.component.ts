@@ -111,6 +111,7 @@ export class AdvancedSearchComponent implements OnInit {
 			has: true
 		};
 		this.searchCriteria = [];
+		this.updateCount.emit(this.searchCriteria.length);
 	}
 
 }

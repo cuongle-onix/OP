@@ -32,9 +32,6 @@
 .pane-content {
 	padding: 0 15px;
 	height: 100%;
-	overflow-y: auto;
-	display: flex;
-	flex-direction: column;
 	/deep/ .fixed-bottom {
 		position: absolute;
 		left: 0;

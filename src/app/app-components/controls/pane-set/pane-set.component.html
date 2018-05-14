@@ -9,7 +9,7 @@
 			(click)="togglePane(pane.id)">
 			<span>{{ pane.title }}</span>
 		</div>
-		<div class="pane-content" [class.d-none]="pane.isCollapsed">
+		<div class="pane-content d-flex flex-column" [class.d-none]="pane.isCollapsed">
 			<ng-template [ngTemplateOutlet]="pane.contentTpl?.templateRef"></ng-template>
 		</div>
 	</div>

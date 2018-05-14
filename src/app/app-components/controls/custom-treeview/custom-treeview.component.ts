@@ -18,19 +18,36 @@ export class CustomTreeviewItem extends TreeviewItem {
 export class CustomTreeviewComponent implements OnInit {
 
 	@Input() items: any;
-	@Output() updateCount: EventEmitter<number> = new EventEmitter();
+	@Output() updateCount: EventEmitter<string> = new EventEmitter();
 
 	TREEVIEW_CONFIG = TREEVIEW_CONFIG;
 	TREE_NODE_TYPE = TREE_NODE_TYPE;
 	treeviewItems: any;
+	nodeCount: number = 0;
 
 	constructor() { }
 
 	ngOnInit() {
+		let node = this.items[0];
+		this.countTreeItem(node);
 	}
 
 	onSelectedChange(event) {
-		this.updateCount.emit(event.length);
+		this.updateCount.emit(event.length + '/' + this.nodeCount);
+	}
+
+	countTreeItem(node) {
+		if (node.children == undefined) {
+			this.nodeCount = 1;
+			return;
+		}
+		for (let item of node.children) {
+			if (item.children) {
+				this.countTreeItem(item);
+			} else {
+				this.nodeCount++;
+			}
+		}
 	}
 
 }

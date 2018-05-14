@@ -7,7 +7,7 @@ import { DatepickerModel, ParamType } from '../../datepicker/datepicker.componen
 })
 export class ActivityFormComponent implements OnInit, OnChanges {
 
-	@Input() activityId: string;
+	@Input() id: string;
 	activity: any;
 	activities: any[] = [
 		{
@@ -198,7 +198,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 		},
 		{
 			id: 12,
-			category: 'Children',
+			category: 'Children2',
 			company: 'Apple',
 			discipline: 'Formann',
 			location: 'Brinhild',
@@ -235,7 +235,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 		},
 		{
 			id: 13,
-			category: 'Kurs',
+			category: 'Kurs2',
 			company: 'Dell',
 			discipline: 'Formann',
 			location: 'Brinhild',
@@ -276,12 +276,12 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 	constructor() { }
 
 	ngOnInit() {
-		this.activity = this.activities.filter(item => item.id == this.activityId)[0];
+		this.activity = this.activities.filter(item => item.id == this.id)[0];
 	}
 
 	ngOnChanges(changes) {
-		if (changes.activityId.currentValue != changes.activityId.previousValue) {
-			this.activity = this.activities.filter(item => item.id == this.activityId)[0];
+		if (changes.id.currentValue != changes.id.previousValue) {
+			this.activity = this.activities.filter(item => item.id == this.id)[0];
 		}
 	}
 

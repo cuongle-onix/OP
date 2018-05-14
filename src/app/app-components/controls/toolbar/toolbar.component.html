@@ -2,32 +2,38 @@
 	<ngb-tabset [activeId]="data.activeTabId" (tabChange)="onClickTab($event)">
 		<ngb-tab *ngFor="let tab of data.tabs" [title]="tab.title" [id]="tab.id">
 			<ng-template ngbTabContent>
-				<ng-container *ngFor="let ribbonGroup of tab.ribbonGroups">
+				<ng-container *ngFor="let item of tab.ribbonGroups">
 
-					<ng-container *ngIf="ribbonGroup.controls">
-						<ribbon-group [label]="ribbonGroup.label">
-							<ng-container *ngFor="let control of ribbonGroup.controls" [ngSwitch]="control.controlType">
+					<ng-container *ngIf="item.controls">
+						<ribbon-group [label]="item.label">
+							<ng-container *ngFor="let control of item.controls" [ngSwitch]="control.controlType">
 								<ribbon-btn *ngSwitchCase="CONTROL_TYPE.RIBBON_BUTTON"
 								[type]="control.type"
 								(click)="control.click($event)"></ribbon-btn>
-								
+								<ng-select class="custom" *ngSwitchCase="CONTROL_TYPE.NG_SELECT" 
+								[items]="control.items" 
+								[(ngModel)]="control.model" 
+								bindValue="key" 
+								bindLabel="value"></ng-select>
 							</ng-container>
 						</ribbon-group>
 					</ng-container>
 
 					<!-- If tab does not have ribbon group -->
-					<ng-container *ngIf="!ribbonGroup.controls">
-						<ng-container [ngSwitch]="ribbonGroup.controlType">				
+					<ng-container *ngIf="!item.controls">
+						<ng-container [ngSwitch]="item.controlType">				
 							<ribbon-btn *ngSwitchCase="CONTROL_TYPE.RIBBON_BUTTON"
-							[type]="ribbonGroup.type"
-							(click)="ribbonGroup.click($event)"></ribbon-btn>
+							[type]="item.type"
+							(click)="item.click($event)"></ribbon-btn>
+							<ng-select class="custom" *ngSwitchCase="CONTROL_TYPE.NG_SELECT" 
+							[items]="item.items" 
+							[(ngModel)]="item.model" 
+							bindValue="key" 
+							bindLabel="value"></ng-select>
 						</ng-container>
 					</ng-container>
 					
 				</ng-container>
-				<div *ngIf="tab.hasSearchBtn">
-					<button class="btn btn-primary">Save search</button>
-				</div>
 			</ng-template>
 		</ngb-tab>
 	</ngb-tabset>

@@ -13,8 +13,8 @@
 						<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>
 					</div>
 				</section>
-				<section class="search flex-grow-1">
-					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-2" [destroyOnHide]="false">
+				<section class="search">
+					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-3" [destroyOnHide]="false" [closeOthers]="true">
 						<ngb-panel>
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
@@ -100,23 +100,27 @@
 											</div>
 										</div> -->
 										<div class="pr-2">
-											<span class="float-right" *ngIf="!checkedItems.length">{{ listviewItems.length }} item(s)</span>
-											<span class="float-right" *ngIf="checkedItems.length">{{ checkedItems.length }} of {{ listviewItems.length }} selected</span>
+											<span class="float-right" *ngIf="!checkedItems.length">
+												{{ activityList.length }} item(s)
+											</span>
+											<span class="float-right" *ngIf="checkedItems.length">
+												{{ checkedItems.length }} of {{ activityList.length }} selected
+											</span>
 										</div>
 										<list-view
-										[items]="listviewItems" 
+										[items]="activityList" 
 										(onSelectItem)="onSelectItem($event)" 
-										(onCheckItem)="onCheckItem($event)"></list-view>
+										(onCheckItem)="onCheckItem('checkedItems', $event)"></list-view>
 									</ng-template>
 								</pane>
 								<ng-template details>
 									<div class="sub-tabs child-tab">
 										<ngb-tabset activeId="details">
-											<ng-container *ngIf="!checkedItems.length && selectedActivity">
+											<ng-container *ngIf="selectedActivity && !checkedItems.length">
 												<ngb-tab title="Details" id="details">
 													<ng-template ngbTabContent>
 														<h4 class="pt-4">Activity details</h4>
-														<activity-form [activityId]="selectedActivity.id"></activity-form>
+														<activity-form [id]="selectedActivity.id"></activity-form>
 													</ng-template>
 												</ngb-tab>
 												<ngb-tab title="Connected" id="connected" *ngIf="selectedActivity.connected.length">
@@ -124,16 +128,42 @@
 														<pane-set>
 															<pane title="Connected" bgColor="#B9CCFF" col="col-3">
 																<ng-template pane-content>
+																	<div class="pr-2">
+																		<span class="float-right" *ngIf="!checkedConnectedItems.length">
+																			{{ selectedActivity.connected.length }} item(s)
+																		</span>
+																		<span class="float-right" *ngIf="checkedConnectedItems.length">
+																			{{ checkedConnectedItems.length }} of {{ selectedActivity.connected.length }} selected
+																		</span>
+																	</div>
 																	<list-view
 																	[items]="selectedActivity.connected"
-																	(onSelectItem)="onSelectConnectedItem($event)"></list-view>
+																	(onSelectItem)="onSelectConnectedItem($event)"
+																	(onCheckItem)="onCheckItem('checkedConnectedItems', $event)"></list-view>
 																</ng-template>
 															</pane>
 															<ng-template details>
-																<h4>Connected</h4>
-																<activity-form 
-																*ngIf="selectedConnectedItemId" 
-																[activityId]="selectedConnectedItemId"></activity-form>
+																<div *ngIf="selectedConnectedItemId && !checkedConnectedItems.length">
+																	<h4>Connected details</h4>
+																	<activity-form [id]="selectedConnectedItemId"></activity-form>
+																</div>
+																<div *ngIf="checkedConnectedItems.length">
+																	<ul class="list-group options-list">
+																		<li class="list-group-item">
+																			<button class="btn-change-status">
+																				<span></span>Change status
+																			</button>
+																		</li>
+																		<li class="list-group-item">
+																			<button class="btn-delete">
+																				<span></span>Delete
+																			</button>
+																		</li>
+																		<li class="list-group-item">
+																			<button (click)="cancelConnectedChecked()">Cancel</button>
+																		</li>
+																	</ul>
+																</div>
 															</ng-template>
 														</pane-set>
 													</ng-template>
@@ -180,7 +210,7 @@
 					</ngb-tab>
 					<ngb-tab title="Grid view" id="grid-view">
 						<ng-template ngbTabContent>
-							<table-view [data]="listviewItems"></table-view>
+							<table-view [data]="activityList"></table-view>
 						</ng-template>
 					</ngb-tab>
 				</ngb-tabset>				

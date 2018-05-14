@@ -60,3 +60,15 @@ export class RibbonButton extends ControlBase<string> {
 		this.click = options['click'] || null;
 	}
 }
+
+export class NgSelect extends ControlBase<string> {
+	controlType = CONTROL_TYPE.NG_SELECT;
+	items: { key: string, value: string, isSelected: boolean }[] = [];
+	model: any;
+
+	constructor(options: {} = {}) {
+		super(options);
+		this.items = options['items'] || [];
+		this.model = options['model'] || null;
+	}
+}

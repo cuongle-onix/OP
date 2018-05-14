@@ -5,7 +5,11 @@
 	.tab-pane {
 		height: 94px;
 		padding: 5px 10px;
-		display: flex;	
+		display: flex;
+		.ng-select.custom {
+			min-width: 200px;
+			margin-top: 7px;
+		}
 	}
 	.nav-tabs {
 		background-color: #e4e4e4;
