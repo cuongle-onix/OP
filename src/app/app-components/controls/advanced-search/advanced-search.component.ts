@@ -15,7 +15,7 @@ export class AdvancedSearchComponent implements OnInit {
 	values: any[];
 	has: any[];
 
-	searchRow: { field: string, operator: string, value: any, has: boolean };
+	searchRow: { field: string, operator: string, value: any, has: string };
 	searchCriteria: { 
 		field: {
 			key: string,
@@ -69,10 +69,10 @@ export class AdvancedSearchComponent implements OnInit {
 		];
 
 		this.searchRow = {
-			field: null,
-			operator: null,
+			field: '',
+			operator: '',
 			value: null,
-			has: true
+			has: ''
 		};
 
 		this.searchCriteria = [];
@@ -105,10 +105,10 @@ export class AdvancedSearchComponent implements OnInit {
 
 	clearSearch() {
 		this.searchRow = {
-			field: null,
-			operator: null,
+			field: '',
+			operator: '',
 			value: null,
-			has: true
+			has: ''
 		};
 		this.searchCriteria = [];
 		this.updateCount.emit(this.searchCriteria.length);

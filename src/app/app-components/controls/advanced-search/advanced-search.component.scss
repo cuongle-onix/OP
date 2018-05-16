@@ -1,11 +1,5 @@
 @import '../../../../assets/css/standard';
 
-form {
-	.col-4 {
-		padding-right: 0;
-	}
-}
-
 .table-wrapper {
 	overflow-y: auto;
 	margin-bottom: 10px;
@@ -16,5 +10,40 @@ form {
 		&.selected {
 			background-color: rgba(0,0,0,.075);
 		}
+		td {
+			padding: 5px;
+		}
 	}
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 5px;
+	padding-top: 20px;
+	label {
+		position: absolute;
+		pointer-events: none;
+		left: 0;
+		top: 20px;
+		opacity: 0;
+		transition: 0.2s ease all; 
+		-moz-transition: 0.2s ease all; 
+		-webkit-transition: 0.2s ease all;
+		&.show {
+			top: 0;
+			opacity: 1;
+		}
+
+	}
+}
+
+select.ng-invalid {
+	color: #aaa;
+}
+
+option[value="null"][disabled] {
+	display: none;
+}
+option {
+	color: black;
 }

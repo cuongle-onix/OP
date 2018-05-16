@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ParamType, DatepickerModel } from '../datepicker/datepicker.component';
+import { Component, OnInit, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
+import { ParamType, DatepickerModel, DatepickerComponent } from '../datepicker/datepicker.component';
 
 @Component({
 	selector: 'search',
@@ -9,6 +9,7 @@ import { ParamType, DatepickerModel } from '../datepicker/datepicker.component';
 export class SearchComponent implements OnInit {
 
 	@Output() updateCount: EventEmitter<number> = new EventEmitter();
+	@ViewChildren(DatepickerComponent) datePickerList: QueryList<DatepickerComponent>;
 
 	ParamType = ParamType;
 	category: any[];
@@ -28,9 +29,9 @@ export class SearchComponent implements OnInit {
 
 	ngOnInit() {
 		this.category = [
-			{ "key": 'cate1', "value": 'Category 1', "isSelected": false },
-			{ "key": 'cate2', "value": 'Category 2', "isSelected": false },
-			{ "key": 'cate3', "value": 'Category 3', "isSelected": false }
+			{ "key": 'cate1', "value": 'Cate 1', "isSelected": false },
+			{ "key": 'cate2', "value": 'Cate 2', "isSelected": false },
+			{ "key": 'cate3', "value": 'Cate 3', "isSelected": false }
 		];
 		this.discipline = [
 			{ key: 'd1', value: 'Discipline 1', isSelected: false },
@@ -90,16 +91,20 @@ export class SearchComponent implements OnInit {
 			group: null,
 			fromDate: new DatepickerModel({
 				paramType: ParamType.operators,
+				placeholder: 'From Date'
 			}),
 			toDate: new DatepickerModel({
-				paramType: ParamType.operators
+				paramType: ParamType.operators,
+				placeholder: 'To Date'
 			}),
 			expireDate: new DatepickerModel({
-				paramType: ParamType.operators
+				paramType: ParamType.operators,
+				placeholder: 'Expire Date'
 			}),
 			comment: null,
 			message: new DatepickerModel({
-				paramType: ParamType.checkbox
+				paramType: ParamType.checkbox,
+				placeholder: 'Message Date'
 			})
 		};
 	}
@@ -117,20 +122,27 @@ export class SearchComponent implements OnInit {
 			schedule: null,
 			group: null,
 			fromDate: new DatepickerModel({
-				paramType: ParamType.operators
+				paramType: ParamType.operators,
+				placeholder: 'From Date',
 			}),
 			toDate: new DatepickerModel({
-				paramType: ParamType.operators
+				paramType: ParamType.operators,
+				placeholder: 'To Date',
 			}),
 			expireDate: new DatepickerModel({
-				paramType: ParamType.operators
+				paramType: ParamType.operators,
+				placeholder: 'Expire Date',
 			}),
 			comment: null,
 			message: new DatepickerModel({
-				paramType: ParamType.checkbox
+				paramType: ParamType.checkbox,
+				placeholder: 'Message Date',
 			})
 		};
 		this.updateCount.emit(0);
+		this.datePickerList.forEach(child => {
+			child.onChange(null);
+		});
 	}
 
 	countSearch() {

@@ -24,6 +24,26 @@ textarea {
 	min-height: 60px;
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #aaa;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #aaa;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #aaa;
+}
+
+.form-control {
+	&:focus {
+		box-shadow: none;
+		outline: 0;
+	}
+}
+
 a {
 	color: $onix-main-color;
 }

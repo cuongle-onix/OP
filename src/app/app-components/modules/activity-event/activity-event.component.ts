@@ -321,33 +321,32 @@ export class ActivityEventComponent implements OnInit {
 							click: this.unknownClick.bind(this)
 						})
 					]
-				),
-				new Tab(
-					'View',
-					'view',
-					[
-						new RibbonGroup(
-							{ label: 'Change view' },
-							[
-								new NgSelect({
-									items: [
-										{ key: 'view1', value: 'View 1', isSelected: false },
-										{ key: 'view2', value: 'View 2', isSelected: false },
-										{ key: 'view3', value: 'View 3', isSelected: false }
-									],
-									model: null
-								}),
-							]
-						),
-						new RibbonButton({
-							type: TOOLBAR_BTN_TYPE.EDIT_VIEW,
-							click: this.unknownClick.bind(this)
-						}),
-
-					]
 				)
-			],
-			'view'
+				// new Tab(
+				// 	'View',
+				// 	'view',
+				// 	[
+				// 		new RibbonGroup(
+				// 			{ label: 'Change view' },
+				// 			[
+				// 				new NgSelect({
+				// 					items: [
+				// 						{ key: 'view1', value: 'View 1', isSelected: false },
+				// 						{ key: 'view2', value: 'View 2', isSelected: false },
+				// 						{ key: 'view3', value: 'View 3', isSelected: false }
+				// 					],
+				// 					model: null
+				// 				}),
+				// 			]
+				// 		),
+				// 		new RibbonButton({
+				// 			type: TOOLBAR_BTN_TYPE.EDIT_VIEW,
+				// 			click: this.unknownClick.bind(this)
+				// 		}),
+
+				// 	]
+				// )
+			]
 		);
 
 		this.cdRef.detectChanges();

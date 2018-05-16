@@ -33,6 +33,10 @@ export class DropdownComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	showItems() {
+		
+	}
+
 	addItem(event) {
 		this.data.push(this.model);
 	}

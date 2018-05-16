@@ -10,7 +10,7 @@
 				</select>
 			</ng-container>
 		</div>
-		<input class="form-control" placeholder="{{ dateFormat }}" 
+		<input class="form-control" placeholder="{{ model.placeholder || dateFormat }}" 
 		placement="bottom-right" 
 		name="dp" 
 		[(ngModel)]="dateModel" 
@@ -22,7 +22,7 @@
 	<ng-container *ngIf="model.paramType == ParamType.none">
 		<div class="input-group">
 			<input class="form-control" 
-			placeholder="{{ dateFormat }}"
+			placeholder="{{ model.placeholder || dateFormat }}"
 			name="dp" 
 			[(ngModel)]="dateModel" 
 			ngbDatepicker 

@@ -1,121 +1,121 @@
 <form>
 	<div class="form-group">
 		<div class="row">
-			<label for="category" class="col-4">Category</label>
-			<div class="col-8">
-				<ng-select class="custom" id="category" [items]="category" [(ngModel)]="searchData.category" (ngModelChange)="countSearch()" name="category" bindValue="key" bindLabel="value"></ng-select>
+			<label for="category" [class.show]="searchData.category">Category</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="category" placeholder="Category" [items]="category" [(ngModel)]="searchData.category" (ngModelChange)="countSearch()" name="category" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="discipline" class="col-4">Discipline</label>
-			<div class="col-8">
-				<ng-select class="custom" id="discipline" [items]="category" [(ngModel)]="searchData.discipline" (ngModelChange)="countSearch()" name="discipline" bindValue="key" bindLabel="value"></ng-select>
+			<label for="discipline" [class.show]="searchData.discipline">Discipline</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="discipline" placeholder="Discipline" [items]="discipline" [(ngModel)]="searchData.discipline" (ngModelChange)="countSearch()" name="discipline" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="type" class="col-4">Type</label>
-			<div class="col-8">
-				<ng-select class="custom" id="type" [items]="category" [(ngModel)]="searchData.type" (ngModelChange)="countSearch()" name="type" bindValue="key" bindLabel="value"></ng-select>
+			<label for="type" [class.show]="searchData.type">Type</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="type" placeholder="Type" [items]="type" [(ngModel)]="searchData.type" (ngModelChange)="countSearch()" name="type" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="personnel" class="col-4">Personnel</label>
-			<div class="col-8">
-				<ng-select class="custom" id="type" [items]="personnel" [(ngModel)]="searchData.personnel" (ngModelChange)="countSearch()" name="personnel" bindValue="key" bindLabel="value"></ng-select>
+			<label for="personnel" [class.show]="searchData.personnel">Personnel</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="type" placeholder="Personnel" [items]="personnel" [(ngModel)]="searchData.personnel" (ngModelChange)="countSearch()" name="personnel" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="company" class="col-4">Company</label>
-			<div class="col-8">
-				<ng-select class="custom" id="type" [items]="company" [(ngModel)]="searchData.company" (ngModelChange)="countSearch()" name="company" bindValue="key" bindLabel="value"></ng-select>
+			<label for="company" [class.show]="searchData.company">Company</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="type" placeholder="Company" [items]="company" [(ngModel)]="searchData.company" (ngModelChange)="countSearch()" name="company" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="location" class="col-4">Location</label>
-			<div class="col-8">
-				<ng-select class="custom" id="location" [items]="location" [(ngModel)]="searchData.location" (ngModelChange)="countSearch()" name="location" bindValue="key" bindLabel="value"></ng-select>
+			<label for="location" [class.show]="searchData.location">Location</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="location" placeholder="Location" [items]="location" [(ngModel)]="searchData.location" (ngModelChange)="countSearch()" name="location" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="status" class="col-4">Status</label>
-			<div class="col-8">
-				<ng-select class="custom" id="status" [items]="status" [(ngModel)]="searchData.status" (ngModelChange)="countSearch()" name="status" bindValue="key" bindLabel="value"></ng-select>
+			<label for="status" [class.show]="searchData.status">Status</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="status" placeholder="Status" [items]="status" [(ngModel)]="searchData.status" (ngModelChange)="countSearch()" name="status" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="level" class="col-4">Level</label>
-			<div class="col-8">
-				<ng-select class="custom" id="level" [items]="level" [(ngModel)]="searchData.level" (ngModelChange)="countSearch()" name="level" bindValue="key" bindLabel="value"></ng-select>
+			<label for="level" [class.show]="searchData.level">Level</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="level" placeholder="Level" [items]="level" [(ngModel)]="searchData.level" (ngModelChange)="countSearch()" name="level" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="schedule" class="col-4">Schedule</label>
-			<div class="col-8">
-				<ng-select class="custom" id="schedule" [items]="schedule" [(ngModel)]="searchData.schedule" (ngModelChange)="countSearch()" name="schedule" bindValue="key" bindLabel="value"></ng-select>
+			<label for="schedule" [class.show]="searchData.schedule">Schedule</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="schedule" placeholder="Schedule" [items]="schedule" [(ngModel)]="searchData.schedule" (ngModelChange)="countSearch()" name="schedule" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="group" class="col-4">Group</label>
-			<div class="col-8">
-				<ng-select class="custom" id="group" [items]="group" [(ngModel)]="searchData.group" (ngModelChange)="countSearch()" name="group" bindValue="key" bindLabel="value"></ng-select>
+			<label for="group" [class.show]="searchData.group">Group</label>
+			<div class="col-xl">
+				<ng-select class="custom" id="group" placeholder="Group" [items]="group" [(ngModel)]="searchData.group" (ngModelChange)="countSearch()" name="group" bindValue="key" bindLabel="value"></ng-select>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="fromDate" class="col-4">From Date</label>
-			<div class="col-8">
+			<label for="fromDate" [class.show]="searchData.fromDate.date">From Date</label>
+			<div class="col-xl">
 				<datepicker id="fromDate" [model]="searchData.fromDate" (onDateChange)="updateDate('fromDate', $event)"></datepicker>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="toDate" class="col-4">To Date</label>
-			<div class="col-8">
+			<label for="toDate" [class.show]="searchData.toDate.date">To Date</label>
+			<div class="col-xl">
 				<datepicker id="toDate" [model]="searchData.toDate" (onDateChange)="updateDate('toDate', $event)"></datepicker>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="expireDate" class="col-4">Expire Date</label>
-			<div class="col-8">
+			<label for="expireDate" [class.show]="searchData.expireDate.date">Expire Date</label>
+			<div class="col-xl">
 				<datepicker id="expireDate" [model]="searchData.expireDate" (onDateChange)="updateDate('expireDate', $event)"></datepicker>
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="comment" class="col-4">Comment</label>
-			<div class="col-8">
-				<input type="text" name="comment" id="comment" class="form-control" [(ngModel)]="searchData.comment" (ngModelChange)="countSearch()">
+			<label for="comment" [class.show]="searchData.comment">Comment</label>
+			<div class="col-xl">
+				<input type="text" name="comment" id="comment" placeholder="Comment" class="form-control" [(ngModel)]="searchData.comment" (ngModelChange)="countSearch()">
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="row">
-			<label for="message" class="col-4">Message</label>
-			<div class="col-8">
-				<datepicker id="message" [model]="searchData.message" (onDateChange)="updateDate('messageDate', $event)"></datepicker>
+			<label for="message" [class.show]="searchData.message.date">Message</label>
+			<div class="col-xl">
+				<datepicker id="message" [model]="searchData.message" (onDateChange)="updateDate('message', $event)"></datepicker>
 			</div>
 		</div>
 	</div>

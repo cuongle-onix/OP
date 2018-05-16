@@ -13,14 +13,17 @@ export enum ParamType {
 
 export class DatepickerModel {
 	paramType: ParamType;
+	placeholder: string;
 	date: string;
-	operator: any
+	operator: any;
 	constructor(options: {
 		paramType?: ParamType,
+		placeholder?: string,
 		date?: string,
 		operator?: number
 	} = {}) {
 		this.paramType = options.paramType;
+		this.placeholder = options.placeholder || '';
 		this.date = options.date != undefined ? options.date : null;
 		this.operator = options.operator;
 	}
@@ -58,8 +61,8 @@ export class DatepickerComponent implements OnInit {
 	}
 
 	onChange(date: NgbDateStruct) {
+		this.dateModel = date;
 		if (date != null) {
-			this.dateModel = date;
 			let dateString = this.dateService.format(date);
 			this.onDateChange.emit(dateString);
 		} else {

@@ -8,6 +8,7 @@
 					<h5>Filter &amp; Search</h5>
 					<filter [data]="storedFilters" placeholder="Stored Filter"></filter>
 					<filter [data]="personnelFilters" placeholder="Personnel Filter"></filter>
+					<filter [data]="[]" placeholder="View"></filter>
 					<div class="d-flex justify-content-center">
 						<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
 						<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>
@@ -19,7 +20,7 @@
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
 								Folders
-								<span class="badge badge-primary" *ngIf="folderCount">{{ folderCount }}</span>
+								<span class="badge" *ngIf="folderCount">{{ folderCount }}</span>
 							</ng-template>
 							<ng-template ngbPanelContent>
 								<custom-treeview [items]="allFolders" (updateCount)="updateCount('folderCount', $event)"></custom-treeview>
@@ -29,7 +30,7 @@
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
 								Departments
-								<span class="badge badge-primary" *ngIf="departmentCount">{{ departmentCount }}</span>
+								<span class="badge" *ngIf="departmentCount">{{ departmentCount }}</span>
 							</ng-template>
 							<ng-template ngbPanelContent>
 								<custom-treeview [items]="allDepartments" (updateCount)="updateCount('departmentCount', $event)"></custom-treeview>
@@ -39,7 +40,7 @@
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
 								Scopes
-								<span class="badge badge-primary" *ngIf="scopeCount">{{ scopeCount }}</span>
+								<span class="badge" *ngIf="scopeCount">{{ scopeCount }}</span>
 							</ng-template>
 							<ng-template ngbPanelContent>
 								<custom-treeview [items]="allScopes" (updateCount)="updateCount('scopeCount', $event)"></custom-treeview>
@@ -49,7 +50,7 @@
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
 								Search 
-								<span class="badge badge-primary" *ngIf="searchCount">{{ searchCount }}</span>
+								<span class="badge" *ngIf="searchCount">{{ searchCount }}</span>
 								<button class="btn btn-clear" (click)="clearSearch(clearType.search, $event)"></button>
 							</ng-template>
 							<ng-template ngbPanelContent>
@@ -60,7 +61,7 @@
 							<ng-template ngbPanelTitle>
 								<i class="fa fa-caret-right"></i>
 								Advanced search
-								<span class="badge badge-primary" *ngIf="advancedSearchCount">{{ advancedSearchCount }}</span>
+								<span class="badge" *ngIf="advancedSearchCount">{{ advancedSearchCount }}</span>
 								<button class="btn btn-clear" (click)="clearSearch(clearType.advanced, $event)"></button>
 							</ng-template>
 							<ng-template ngbPanelContent>
@@ -74,7 +75,7 @@
 		<ng-template details>
 			<div class="sub-tabs">
 				<ngb-tabset activeId="activity-list" [destroyOnHide]="false">
-					<ngb-tab title="List" id="activity-list">
+					<ngb-tab title="Main" id="activity-list">
 						<ng-template ngbTabContent>
 							<pane-set>
 								<pane title="Activities" bgColor="#f99eb4" col="col-3">

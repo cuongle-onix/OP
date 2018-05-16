@@ -20,45 +20,32 @@
 </div>
 <form>
 	<div class="form-group">
-		<div class="row">
-			<label for="field" class="col-4">Field</label>
-			<div class="col-8">
-				<select name="field" id="field" class="form-control" [(ngModel)]="searchRow.field">
-					<option *ngFor="let item of fields" [value]="item.key">{{ item.value }}</option>
-				</select>
-			</div>
-		</div>
+		<label for="field" [class.show]="searchRow.field">Field</label>
+		<select name="field" id="field" class="form-control" required [(ngModel)]="searchRow.field">
+			<option value="" hidden disabled selected>Field</option>
+			<option *ngFor="let item of fields" [value]="item.key">{{ item.value }}</option>
+		</select>
 	</div>
 	<div class="form-group">
-		<div class="row">
-			<label for="field" class="col-4">Operator</label>
-			<div class="col-8">
-				<select name="operator" id="operator" class="form-control" [(ngModel)]="searchRow.operator">
-					<option *ngFor="let item of operators" [value]="item.key">{{ item.value }}</option>
-				</select>
-			</div>
-		</div>
+		<label for="field" [class.show]="searchRow.operator">Operator</label>
+		<select name="operator" id="operator" class="form-control" required [(ngModel)]="searchRow.operator">
+			<option value="" hidden disabled selected>Operator</option>
+			<option *ngFor="let item of operators" [value]="item.key">{{ item.value }}</option>
+		</select>
 	</div>
 	<div class="form-group">
-		<div class="row">
-			<label for="value" class="col-4">Value</label>
-			<div class="col-8">
-				<ng-select class="custom" id="value" [items]="values" [(ngModel)]="searchRow.value" name="type" bindValue="key" bindLabel="value"></ng-select>
-			</div>
-		</div>
+		<label for="value" [class.show]="searchRow.value">Value</label>
+		<ng-select class="custom" id="value" placeholder="Value" [items]="values" [(ngModel)]="searchRow.value" name="type" bindValue="key" bindLabel="value"></ng-select>
 	</div>
 	<div class="form-group">
-		<div class="row">
-			<label for="has" class="col-4">Has</label>
-			<div class="col-8">
-				<select name="has" id="has" class="form-control" [(ngModel)]="searchRow.has">
-					<option *ngFor="let item of has" [ngValue]="item.key">{{ item.value }}</option>
-				</select>
-			</div>
-		</div>
+		<label for="has" [class.show]="searchRow.has">Has</label>
+		<select name="has" id="has" class="form-control" required [(ngModel)]="searchRow.has">
+			<option value="" hidden disabled selected>Has or has not</option>
+			<option *ngFor="let item of has" [ngValue]="item.key">{{ item.value }}</option>
+		</select>
 	</div>
 </form>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mt-3">
 	<button class="btn btn-primary" (click)="addSearchCriteria()">Add to list</button>
 	<button class="btn btn-white" (click)="removeSearchCriteria()">Remove selected</button>
 </div>
