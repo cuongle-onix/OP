@@ -2,74 +2,9 @@
 
 <div class="container-fluid main-content">
 	<pane-set>
-		<pane title="Filter & search" bgColor="#f8f8f8">
+		<pane title="Filter & search" bgColor="#FBFBFB">
 			<ng-template pane-content>
-				<section class="filter">
-					<h5>Filter &amp; Search</h5>
-					<filter [data]="storedFilters" placeholder="Stored Filter"></filter>
-					<filter [data]="personnelFilters" placeholder="Personnel Filter"></filter>
-					<filter [data]="[]" placeholder="View"></filter>
-					<div class="d-flex justify-content-center">
-						<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
-						<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>
-					</div>
-				</section>
-				<section class="search">
-					<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-3" [destroyOnHide]="false" [closeOthers]="true">
-						<ngb-panel>
-							<ng-template ngbPanelTitle>
-								<i class="fa fa-caret-right"></i>
-								Folders
-								<span class="badge" *ngIf="folderCount">{{ folderCount }}</span>
-							</ng-template>
-							<ng-template ngbPanelContent>
-								<custom-treeview [items]="allFolders" (updateCount)="updateCount('folderCount', $event)"></custom-treeview>
-							</ng-template>
-						</ngb-panel>
-						<ngb-panel>
-							<ng-template ngbPanelTitle>
-								<i class="fa fa-caret-right"></i>
-								Departments
-								<span class="badge" *ngIf="departmentCount">{{ departmentCount }}</span>
-							</ng-template>
-							<ng-template ngbPanelContent>
-								<custom-treeview [items]="allDepartments" (updateCount)="updateCount('departmentCount', $event)"></custom-treeview>
-							</ng-template>
-						</ngb-panel>
-						<ngb-panel>
-							<ng-template ngbPanelTitle>
-								<i class="fa fa-caret-right"></i>
-								Scopes
-								<span class="badge" *ngIf="scopeCount">{{ scopeCount }}</span>
-							</ng-template>
-							<ng-template ngbPanelContent>
-								<custom-treeview [items]="allScopes" (updateCount)="updateCount('scopeCount', $event)"></custom-treeview>
-							</ng-template>
-						</ngb-panel>
-						<ngb-panel>
-							<ng-template ngbPanelTitle>
-								<i class="fa fa-caret-right"></i>
-								Search 
-								<span class="badge" *ngIf="searchCount">{{ searchCount }}</span>
-								<button class="btn btn-clear" (click)="clearSearch(clearType.search, $event)"></button>
-							</ng-template>
-							<ng-template ngbPanelContent>
-								<search (updateCount)="updateCount('searchCount', $event)"></search>
-							</ng-template>
-						</ngb-panel>
-						<ngb-panel>
-							<ng-template ngbPanelTitle>
-								<i class="fa fa-caret-right"></i>
-								Advanced search
-								<span class="badge" *ngIf="advancedSearchCount">{{ advancedSearchCount }}</span>
-								<button class="btn btn-clear" (click)="clearSearch(clearType.advanced, $event)"></button>
-							</ng-template>
-							<ng-template ngbPanelContent>
-								<advanced-search (updateCount)="updateCount('advancedSearchCount', $event)"></advanced-search>
-							</ng-template>
-						</ngb-panel>
-					</ngb-accordion>
-				</section>
+				<search-filter></search-filter>
 			</ng-template>
 		</pane>
 		<ng-template details>
@@ -78,7 +13,7 @@
 					<ngb-tab title="Main" id="activity-list">
 						<ng-template ngbTabContent>
 							<pane-set>
-								<pane title="Activities" bgColor="#f99eb4" col="col-3">
+								<pane title="Activities" bgColor="#F6E8EB" col="col-3">
 									<ng-template pane-content>
 										<!-- <div class="group-by">
 											Group by:
@@ -115,19 +50,22 @@
 									</ng-template>
 								</pane>
 								<ng-template details>
-									<div class="sub-tabs child-tab">
-										<ngb-tabset activeId="details">
+									<div class="sub-tabs child-tabs">
+										<ngb-tabset activeId="details" (tabChange)="onSubtabChange($event)">
 											<ng-container *ngIf="selectedActivity && !checkedItems.length">
 												<ngb-tab title="Details" id="details">
 													<ng-template ngbTabContent>
-														<h4 class="pt-4">Activity details</h4>
+														<h4 class="py-4 title activity">
+															<i class="fa fa-caret-right"></i>
+															Activity details
+														</h4>
 														<activity-form [id]="selectedActivity.id"></activity-form>
 													</ng-template>
 												</ngb-tab>
-												<ngb-tab title="Connected" id="connected" *ngIf="selectedActivity.connected.length">
+												<ngb-tab title="Connected" id="connected">
 													<ng-template ngbTabContent>
 														<pane-set>
-															<pane title="Connected" bgColor="#B9CCFF" col="col-3">
+															<pane title="Connected" bgColor="#dce5ff" col="col-4">
 																<ng-template pane-content>
 																	<div class="pr-2">
 																		<span class="float-right" *ngIf="!checkedConnectedItems.length">
@@ -145,7 +83,10 @@
 															</pane>
 															<ng-template details>
 																<div *ngIf="selectedConnectedItemId && !checkedConnectedItems.length">
-																	<h4>Connected details</h4>
+																	<h4 class="py-4 title connected">
+																		<i class="fa fa-caret-right"></i>		
+																		Connected details
+																	</h4>
 																	<activity-form [id]="selectedConnectedItemId"></activity-form>
 																</div>
 																<div *ngIf="checkedConnectedItems.length">
@@ -219,3 +160,7 @@
 		</ng-template>
 	</pane-set>
 </div>
+
+<ng-template #modalContent>
+	<table-view [data]="emptyActivityList" [isHasCheckbox]="true"></table-view>
+</ng-template>	

@@ -29,6 +29,9 @@ import { DateService } from './app-services/date.service';
 			useFactory: () => { return new DateService() }
 		}
 	],
+	entryComponents: [
+		ModalComponent,
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

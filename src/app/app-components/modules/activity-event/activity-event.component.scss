@@ -1,70 +1,5 @@
 @import '../../../../assets/css/standard';
 
-.filter {
-	margin-bottom: 10px;
-	h5 {
-		margin: 0 -15px 15px;
-		padding: 10px 15px;
-		color: #fff;
-		background-color: $onix-main-color;
-	}
-	select {
-		margin-bottom: 10px;
-	}
-	.btn-clear {
-		background: #fff url('../../../../assets/images/refresh-search-icon.png') no-repeat 5px center;
-		color: #000;
-		border: 1px solid $border-color;
-		text-align: right;
-		margin-left: 5px;
-		padding-left: 30px;
-	}
-}
-
-.search /deep/ {
-	margin: 0 -15px;
-	height: calc(100% - 189px);
-	.btn-clear {
-		background: transparent url('../../../../assets/images/refresh-search-icon.png') no-repeat left center;
-		min-width: 0;
-		float: right;
-		margin-top: -3px;
-		&:active {
-			background: transparent url('../../../../assets/images/refresh-search-icon.png') no-repeat left center;
-		}
-	}
-	.card {
-		border: 0;
-		max-height: calc(100% - 149px);
-		&:last-child {
-			border-bottom: 1px solid $border-color;
-		}
-	}
-	.card-header {
-		border-bottom: 0;
-		border-top: 1px solid $border-color;
-		padding: 0;
-		a {
-			padding: .75rem 1.25rem;
-			display: block;
-			text-decoration: none;
-			color: $onix-main-color;
-		}
-		.fa-caret-right {
-			margin-right: 5px;
-			color: #000;
-		}
-		&.active {
-			.fa-caret-right {
-				transform: rotate(45deg);
-			}
-		}
-	}
-	.card-body {
-		overflow-y: auto;
-	}
-}
-
 .options-list {
 	max-width: 250px;
 	margin: 20vh auto 0;
@@ -100,6 +35,43 @@
 			span {
 				background: url(../../../../assets/images/mul-selection-icons.png) -163px top no-repeat;
 			}
+		}
+	}
+}
+
+.title{
+	font-size: 13px;
+	.fa-caret-right {
+		margin-right: 3px;
+		transform: translate(0, 2px) rotate(45deg);
+	}
+	&.activity{
+		.fa-caret-right {
+			color: $color-4;
+		}	
+	}
+
+	&.connected {
+		.fa-caret-right  {
+			color: #042ca0;
+		}
+	}
+}
+
+.nav-tabs {
+	border-bottom: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: -webkit-box;
+	display: -moz-box;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	.nav-link {
+		border: 0;
+		color: #000;
+		&.active {
+			border-bottom: 3px solid $color-4;
 		}
 	}
 }

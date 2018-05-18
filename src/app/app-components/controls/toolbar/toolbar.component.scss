@@ -12,14 +12,14 @@
 		}
 	}
 	.nav-tabs {
-		background-color: #e4e4e4;
+		background-color: $color-3;
 		.nav-link {
 			font-size: 14px;
 			border: 0;
 			color: #000;
 			text-transform: uppercase;
 			&:hover, &.active {
-				color: $onix-main-color;
+				color: #e6174a;
 			}
 		}
 	}

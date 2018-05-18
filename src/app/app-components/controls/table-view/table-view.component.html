@@ -2,11 +2,17 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th *ngIf="isHasCheckbox">
+					<input type="checkbox" (change)="onCheckAll($event)">
+				</th>
 				<th scope="col" *ngFor="let col of headerCols">{{ col }}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let item of data">
+				<td *ngIf="isHasCheckbox">
+					<input type="checkbox" [(ngModel)]="item.isChecked">
+				</td>
 				<td *ngFor="let key of keys">{{ item[key] }}</td>
 			</tr>
 		</tbody>

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
 	@Input() data: any[];
+	@Input() isHasCheckbox: boolean = false;
 	keys: string[] = [];
 	headerCols: string[] = [];
 
@@ -20,6 +21,12 @@ export class TableViewComponent implements OnInit {
 				let col = this.toFormLabel(key);
 				this.headerCols.push(col);
 			}
+		}
+	}
+
+	onCheckAll(event) {
+		for (let item of this.data) {
+			item.isChecked = event.target.checked;
 		}
 	}
 

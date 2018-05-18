@@ -23,7 +23,7 @@
 			border: 0;
 			color: #000;
 			&.active {
-				border-bottom: 3px solid $onix-main-color;
+				border-bottom: 3px solid $color-4;
 			}
 		}
 	}
@@ -40,11 +40,11 @@
 	}
 }
 
-.child-tab {
+.child-tabs {
 	.nav-tabs {
 		.nav-link {
 			&.active {
-				border-bottom: 3px solid $child-color;
+				border-bottom: 3px solid #042ca0;
 			}
 		}
 	}
@@ -70,7 +70,7 @@
 	}
 	.dropdown-item {
 		&:hover {
-			background-color: $item-color-hover;
+			background-color: $color-6;
 		}
 	}
 }
@@ -88,7 +88,11 @@
 	}
 
 	.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-		background-color: $item-color-hover;
+		background-color: $color-6;
+	}
+
+	.ng-dropdown-panel.ng-select-bottom {
+		border-color: $border-color;
 	}
 
 	.ng-arrow-wrapper {

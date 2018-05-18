@@ -6,10 +6,10 @@
 	padding: 5px;
 	outline: 0;
 	&:hover {
-		background-color: $item-color-hover;
+		background-color: $color-6;
 	}
 	&:active {
-		background-color: $item-color-selected;
+		background-color: $color-6;
 	}
 	&:before {
 		content: "";
@@ -19,6 +19,11 @@
 		background-image: url('../../../../assets/images/ribbon-menu-icons.png');
 		background-repeat: no-repeat;
 		margin: auto;
+	}
+	&:after {
+		display: block;
+		max-width: 60px;
+		line-height: 12px;
 	}
 	&.btn-new {
 		&:before {
@@ -90,6 +95,14 @@
 		}
 		&:after {
 			content: "Edit view";
+		}
+	}
+	&.btn-add-connected {
+		&:before {
+			background-position: -171px -35px;
+		}
+		&:after {
+			content: "Add connected";
 		}
 	}
 }

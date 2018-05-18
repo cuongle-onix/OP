@@ -1,4 +1,4 @@
-@import '../../../../assets/css/standard';
+@import '../../../../../assets/css/standard';
 
 .filter {
 	margin-bottom: 5px;
@@ -10,7 +10,7 @@
 		width: calc(100% - 30px);
 		.dropdown-item {
 			&:hover, &.active {
-				background-color: $item-color-hover;
+				background-color: $color-6;
 				color: #000;
 			}
 		}
@@ -31,11 +31,11 @@
 }
 
 .add-btn {
-	background-image: url(../../../../assets/images/save-icon.png);
+	background-image: url('../../../../../assets/images/save-icon.png');
 	padding: 0;
 }
 
 .remove-btn {
-	background-image: url(../../../../assets/images/data-area-small-icons.png);
+	background-image: url('../../../../../assets/images/data-area-small-icons.png');
 	background-position: -54px top;
 }

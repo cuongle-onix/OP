@@ -1,27 +1,36 @@
 $assets-url: 'http://localhost:4200/assets';
 
-$onix-main-color: #AC193D;
-$onix-main-color-hover: #981515;
-$onix-main-color-selected: #981515;
-$border-color: #ddd;
+$color-1: #FBFBFB;
+$color-2: #F4F4F4;
+$color-3: #EEEEEE;
+$color-4: #AB193D;
+$color-5: #971932;
+$color-6: #F6E8EB;
+$color-7: #FCF8F9;
+$color-8: #000000;
+
+$border-color: #c6c6c6;
+$item-border-color: #e8e8e8;
 $content-height: calc(100% - 178px);
 
-$item-color-hover: #e7258217;
-$item-color-selected: #f99eb4;
-
-$child-color: #B9CCFF;
-$child-color-hover: #cddaff;
+$child-color: #dce5ff;
+$child-color-hover: #edf2ff;
 
 body, html {
 	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
 	height: 100%;
 	font-size: 12px;
-	color: #000;
+	color: $color-8;;
 }
 
 textarea {
 	resize: none;
 	min-height: 60px;
+	border-color: $border-color;
+}
+
+input {
+	border-color: $border-color;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -45,7 +54,7 @@ textarea {
 }
 
 a {
-	color: $onix-main-color;
+	color: $color-4;
 }
 
 .btn {
@@ -65,9 +74,9 @@ a {
 }
 
 .btn-primary {
-	background-color: $onix-main-color;
+	background-color: $color-4;
 	&:hover, &:active, &:not(:disabled):not(.disabled):active {
-		background-color: $onix-main-color-hover;
+		background-color: $color-5;
 	}
 }
 

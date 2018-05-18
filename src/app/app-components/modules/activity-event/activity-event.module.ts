@@ -9,12 +9,9 @@ import { PaneSetModule } from '../../controls/pane-set/pane-set.module';
 import { ListViewModule } from '../../controls/list-view/list-view.module';
 import { ToolbarModule } from '../../controls/toolbar/toolbar.module';
 import { TableViewModule } from '../../controls/table-view/table-view.module';
-import { FilterModule } from '../../controls/filter/filter.module';
-import { CustomTreeviewModule } from '../../controls/custom-treeview/custom-treeview.module';
 import { ActivityFormModule } from '../../controls/forms/activity-form/activity-form.module';
 import { PersonnelFormModule } from	'../../controls/forms/personnel-form/personnel-form.module';
-import { SearchModule } from '../../controls/search/search.module';
-import { AdvancedSearchModule } from '../../controls/advanced-search/advanced-search.module';
+import { SearchFilterModule } from '../../controls/search-filter/search-filter.module';
 
 @NgModule({
 	imports: [
@@ -26,15 +23,12 @@ import { AdvancedSearchModule } from '../../controls/advanced-search/advanced-se
 		ListViewModule,
 		ToolbarModule,
 		TableViewModule,
-		FilterModule,
-		CustomTreeviewModule,
 		ActivityFormModule,
 		PersonnelFormModule,
-		SearchModule,
-		AdvancedSearchModule,
+		SearchFilterModule,
 	],
 	declarations: [
-		ActivityEventComponent,
+		ActivityEventComponent
 	],
 	exports: [
 		ActivityEventComponent,

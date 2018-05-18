@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { CustomTreeviewItem } from '../../controls/custom-treeview/custom-treeview.component';
-import { TOOLBAR_BTN_TYPE } from '../../../const.global';
+import { TOOLBAR_BTN_TYPE, DEFAULT_MODAL_CONFIG } from '../../../const.global';
 import { Textbox, Row } from '../../controls/forms/dynamic-form/form-control/controls';
 import { Toolbar, Tab, RibbonGroup, RibbonButton, NgSelect } from '../../controls/toolbar/controls';
-import { SearchComponent } from '../../controls/search/search.component';
-import { AdvancedSearchComponent } from '../../controls/advanced-search/advanced-search.component';
+import { NgbTabChangeEvent, NgbTabset, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../../controls/modal/modal.component';
 
 enum ClearType {
 	all,
@@ -19,15 +19,10 @@ enum ClearType {
 })
 export class ActivityEventComponent implements OnInit {
 
-	@ViewChild(SearchComponent) searchForm: SearchComponent;
-	@ViewChild(AdvancedSearchComponent) advancedSearchForm: AdvancedSearchComponent;
+	@ViewChild('modalContent') modalTemplate: TemplateRef<any>;
 
-	clearType = ClearType;
-
-	allFolders: any[];
-	allDepartments: any[];
-	allScopes: any[];
 	activityList: any[];
+	emptyActivityList: any[];
 
 	toolbar: Toolbar;
 
@@ -37,76 +32,9 @@ export class ActivityEventComponent implements OnInit {
 	checkedItems: any[] = [];
 	checkedConnectedItems: any[] = [];
 
-	storedFilters = [
-		{ key: 'f1', value: 'Stored filter 1', isSelected: false },
-		{ key: 'f2', value: 'Stored filter 2', isSelected: false },
-		{ key: 'f3', value: 'Stored filter 3', isSelected: false }
-	];
-
-	personnelFilters = [
-		{ key: 'p1', value: ' Personnel filter 1', isSelected: false },
-		{ key: 'p2', value: ' Personnel filter 2', isSelected: false },
-		{ key: 'p3', value: ' Personnel filter 3', isSelected: false }
-	];
-
-	searchCount: number;
-	advancedSearchCount: number;
-
-	folderCount: number;
-	departmentCount: number;
-	scopeCount: number;
-
-	constructor(private cdRef: ChangeDetectorRef) { }
+	constructor(private modalService: NgbModal) { }
 
 	ngOnInit() {
-		this.allFolders = [
-			new CustomTreeviewItem('folder', {
-				text: 'All Folders', value: 0, children: [
-					{
-						text: 'Anseltelse', value: 1, children: [
-							{ text: 'Ansaltkategori', value: 2 },
-							{ text: 'Arbeidsgiver', value: 3 },
-							{ text: 'Avdeling', value: 4 }
-						]
-					},
-					{
-						text: 'HR', value: 5, children: [
-							{ text: 'Avdelingsleder', value: 6 },
-							{ text: 'Discipline', value: 6 }
-						]
-					}
-				]
-			})
-		];
-
-		this.allDepartments = [
-			new CustomTreeviewItem('department', {
-				text: 'All Departments', value: 7, children: [
-					{ text: '1 - Installasjon Land Sunnhorland', value: 8 },
-					{ text: '2 - Installasjon Marine', value: 9 },
-					{
-						text: 'Administasjon', value: 11, children: [
-							{ text: 'Drift', value: 12 },
-							{ text: 'Service', value: 13 },
-							{ text: 'Vedlikehold', value: 23 }
-						]
-					},
-					{ text: '3 - Oje & Gass', value: 10 },
-					{ text: '(None)', value: 19 },
-				]
-			})
-		];
-
-		this.allScopes = [
-			new CustomTreeviewItem('scope', {
-				text: 'All Scopes', value: 22, children: [
-					{ text: 'Planlagt', value: 24 },
-					{ text: 'Historisk', value: 34 },
-					{ text: 'Normal', value: 44 }
-				]
-			})
-		];
-
 		this.activityList = [
 			{
 				id: 1,
@@ -290,6 +218,9 @@ export class ActivityEventComponent implements OnInit {
 			}
 		];
 
+		let temp = this.activityList.filter(item => item.connected.length == 0);
+		this.emptyActivityList = JSON.parse(JSON.stringify(temp));
+
 		this.selectedActivity = this.activityList[0];
 		this.selectedActivity.isSelected = true;
 
@@ -322,34 +253,8 @@ export class ActivityEventComponent implements OnInit {
 						})
 					]
 				)
-				// new Tab(
-				// 	'View',
-				// 	'view',
-				// 	[
-				// 		new RibbonGroup(
-				// 			{ label: 'Change view' },
-				// 			[
-				// 				new NgSelect({
-				// 					items: [
-				// 						{ key: 'view1', value: 'View 1', isSelected: false },
-				// 						{ key: 'view2', value: 'View 2', isSelected: false },
-				// 						{ key: 'view3', value: 'View 3', isSelected: false }
-				// 					],
-				// 					model: null
-				// 				}),
-				// 			]
-				// 		),
-				// 		new RibbonButton({
-				// 			type: TOOLBAR_BTN_TYPE.EDIT_VIEW,
-				// 			click: this.unknownClick.bind(this)
-				// 		}),
-
-				// 	]
-				// )
 			]
 		);
-
-		this.cdRef.detectChanges();
 	}
 
 	onClickNew(event) {
@@ -358,26 +263,6 @@ export class ActivityEventComponent implements OnInit {
 
 	unknownClick(event) {
 		console.log('unknown click event in activity component');
-	}
-
-	onSearch(event) {
-		console.log('on search item');
-	}
-
-	clearSearch(type, event) {
-		event.stopPropagation();
-		event.preventDefault();
-		switch (type) {
-			case this.clearType.all:
-				this.searchForm.clearSearch();
-				this.advancedSearchForm.clearSearch();
-				break;
-			case this.clearType.search:
-				this.searchForm.clearSearch();
-				break;
-			case this.clearType.advanced:
-				this.advancedSearchForm.clearSearch();
-		}
 	}
 
 	onSelectItem(event) {
@@ -415,8 +300,34 @@ export class ActivityEventComponent implements OnInit {
 		this.checkedConnectedItems = [];
 	}
 
-	updateCount(countType, event) {
-		this[countType] = event;
+	onSubtabChange(event: NgbTabChangeEvent) {
+		if (event.nextId == 'connected') {
+			let connectedTab = new Tab(
+				'Connected',
+				'connected',
+				[
+					new RibbonGroup(
+						{ label: 'Connected' },
+						[
+							new RibbonButton({
+								type: TOOLBAR_BTN_TYPE.ADD_CONNECTED,
+								click: this.openAddConnectedPopup.bind(this)
+							}),
+						]
+					),
+				]
+			)
+			this.toolbar.tabs.push(connectedTab);
+			this.toolbar.activeTabId = 'connected';
+		} else {
+			this.toolbar.tabs = this.toolbar.tabs.filter(item => item.id != 'connected'); // remove connected tab
+			this.toolbar.activeTabId = 'menu';
+		}
+	}
+
+	openAddConnectedPopup() {
+		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
+		modalRef.componentInstance.template = this.modalTemplate;
 	}
 
 	private convertJsonToFormData(obj) {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
-import { ParamType, DatepickerModel, DatepickerComponent } from '../datepicker/datepicker.component';
+import { ParamType, DatepickerModel, DatepickerComponent } from '../../datepicker/datepicker.component';
 
 @Component({
 	selector: 'search',

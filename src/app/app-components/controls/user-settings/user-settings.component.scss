@@ -5,14 +5,14 @@ button {
 }
 
 .wrapper {
-	background-color: #e4e4e4;
+	background-color: $color-2;
 	margin-right: -15px;
 	padding-right: 15px;
 	.dropdown-menu {
 		a {
 			padding: 1.25rem 1.5rem;
 			&:hover, &:active {
-				background-color: $item-color-hover;
+				background-color: $color-6;
 			}
 		}
 	}

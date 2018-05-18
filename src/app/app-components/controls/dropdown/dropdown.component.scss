@@ -1,19 +1,27 @@
 @import '../../../../assets/css/standard';
 
-.dropdown-wrapper /deep/ {
+.dropdown-wrapper {
+	position: relative;
+	input {
+		border-right: 0;
+		border-color: $border-color;
+	}
 	.dropdown-menu {
 		width: calc(100% - 30px);
-		.dropdown-item {
+		max-height: 300px;
+		overflow-y: auto;
+		li {
+			padding: 5px 15px;
 			&:hover, &.active {
-				background-color: $item-color-hover;
-				color: #000;
+				background-color: $color-6;
 			}
-		}
+		}	
 	}
 }
 
 .input-group-append {
 	border: 1px solid $border-color;
+	border-left: 0;
 	padding: 0;
 }
 
@@ -49,9 +57,18 @@
 
 .add-btn {
 	background-position: top left;
-	margin: 5px;
+	margin: 5px 6px;
 }
 
 .remove-btn {
+	float: right;
 	background-position: -54px top;
+}
+
+.popup-btn {
+	background-color: transparent;
+	width: 30px;
+	height: 17px;
+	border: 0;
+	cursor: pointer;
 }

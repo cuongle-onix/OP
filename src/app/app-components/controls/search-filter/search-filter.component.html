@@ -1,0 +1,66 @@
+<section class="filter">
+	<h5>Filter &amp; Search</h5>
+	<filter [data]="storedFilters" placeholder="Stored Filter"></filter>
+	<filter [data]="personnelFilters" placeholder="Personnel Filter"></filter>
+	<filter [data]="[]" placeholder="View"></filter>
+	<div class="d-flex justify-content-center">
+		<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
+		<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>
+	</div>
+</section>
+<section class="search">
+	<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-3" [destroyOnHide]="false" [closeOthers]="true">
+		<ngb-panel>
+			<ng-template ngbPanelTitle>
+				<i class="fa fa-caret-right"></i>
+				Folders
+				<span class="badge" *ngIf="folderCount">{{ folderCount }}</span>
+			</ng-template>
+			<ng-template ngbPanelContent>
+				<custom-treeview [items]="allFolders" (updateCount)="updateCount('folderCount', $event)"></custom-treeview>
+			</ng-template>
+		</ngb-panel>
+		<ngb-panel>
+			<ng-template ngbPanelTitle>
+				<i class="fa fa-caret-right"></i>
+				Departments
+				<span class="badge" *ngIf="departmentCount">{{ departmentCount }}</span>
+			</ng-template>
+			<ng-template ngbPanelContent>
+				<custom-treeview [items]="allDepartments" (updateCount)="updateCount('departmentCount', $event)"></custom-treeview>
+			</ng-template>
+		</ngb-panel>
+		<ngb-panel>
+			<ng-template ngbPanelTitle>
+				<i class="fa fa-caret-right"></i>
+				Scopes
+				<span class="badge" *ngIf="scopeCount">{{ scopeCount }}</span>
+			</ng-template>
+			<ng-template ngbPanelContent>
+				<custom-treeview [items]="allScopes" (updateCount)="updateCount('scopeCount', $event)"></custom-treeview>
+			</ng-template>
+		</ngb-panel>
+		<ngb-panel>
+			<ng-template ngbPanelTitle>
+				<i class="fa fa-caret-right"></i>
+				Search 
+				<span class="badge" *ngIf="searchCount">{{ searchCount }}</span>
+				<button class="btn btn-clear" (click)="clearSearch(clearType.search, $event)"></button>
+			</ng-template>
+			<ng-template ngbPanelContent>
+				<search (updateCount)="updateCount('searchCount', $event)"></search>
+			</ng-template>
+		</ngb-panel>
+		<ngb-panel>
+			<ng-template ngbPanelTitle>
+				<i class="fa fa-caret-right"></i>
+				Advanced search
+				<span class="badge" *ngIf="advancedSearchCount">{{ advancedSearchCount }}</span>
+				<button class="btn btn-clear" (click)="clearSearch(clearType.advanced, $event)"></button>
+			</ng-template>
+			<ng-template ngbPanelContent>
+				<advanced-search (updateCount)="updateCount('advancedSearchCount', $event)"></advanced-search>
+			</ng-template>
+		</ngb-panel>
+	</ngb-accordion>
+</section>

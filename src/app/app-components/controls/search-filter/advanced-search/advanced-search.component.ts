@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { OPERATORS } from '../../../const.global';
+import { OPERATORS } from '../../../../const.global';
 
 @Component({
 	selector: 'advanced-search',

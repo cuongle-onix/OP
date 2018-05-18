@@ -8,14 +8,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ItemComponent implements OnInit {
 
 	@Input() data: {
+		id: number,
 		category: string,
+		company: string,
+		discipline: string,
+		location: string,
 		type: string,
+		status: string,
 		personnel: string,
+		level: string,
 		fromDate: string,
+		percent: number,
 		toDate: string,
+		schedule: string,
 		expireDate: string,
+		group: string,
+		inLieuTo: string,
+		rotation: string,
+		shift: string,
+		scope: string,
+		comment: string,
+		internalComment: string,
 		isSelected: boolean,
-		isChecked: boolean
+		isChecked: false
 	};
 
 	constructor() { }

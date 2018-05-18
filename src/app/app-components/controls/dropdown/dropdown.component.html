@@ -1,22 +1,23 @@
 <div class="input-group dropdown-wrapper">
-	<input
-	id="typeahead-focus"
-	type="text"
-	class="form-control"
-	[(ngModel)]="model"
-	[ngbTypeahead]="search"
-	(focus)="focus$.next($event.target.value)"
-	(click)="click$.next($event.target.value)"
-	#instance="ngbTypeahead"
-	[resultTemplate]="rt"
-	[inputFormatter]="formatter"/>
-	<div class="input-group-append">
-		<button class="dropdown-btn" (click)="showItems()"></button>
-		<button class="add-btn" (click)="addItem($event)"></button>
+	<input type="text" class="form-control"
+	#input 
+	[(ngModel)]="model" 
+	(ngModelChange)="onModelChange()" 
+	(focus)="onFocus()"
+	(keydown)="onKeyDown($event)">
+	<ul class="dropdown-menu" [class.show]="isDropdownShow" *ngIf="(data | filter:term).length" (keydown)="onKeyDown($event)">
+		<li *ngFor="let item of data | filter : term; let i = index"
+		#li
+		(click)="selectItem(item)"
+		(mouseenter)="onHoverItem(i)"
+		[class.active]="i == arrowkeyLocation">
+			{{ item }}
+			<!-- <button class="remove-btn" (click)="removeItem(item, $event)"></button> -->
+		</li>
+	</ul>
+	<div class="input-group-append" (keydown)="onKeyDown($event)">
+		<button class="dropdown-btn" (click)="showAllItems()"></button>
+		<!-- <button class="add-btn" (click)="addItem($event)"></button> -->
+		<button class="popup-btn" (click)="openPopup()">...</button>
 	</div>
 </div>
-
-<ng-template #rt let-item="result" let-t="term">
-	{{ item }}
-	<button class="float-right remove-btn" (click)="removeItem(item, $event)"></button>
-</ng-template>
