@@ -1,0 +1,47 @@
+@import '../../../../assets/css/standard';
+
+.item {
+	border-bottom: 1px solid $item-border-color;
+	cursor: pointer;
+	&:hover {
+		background-color: $color-7;
+	}
+	&.selected {
+		background-color: $color-6;
+	}
+	.item-body {
+		padding: 10px 20px 10px 30px;
+		line-height: 18px;
+		h5 {
+			font-size: 14px;
+			position: relative;
+			margin-bottom: 0;
+			input {
+				position: absolute;
+				top: 0;
+				left: -18px;
+				width: 15px;
+				height: 15px;
+			}
+		}
+		.descrition {
+			font-size: 12px;
+		}
+
+		.details {
+			color: #707070;
+		}
+		.float-left, .float-right {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.float-left {
+			max-width: 60%;
+			margin-bottom: 0;
+		}
+		.float-right {
+			max-width: 40%;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+@import '../../../../../assets/css/standard';
+
+.splitter {
+      flex: 0 0 auto;
+      width: 2px;
+      height: $content-height;
+      background-color: $border-color;
+      cursor: col-resize;
+      position:absolute;
+      z-index: 10;
+}

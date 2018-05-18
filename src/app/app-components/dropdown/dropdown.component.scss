@@ -1,0 +1,74 @@
+@import '../../../assets/css/standard';
+
+.dropdown-wrapper {
+	position: relative;
+	input {
+		border-right: 0;
+		border-color: $border-color;
+	}
+	.dropdown-menu {
+		width: calc(100% - 30px);
+		max-height: 300px;
+		overflow-y: auto;
+		li {
+			padding: 5px 15px;
+			&:hover, &.active {
+				background-color: $color-6;
+			}
+		}	
+	}
+}
+
+.input-group-append {
+	border: 1px solid $border-color;
+	border-left: 0;
+	padding: 0;
+}
+
+.add-btn, .remove-btn {
+	background-image: url('../../../assets/images/data-area-small-icons.png');
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 17px;
+	height: 17px;
+	border: 0;
+	cursor: pointer;
+}
+
+.dropdown-btn {
+	position: relative;
+	width: 30px;
+	height: 100%;
+	border: 0;
+	border-right: 1px solid $border-color;
+	background-color: transparent;
+	outline: 0;
+	cursor: pointer;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 12px;
+		left: 12px;;
+		border-style: solid;
+		border-width: 6px 3px 2.5px;
+		border-color: #000 transparent transparent;
+	}
+}
+
+.add-btn {
+	background-position: top left;
+	margin: 5px 6px;
+}
+
+.remove-btn {
+	float: right;
+	background-position: -54px top;
+}
+
+.popup-btn {
+	background-color: transparent;
+	width: 30px;
+	border: 0;
+	cursor: pointer;
+	outline: 0;
+}

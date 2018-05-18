@@ -4,9 +4,10 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './app-components/controls/header/header.component';
-import { UserSettingsComponent } from './app-components/controls/user-settings/user-settings.component';
-import { ModalComponent } from './app-components/controls/modal/modal.component';
+import { HeaderComponent } from './app-components/header/header.component';
+import { UserSettingsComponent } from './app-components/user-settings/user-settings.component';
+import { ModalComponent } from './app-components/modal/modal.component';
+import { ModalModule } from './app-components/modal/modal.module';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DateService } from './app-services/date.service';
 
@@ -21,6 +22,7 @@ import { DateService } from './app-services/date.service';
 		BrowserModule,
 		NgbModule.forRoot(),
 		AppRoutingModule,
+		ModalModule,
 	],
 	providers: [
 		DateService,

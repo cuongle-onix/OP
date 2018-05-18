@@ -1,0 +1,41 @@
+@import '../../../assets/css/standard';
+.header {
+	height: 50px;
+	background-color: $color-4;
+	img {
+		margin-top: 10px;
+		width: 160px;
+	}
+}
+
+.nav {
+	height: 100%;
+	.nav-item {
+		&:hover {
+			background-color: $color-5;
+		}
+		&.active {
+			background-color:$color-5;
+			position: relative;
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 45%;
+				width: 0; 
+				height: 0; 
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid $color-3;
+			}
+		}
+		a {
+			font-size: 16px;
+			color: #fff;
+			height: 100%;
+			padding: 10px 12px;
+		}
+	}
+}
+

@@ -1,0 +1,41 @@
+@import '../../../../assets/css/standard';
+
+.filter {
+	margin-bottom: 5px;
+	typeahead {
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
+	/deep/ .dropdown-menu {
+		width: calc(100% - 30px);
+		.dropdown-item {
+			&:hover, &.active {
+				background-color: $color-6;
+				color: #000;
+			}
+		}
+	}
+}
+.input-group-append {
+	border: 1px solid $border-color;
+	padding: 5px 6px;
+}
+
+.add-btn, .remove-btn {
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 17px;
+	height: 17px;
+	border: 0;
+	cursor: pointer;
+}
+
+.add-btn {
+	background-image: url('../../../../assets/images/save-icon.png');
+	padding: 0;
+}
+
+.remove-btn {
+	background-image: url('../../../../assets/images/data-area-small-icons.png');
+	background-position: -54px top;
+}

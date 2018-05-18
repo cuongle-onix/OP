@@ -1,0 +1,10 @@
+<div class="modal-header">
+	<h4 class="modal-title">{{ modalTitle }}</h4>
+	<button type="button" class="close" (click)="onClose()">
+		<span></span>
+	</button>
+</div>
+<ng-container [ngSwitch]="modalType">
+	<edit-connected *ngSwitchCase="'edit-connected'"></edit-connected>
+	<edit-category *ngSwitchCase="'edit-category'"></edit-category>
+</ng-container>
