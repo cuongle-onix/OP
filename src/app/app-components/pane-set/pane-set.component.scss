@@ -3,6 +3,7 @@
 .pane {
 	position: relative;
 	padding: 0;
+	height: 100%;
 	.fa-chevron-left {
 		&.rotate {
 			transform: rotate(180deg);
@@ -44,4 +45,5 @@
 .details {
 	padding: 0 15px;
 	overflow-y: auto;
+	height: 100%;
 }

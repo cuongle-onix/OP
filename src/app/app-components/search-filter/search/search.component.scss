@@ -12,23 +12,5 @@
 }
 
 .form-group {
-	position: relative;
 	margin-bottom: 5px;
-	.row {
-		padding-top: 20px;
-	}
-	label {
-		position: absolute;
-		pointer-events: none;
-		left: 0;
-		top: 20px;
-		opacity: 0;
-		transition: 0.2s ease all; 
-		-moz-transition: 0.2s ease all; 
-		-webkit-transition: 0.2s ease all;
-		&.show {
-			top: 0;
-			opacity: 1;
-		}
-	}
 }

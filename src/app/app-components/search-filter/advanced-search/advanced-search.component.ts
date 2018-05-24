@@ -34,7 +34,7 @@ export class AdvancedSearchComponent implements OnInit {
 			value: string
 		} }[];
 
-	selectedRowIndex: number;
+	selectedRowIndex: number = -1;
 
 	constructor() { }
 
@@ -84,10 +84,10 @@ export class AdvancedSearchComponent implements OnInit {
 		let value = this.values.filter(item  => item.key == this.searchRow.value)[0];
 		let has = this.has.filter(item => item.key == this.searchRow.has)[0];
 		let row = {
-			field: JSON.parse(JSON.stringify(field)),
-			operator: JSON.parse(JSON.stringify(operator)),
-			value: JSON.parse(JSON.stringify(value)),
-			has: JSON.parse(JSON.stringify(has))
+			field: field.value,
+			operator: operator.value,
+			value: value.value,
+			has: has.value
 		};
 		this.searchCriteria.push(row);
 		this.updateCount.emit(this.searchCriteria.length);
@@ -111,7 +111,7 @@ export class AdvancedSearchComponent implements OnInit {
 			has: ''
 		};
 		this.searchCriteria = [];
-		this.updateCount.emit(this.searchCriteria.length);
+		this.updateCount.emit(0);
 	}
 
 }

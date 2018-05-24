@@ -1,0 +1,54 @@
+@import '../../../../assets/css/standard';
+
+.panel {
+	border: 1px solid $border-color;
+	height: 50vh;
+	overflow-y: hidden;
+	.left-col {
+		border-right: 1px solid $border-color;
+		overflow-y: auto;
+	}
+	.type {
+		border-bottom: 1px solid $border-color;
+		height: 40%;
+		overflow-y: auto;
+	}
+	.child {
+		border-top: 1px solid $border-color;
+		height: calc(56% - 24px);
+		overflow-y: auto;
+	}
+	.controls {
+		.btn {
+			background-color: transparent;
+		}
+	}
+}
+
+.list-group-item {
+	border: 1px solid $item-border-color;
+	color: $color-8;
+	&:hover {
+		background-color: $color-7;
+	}
+	&.active {
+		background-color: $color-6;
+	}
+}
+
+.table {
+	td, th {
+		border-color: $item-border-color;
+	}
+	tbody {
+		tr {
+			cursor: pointer;
+			&:hover {
+				background-color: $child-color-hover;
+			}
+			&.active {
+				background-color: $child-color;
+			}
+		}
+	}
+}

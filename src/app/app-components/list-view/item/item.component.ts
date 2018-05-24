@@ -30,8 +30,9 @@ export class ItemComponent implements OnInit {
 		comment: string,
 		internalComment: string,
 		isSelected: boolean,
-		isChecked: false
+		isChecked: boolean
 	};
+	@Input() hasCheckbox: boolean = false;
 
 	constructor() { }
 

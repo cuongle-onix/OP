@@ -10,6 +10,7 @@
 	}
 	&:active {
 		background-color: $color-6;
+		opacity: .7;
 	}
 	&:before {
 		content: "";
@@ -65,22 +66,6 @@
 			content: "Report";
 		}
 	}
-	&.btn-new-category {
-		&:before {
-			background-position: -205px -35px;
-		}
-		&:after {
-			content: "New category";
-		}
-	}
-	&.btn-new-type {
-		&:before {
-			background-position: -239px -35px;
-		}
-		&:after {
-			content: "New type";
-		}
-	}
 	&.btn-view-personnel {
 		&:before {
 			background: url('../../../assets/images/user42.svg') no-repeat top left;
@@ -97,20 +82,36 @@
 			content: "Edit view";
 		}
 	}
-	&.btn-add-connected {
+	&.btn-add-activity {
 		&:before {
 			background-position: -171px -35px;
 		}
 		&:after {
-			content: "Add connected";
+			content: "Add activity";
 		}
 	}
-	&.btn-new-connected {
+	&.btn-category {
 		&:before {
-			background-position:  -35px top;
+			background-position: -205px -35px;
 		}
 		&:after {
-			content: "Add new connected";
+			content: "Category";
+		}
+	}
+	&.btn-type {
+		&:before {
+			background-position: -239px -35px;
+		}
+		&:after {
+			content: "Type";
+		}
+	}
+	&.btn-category-type {
+		&:before {
+			background-position: -273px -35px;
+		}
+		&:after {
+			content: "Catagory & Type";
 		}
 	}
 }

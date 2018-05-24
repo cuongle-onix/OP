@@ -32,3 +32,52 @@
 	}
 }
 
+.toolbar {
+	padding-bottom: 15px;
+}
+.btn-new, .btn-delete, .btn-save {
+	padding: 0;
+	min-width: 0;
+	background-color: transparent;
+	margin-right: 5px;
+	&:before {
+		content: "";
+		display: block;
+		width: 16px;
+		height: 16px;
+		background-repeat: no-repeat;
+		background-position: top left;
+		margin: auto;
+	}
+	&:after {
+		display: block;
+	}
+}
+
+.btn-new {
+	&:before {
+		background-image: url('../../../assets/images/new-icon.png');
+	}
+	&:after {
+		content: 'New';
+	}
+}
+
+.btn-save {
+	&:before {
+		background-image: url('../../../assets/images/save-icon.png');
+	}
+	&:after {
+		content: 'Save';
+	}
+}
+
+.btn-delete {
+	&:before {
+		background-image: url('../../../assets/images/delete_16.png');
+	}
+	&:after {
+		content: 'Delete';
+	}
+}
+

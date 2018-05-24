@@ -1,5 +1,5 @@
 <div class="input-group dropdown-wrapper">
-	<input type="text" class="form-control"
+	<!-- <input type="text" class="form-control"
 	#input 
 	[(ngModel)]="model" 
 	(ngModelChange)="onModelChange()" 
@@ -12,12 +12,16 @@
 		(mouseenter)="onHoverItem(i)"
 		[class.active]="i == arrowkeyLocation">
 			{{ item }}
-			<!-- <button class="remove-btn" (click)="removeItem(item, $event)"></button> -->
+			<button class="remove-btn" (click)="removeItem(item, $event)"></button>
 		</li>
-	</ul>
-	<div class="input-group-append" (keydown)="onKeyDown($event)">
+	</ul> -->
+	<ng-select class="custom" [items]="data" [(ngModel)]="model"></ng-select>
+	<!-- <div class="input-group-append" (keydown)="onKeyDown($event)">
 		<button class="dropdown-btn" (click)="showAllItems()"></button>
-		<!-- <button class="add-btn" (click)="addItem($event)"></button> -->
+		<button class="add-btn" (click)="addItem($event)"></button>
+		<button class="popup-btn" (click)="openPopup()">...</button>
+	</div> -->
+	<div class="input-group-append">
 		<button class="popup-btn" (click)="openPopup()">...</button>
 	</div>
 </div>

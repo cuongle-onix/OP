@@ -1,22 +1,6 @@
 <div class="input-group filter">
-	<input
-	id="typeahead-focus"
-	type="text"
-	class="form-control"
-	[placeholder]="placeholder"
-	[(ngModel)]="model"
-	[ngbTypeahead]="search"
-	(focus)="focus$.next($event.target.value)"
-	(click)="click$.next($event.target.value)"
-	#instance="ngbTypeahead"
-	[resultTemplate]="rt"
-	[inputFormatter]="formatter"/>
+	<ng-select class="custom" [placeholder]="placeholder" [items]="data" [(ngModel)]="model" bindLabel="value" bindValue="key"></ng-select>
 	<div class="input-group-append">
-		<button class="add-btn" (click)="onSaveItem($event)"></button>
+		<button class="popup-btn" (click)="openPopup()">...</button>
 	</div>
 </div>
-
-<ng-template #rt let-item="result" let-t="term">
-	{{ item.value }}
-	<button class="float-right remove-btn" (click)="removeItem(item, $event)"></button>
-</ng-template>

@@ -25,10 +25,12 @@ export class ActivityEventComponent implements OnInit {
 	toolbar: Toolbar;
 
 	selectedActivity: any;
-	selectedConnectedItemId: any;
+	selectedRelatedItemId: any;
 
 	checkedItems: any[] = [];
-	checkedConnectedItems: any[] = [];
+
+	relatedTabId: string = 'related';
+	activeSubtabId: string;
 
 	constructor(private modalService: NgbModal) { }
 
@@ -36,20 +38,20 @@ export class ActivityEventComponent implements OnInit {
 		this.activityList = [
 			{
 				id: 1,
-				category: 'Disiplin',
-				company: 'Marathon',
-				discipline: 'Formann',
-				location: 'Brinhild',
-				type: 'Elektrotermografi - Level 1 (Nor)',
-				status: 'offshore',
-				personnel: 'Amundsen-Færøy',
-				level: 'apache',
+				category: 'Category 1',
+				company: 'Company 1',
+				discipline: 'Discipline 1',
+				location: 'Location 1',
+				type: 'Type 1',
+				status: 'Status 1',
+				personnel: 'Personnel 1',
+				level: 'Level 1',
 				fromDate: '9/17/1997',
 				percent: 30,
 				toDate: '12/31/2013',
 				schedule: '',
 				expireDate: '05/03/2022',
-				group: '',
+				group: 'Group 1',
 				inLieuTo: '',
 				rotation: '5-2',
 				shift: 'Morgen',
@@ -65,7 +67,7 @@ export class ActivityEventComponent implements OnInit {
 						location: 'Brinhild',
 						type: 'Elektrotermografi - Level 1 (Nor)',
 						status: 'offshore',
-						personnel: 'Amundsen-Færøy',
+						personnel: 'Vector',
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
@@ -90,7 +92,7 @@ export class ActivityEventComponent implements OnInit {
 						location: 'Brinhild',
 						type: 'Elektrotermografi - Level 1 (Nor)',
 						status: 'offshore',
-						personnel: 'Amundsen-Færøy',
+						personnel: 'John',
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
@@ -119,14 +121,14 @@ export class ActivityEventComponent implements OnInit {
 				location: 'Brinhild',
 				type: 'Elektrotermografi - Level 1 (Nor)',
 				status: 'offshore',
-				personnel: 'Amundsen-Færøy',
+				personnel: 'Amundsen-Færøy 2',
 				level: 'apache',
 				fromDate: '9/17/1997',
 				percent: 30,
 				toDate: '12/31/2013',
 				schedule: '',
 				expireDate: '05/03/2022',
-				group: '',
+				group: 'Group 2',
 				inLieuTo: '',
 				rotation: '5-2',
 				shift: 'Morgen',
@@ -145,14 +147,14 @@ export class ActivityEventComponent implements OnInit {
 				location: 'Brinhild',
 				type: 'Elektrotermografi - Level 1 (Nor)',
 				status: 'offshore',
-				personnel: 'Amundsen-Færøy',
+				personnel: 'Amundsen-Færøy 3',
 				level: 'apache',
 				fromDate: '9/17/1997',
 				percent: 30,
 				toDate: '12/31/2013',
 				schedule: '',
 				expireDate: '05/03/2022',
-				group: '',
+				group: 'Group 3',
 				inLieuTo: '',
 				rotation: '5-2',
 				shift: 'Morgen',
@@ -216,9 +218,6 @@ export class ActivityEventComponent implements OnInit {
 			}
 		];
 
-		this.selectedActivity = this.activityList[0];
-		this.selectedActivity.isSelected = true;
-
 		this.toolbar = new Toolbar(
 			[
 				new Tab(
@@ -247,9 +246,35 @@ export class ActivityEventComponent implements OnInit {
 							click: this.unknownClick.bind(this)
 						})
 					]
+				),
+				new Tab(
+					'Maintain',
+					'maintain',
+					[
+						new RibbonGroup(
+							{ label: 'Maintain' },
+							[
+								new RibbonButton({
+									type: TOOLBAR_BTN_TYPE.CATEGORY,
+									click: this.openModal.bind(this, 'edit', 'Edit Category')
+								}),
+								new RibbonButton({
+									type: TOOLBAR_BTN_TYPE.TYPE,
+									click: this.openModal.bind(this, 'edit', 'Edit Type')
+								}),
+								new RibbonButton({
+									type: TOOLBAR_BTN_TYPE.CATEGORY_TYPE,
+									click: this.openModal.bind(this, 'connect', 'Maintain Category & Type')
+								})
+							]
+						)
+					]
 				)
 			]
 		);
+
+		this.selectedActivity = this.activityList[0];
+		this.selectedActivity.isSelected = true;
 	}
 
 	onClickNew(event) {
@@ -265,19 +290,20 @@ export class ActivityEventComponent implements OnInit {
 		for (let item of this.selectedActivity.connected) {
 			item.isSelected = false;
 		}
-		this.selectedConnectedItemId = null;
+		this.selectedActivity.connected.map(item => item.isSelected = false);
+		this.selectedRelatedItemId = null;
 	}
 
-	onSelectConnectedItem(event) {
-		this.selectedConnectedItemId = event.targetedItem.id;
+	onSelectRelatedItem(event) {
+		this.selectedRelatedItemId = event.targetedItem.id;
 	}
 
-	onCheckItem(listName, event) {
+	onCheckItem(event) {
 		let checkedItem = event.targetedItem;
 		if (checkedItem.isChecked) {
-			this[listName].push(checkedItem);
+			this.checkedItems.push(checkedItem);
 		} else {
-			this[listName] = this[listName].filter(item => item != checkedItem);
+			this.checkedItems = this.checkedItems.filter(item => item != checkedItem);
 		}
 	}
 
@@ -288,46 +314,51 @@ export class ActivityEventComponent implements OnInit {
 		this.checkedItems = [];
 	}
 
-	cancelConnectedChecked() {
-		for (let item of this.selectedActivity.connected) {
-			item.isChecked = false;
-		}
-		this.checkedConnectedItems = [];
-	}
-
 	onSubtabChange(event: NgbTabChangeEvent) {
-		if (event.nextId == 'connected') {
+		let isRelatedTabExist = this.toolbar.tabs.filter(tab => tab.id == this.relatedTabId).length > 0;
+		this.activeSubtabId = event.nextId;
+		if (event.nextId == this.relatedTabId && !isRelatedTabExist) {
 			let connectedTab = new Tab(
-				'Connected',
-				'connected',
+				'Related',
+				this.relatedTabId,
 				[
 					new RibbonGroup(
-						{ label: 'Connected' },
+						{ label: 'Related' },
 						[
 							new RibbonButton({
-								type: TOOLBAR_BTN_TYPE.ADD_CONNECTED,
-								click: this.openModal.bind(this, 'edit-connected')
-							}),
-							new RibbonButton({
-								type: TOOLBAR_BTN_TYPE.NEW_CONNECTED,
-								click: this.unknownClick.bind(this)
+								type: TOOLBAR_BTN_TYPE.ADD_ACTIVITY,
+								click: this.openModal.bind(this, 'edit', 'Add Activity')
 							})
 						]
 					),
 				]
 			)
 			this.toolbar.tabs.push(connectedTab);
-			this.toolbar.activeTabId = 'connected';
+			this.toolbar.activeTabId = this.relatedTabId;
 		} else {
-			this.toolbar.tabs = this.toolbar.tabs.filter(item => item.id != 'connected'); // remove connected tab
+			this.toolbar.tabs = this.toolbar.tabs.filter(item => item.id != this.relatedTabId); // remove look-up tab
 			this.toolbar.activeTabId = 'menu';
 		}
 	}
 
-	openModal(modalType) {
+	openModal(modalType, modalTitle) {
 		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
 		modalRef.componentInstance.modalType = modalType;
-		modalRef.componentInstance.modalTitle = 'Add Connected';
+		modalRef.componentInstance.modalTitle = modalTitle;
+		modalRef.componentInstance.tableData = [
+			{
+				category: '1156-2016 Olvondo',
+				categoryLanguage: '1156-2016 Olvondo',
+				activity: true,
+				cv: true
+			},
+			{
+				category: '1157-2016 Wartsila Bygg',
+				categoryLanguage: '1157-2016 Wartsila Bygg',
+				activity: true,
+				cv: true
+			}
+		];;
 	}
 
 	private convertJsonToFormData(obj) {

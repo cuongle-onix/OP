@@ -1,6 +1,7 @@
 <div class="list-container">
 	<item *ngFor="let item of items; let i = index" 
 	[focused]="i == selectedIndex" 
+	[hasCheckbox]="hasCheckbox"
 	[data]="item" 
-	(click)="onClickItem(item, $event)"></item>
+	(click)="onClickItem(item, i, $event)"></item>
 </div>

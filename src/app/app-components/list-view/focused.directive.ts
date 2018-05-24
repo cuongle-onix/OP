@@ -8,7 +8,10 @@ export class FocusedDirective {
 	@Input()
 	set focused(value: boolean) {
 		if (value) {
-			this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'scrollIntoViewIfNeeded');
+			if (this.elementRef.nativeElement.scrollIntoViewIfNeeded) 
+				this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'scrollIntoViewIfNeeded');
+			else
+				this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'scrollIntoView');
 		}
 	}
 

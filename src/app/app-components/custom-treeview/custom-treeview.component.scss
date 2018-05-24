@@ -1,4 +1,12 @@
 .fa-caret-right, .fa-caret-down {
-	margin-right: 5px;
 	font-size: 15px;
+}
+
+input {
+	margin: 10px 0 10px 10px;
+}
+
+.form-check-label {
+	max-width: 75%;
+	line-height: 12px;
 }

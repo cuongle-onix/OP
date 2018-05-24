@@ -13,32 +13,30 @@ import { ItemComponent } from './item/item.component';
 export class ListViewComponent implements OnInit {
 
 	@Input() items: any[];
+	@Input() hasCheckbox: boolean = false;
 	@Output() onSelectItem: EventEmitter<any> = new EventEmitter();
 	@Output() onCheckItem: EventEmitter<any> = new EventEmitter();
 
 	isClickInside: boolean = false;
+	selectedIndex: number;
 
 	@HostListener('document:click', ['$event']) clickedOutside(event) {
 		this.isClickInside = this.elemRef.nativeElement.contains(event.target);
 	}
-
-	selectedIndex: number;
 
 	constructor(private elemRef: ElementRef) { }
 
 	ngOnInit() {
 	}
 
-	onClickItem(item, event) {
+	onClickItem(item, index, event) {
 		if (event.target.type == 'checkbox') {
 			item.isChecked = event.target.checked;
 			this.onCheckItem.emit({ targetedItem: item, event: event });
 		} else {
-			for (let i of this.items) {
-				i.isSelected = false;
-			};
-			item.isSelected = true;
-			this.selectedIndex = this.items.findIndex(el => el == item);
+			this.items.map(x => x.isSelected = false);
+			this.items[index].isSelected = true;
+			this.selectedIndex = index;
 			this.onSelectItem.emit({ targetedItem: item, event: event });
 		}
 	}

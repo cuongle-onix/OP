@@ -23,12 +23,13 @@ export const TOOLBAR_BTN_TYPE = {
 	DELETE: 'btn-delete',
 	PROPERTIES: 'btn-properties',
 	REPORT: 'btn-report',
-	NEW_CATEGORY: 'btn-new-category',
-	NEW_TYPE: 'btn-new-type',
 	VIEW_PERSONNEL: 'btn-view-personnel',
 	EDIT_VIEW: 'btn-edit-view',
-	ADD_CONNECTED: 'btn-add-connected',
-	NEW_CONNECTED: 'btn-new-connected'
+	ADD_ACTIVITY: 'btn-add-activity',
+	CATEGORY: 'btn-category',
+	TYPE: 'btn-type',
+	CATEGORY_TYPE: 'btn-category-type'
+	
 };
 
 export const FORM_TYPE = {
@@ -38,7 +39,7 @@ export const FORM_TYPE = {
 
 export const DEFAULT_MODAL_CONFIG = {
 	backdrop: 'static',
-	keyboard: false,
+	keyboard: true,
 	size: 'lg',
 	centered: true
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener, ElementRef } from '@angular/core';
 
 @Component({
 	selector: 'table-view',
@@ -8,15 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableViewComponent implements OnInit {
 
 	@Input() data: any[];
-	@Input() isHasCheckbox: boolean = false;
+	@Input() hasCheckbox: boolean = false;
+	@Input() editable: boolean = false;
+	@HostListener('document:click', ['$event'])
+	disableEditMode(event) {
+		if (this.editable
+			&& !this.elementRef.nativeElement.contains(event.target)
+			&& !event.target.classList.contains('btn-new')) {
+			this.selectedRowIndex = -1;
+			this.data.map(item => item.isSelected = false);
+		}
+	}
 	keys: string[] = [];
 	headerCols: string[] = [];
+	selectedRowIndex: number;
 
-	constructor() { }
+	constructor(private elementRef: ElementRef) { }
 
 	ngOnInit() {
 		for (let key in this.data[0]) {
-			if (key != 'isSelected' && key != 'isChecked' ) {
+			if (key != 'isSelected' && key != 'isChecked') {
 				this.keys.push(key);
 				let col = this.toFormLabel(key);
 				this.headerCols.push(col);
@@ -28,6 +39,10 @@ export class TableViewComponent implements OnInit {
 		for (let item of this.data) {
 			item.isChecked = event.target.checked;
 		}
+	}
+
+	toggleEdit(index, event) {
+		this.selectedRowIndex = index;
 	}
 
 	private toFormLabel(str: string) {

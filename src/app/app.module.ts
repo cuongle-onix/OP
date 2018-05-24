@@ -10,6 +10,7 @@ import { ModalComponent } from './app-components/modal/modal.component';
 import { ModalModule } from './app-components/modal/modal.module';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DateService } from './app-services/date.service';
+import { TableViewModule } from './app-components/table-view/table-view.module';
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { DateService } from './app-services/date.service';
 		NgbModule.forRoot(),
 		AppRoutingModule,
 		ModalModule,
+		TableViewModule,
 	],
 	providers: [
 		DateService,

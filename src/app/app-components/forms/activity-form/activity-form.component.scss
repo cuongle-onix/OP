@@ -1,0 +1,31 @@
+@import '../../../../assets/css/standard';
+
+.activity-form /deep/ {
+	margin-top: 20px;
+	.card {
+		border: 0;
+		margin-bottom: 10px;
+	}
+	.card-header {
+		border: 0;
+		padding: 0;
+		background-color: transparent;
+		a {
+			font-size: 13px;
+			font-weight: 500;			
+			text-decoration: none;
+			color: $color-8;
+		}
+		.fa-caret-right {
+			margin-right: 5px;
+			color: $color-4;
+		}
+		&.active {
+			.fa-caret-right {
+				transform: rotate(45deg);
+			}
+		}
+	}
+	.card-body {
+	}
+}

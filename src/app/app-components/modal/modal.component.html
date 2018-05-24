@@ -5,6 +5,6 @@
 	</button>
 </div>
 <ng-container [ngSwitch]="modalType">
-	<edit-connected *ngSwitchCase="'edit-connected'"></edit-connected>
-	<edit-category *ngSwitchCase="'edit-category'"></edit-category>
+	<edit *ngSwitchCase="'edit'" [tableData]="tableData"></edit>
+	<connect *ngSwitchCase="'connect'"></connect>
 </ng-container>

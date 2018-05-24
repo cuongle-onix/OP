@@ -1,6 +1,8 @@
 @import 'standard.scss';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+$tab-height: calc(100% - 35px);
+
 .main-content {
 	height: $content-height;
 }
@@ -22,20 +24,22 @@
 		.nav-link {
 			border: 0;
 			color: #000;
+			font-size: 14px;
 			&.active {
 				border-bottom: 3px solid $color-4;
 			}
 		}
 	}
 	.tab-content {
-		height: calc(100% - 32px);
-		overflow-y: auto;
+		height: $tab-height;
+		overflow-y: hidden;
 	}
 	.tab-pane {
 		padding: 0 15px;
 		height: 100%;
+		overflow-y: auto;
 		.splitter {
-			height: calc(100% - 32px);
+			height: $tab-height;
 		}
 	}
 }

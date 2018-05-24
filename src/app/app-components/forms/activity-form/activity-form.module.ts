@@ -5,6 +5,7 @@ import { ActivityFormComponent } from './activity-form.component';
 import { DatepickerModule } from '../../datepicker/datepicker.module';
 import { DropdownModule } from '../../dropdown/dropdown.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	imports: [
@@ -13,6 +14,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 		DatepickerModule,
 		DropdownModule,
 		NgSelectModule,
+		NgbModule,
 	],
 	declarations: [
 		ActivityFormComponent,

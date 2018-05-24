@@ -1,0 +1,12 @@
+<div class="modal-body">
+	<div class="toolbar">
+		<button class="btn btn-new" (click)="onNew()"></button>
+		<button class="btn btn-save" (click)="onSave()"></button>
+		<button class="btn btn-delete" (click)="onDelete()"></button>
+	</div>
+	<table-view [data]="tableData" [editable]="true"></table-view>	
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-primary" (click)="onSaveAndClose()">Save &amp; Close</button>
+	<button type="button" class="btn btn-primary" (click)="onClose()">Cancel</button>
+</div>

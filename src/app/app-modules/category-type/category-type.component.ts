@@ -31,7 +31,7 @@ export class CategoryTypeComponent implements OnInit {
 					'category',
 					[
 						new RibbonButton({
-							type: TOOLBAR_BTN_TYPE.NEW_CATEGORY,
+							type: TOOLBAR_BTN_TYPE.CATEGORY,
 							click: this.onClickNewCategory.bind(this)
 						}),
 						new RibbonButton({
@@ -45,7 +45,7 @@ export class CategoryTypeComponent implements OnInit {
 					'type',
 					[
 						new RibbonButton({
-							type: TOOLBAR_BTN_TYPE.NEW_TYPE,
+							type: TOOLBAR_BTN_TYPE.TYPE,
 							click: this.onClickNewType.bind(this)
 						}),
 						new RibbonButton({

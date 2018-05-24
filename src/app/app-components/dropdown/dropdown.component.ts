@@ -10,95 +10,137 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class DropdownComponent implements OnInit {
 
-	@Input() data: any[] = [];
+	@Input() type: string = '';
+	// @Input() data: any[] = [];
 	@Input() model: any;
 
-	@ViewChild('input') input;
-	@ViewChildren('li') items;
-	@HostListener('document:click', ['$event'])
-	closeDropdownOnclick(event) {
-		if (!this.elementRef.nativeElement.contains(event.target)) {
-			this.isDropdownShow = false;
-		}
-	}
+	data: any[];
 
-	term: string;
-	isDropdownShow: boolean = false;
-	arrowkeyLocation: number = 0;
+	// @ViewChildren('li') items;
+	// @HostListener('document:click', ['$event'])
+	// closeDropdownOnclick(event) {
+	// 	if (!this.elementRef.nativeElement.contains(event.target)) {
+	// 		this.isDropdownShow = false;
+	// 	}
+	// }
+
+	// term: string;
+	// isDropdownShow: boolean = false;
+	// arrowkeyLocation: number = 0;
 
 	constructor(private elementRef: ElementRef, private modalService: NgbModal) { }
 
 	ngOnInit() {
-		this.term = this.model || '';
-	}
-
-	showAllItems() {
-		if (!this.term && this.isDropdownShow) {
-			this.isDropdownShow = false;
-		} else {
-			this.term = '';
-			this.isDropdownShow = true;
+		// this.term = this.model || '';
+		switch (this.type) {
+			case 'category':
+				this.data = ['Category 1', 'Category 2', 'Category 3'];
+				break;
+			case 'discipline':
+				this.data = ['Discipline 1', 'Discipline 2', 'Discipline 3'];
+				break;
+			case 'type':
+				this.data = ['Type 1', 'Type 2', 'Type 3'];
+				break;
+			case 'company':
+				this.data = ['Company 1', 'Company 2', 'Company 3'];
+				break
+			case 'location':
+				this.data = ['Location 1', 'Location 2', 'Location 3'];
+				break;
+			case 'status':
+				this.data = ['Status 1', 'Status 2', 'Status 3'];
+				break;
+			case 'level':
+				this.data = ['Level 1', 'Level 2', 'Level 3'];
+				break;
+			case 'group':
+				this.data = ['Group 1', 'Group 2', 'Group 3'];
+				break;
 		}
 	}
 
-	addItem(event) {
-		let isItemExist = this.data.filter(item => item == this.model).length > 0;
-		if (!isItemExist && this.model) {
-			this.data.push(this.model);
-			this.term = this.model;
-		}
-		if (!this.isDropdownShow) {
-			this.isDropdownShow = true;
-		}
-	}
+	// showAllItems() {
+	// 	if (!this.term && this.isDropdownShow) {
+	// 		this.isDropdownShow = false;
+	// 	} else {
+	// 		this.term = '';
+	// 		this.isDropdownShow = true;
+	// 	}
+	// }
 
-	selectItem(item) {
-		this.model = item;
-		this.isDropdownShow = false;
-	}
+	// addItem(event) {
+	// 	let isItemExist = this.data.filter(item => item == this.model).length > 0;
+	// 	if (!isItemExist && this.model) {
+	// 		this.data.push(this.model);
+	// 		this.term = this.model;
+	// 	}
+	// 	if (!this.isDropdownShow) {
+	// 		this.isDropdownShow = true;
+	// 	}
+	// }
 
-	removeItem(item, event) {
-		event.stopPropagation();
-		this.data = this.data.filter(it => it != item);
-	}
+	// selectItem(item) {
+	// 	this.model = item;
+	// 	this.isDropdownShow = false;
+	// }
 
-	onModelChange() {
-		this.term = this.model;
-		this.isDropdownShow = true;
-	}
+	// removeItem(item, event) {
+	// 	event.stopPropagation();
+	// 	this.data = this.data.filter(it => it != item);
+	// }
 
-	onFocus() {
-		this.term = this.model;
-		this.isDropdownShow = true;
-		let index = this.data.findIndex((item: string) => item.includes(this.term));
-		if (index > -1) {
-			this.arrowkeyLocation = index;
-			console.log(this.arrowkeyLocation);
-		} else {
-			this.arrowkeyLocation = 0;
-		}
-	}
+	// onModelChange() {
+	// 	this.term = this.model;
+	// 	this.isDropdownShow = true;
+	// }
 
-	onKeyDown(event: KeyboardEvent) {
-		if (event.keyCode == 38 && this.arrowkeyLocation > 0) { //key up
-			this.arrowkeyLocation--;
-		}
-		if (event.keyCode == 40 && this.arrowkeyLocation < this.items.toArray().length - 1) { //key down
-			this.arrowkeyLocation++;
-		}
-		if (event.keyCode == 13) { //key enter
-			this.model = this.data[this.arrowkeyLocation];
-		}
-	}
+	// onFocus() {
+	// 	this.term = this.model;
+	// 	this.isDropdownShow = true;
+	// 	let index = this.data.findIndex((item: string) => item.includes(this.term));
+	// 	if (index > -1) {
+	// 		this.arrowkeyLocation = index;
+	// 		console.log(this.arrowkeyLocation);
+	// 	} else {
+	// 		this.arrowkeyLocation = 0;
+	// 	}
+	// }
 
-	onHoverItem(index) {
-		this.arrowkeyLocation = index;
-	}
+	// onKeyDown(event: KeyboardEvent) {
+	// 	if (event.keyCode == 38 && this.arrowkeyLocation > 0) { //key up
+	// 		this.arrowkeyLocation--;
+	// 	}
+	// 	if (event.keyCode == 40 && this.arrowkeyLocation < this.items.toArray().length - 1) { //key down
+	// 		this.arrowkeyLocation++;
+	// 	}
+	// 	if (event.keyCode == 13) { //key enter
+	// 		this.model = this.data[this.arrowkeyLocation];
+	// 	}
+	// }
+
+	// onHoverItem(index) {
+	// 	this.arrowkeyLocation = index;
+	// }
 
 	openPopup() {
 		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
-		modalRef.componentInstance.modalType = 'edit-category';
-		modalRef.componentInstance.modalTitle = 'Edit category';
+		modalRef.componentInstance.modalType = 'edit';
+		modalRef.componentInstance.modalTitle = `Edit ${this.type}`;
+		modalRef.componentInstance.tableData = [
+			{
+				category: '1156-2016 Olvondo',
+				categoryLanguage: '1156-2016 Olvondo',
+				activity: true,
+				cv: true
+			},
+			{
+				category: '1157-2016 Wartsila Bygg',
+				categoryLanguage: '1157-2016 Wartsila Bygg',
+				activity: true,
+				cv: true
+			}
+		];
 	}
 
 }

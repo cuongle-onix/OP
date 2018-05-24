@@ -1,22 +1,8 @@
-<div class="table-wrapper">
-	<table class="table table-hover text-center">
-		<thead>
-			<tr>
-				<th scope="col">Field</th>
-				<th scope="col">Operator</th>
-				<th scope="col">Value</th>
-				<th scope="col">Has</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let row of searchCriteria; let i = index" (click)="selectCriteriaRow(i)" [class.selected]="i == selectedRowIndex">
-				<td>{{ row.field.value }}</td>
-				<td>{{ row.operator.value }}</td>
-				<td>{{ row.value.value }}</td>
-				<td>{{ row.has.value }}</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="search-wrapper">
+	<h4>Search criteria:</h4>
+	<p *ngFor="let row of searchCriteria; let i = index" 
+	(click)="selectCriteriaRow(i)" 
+	[class.selected]="i == selectedRowIndex">{{ row.has }}: {{ row.field }} {{ row.operator }} {{ row.value }}</p>
 </div>
 <form>
 	<div class="form-group">

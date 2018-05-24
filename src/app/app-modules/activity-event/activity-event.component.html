@@ -15,7 +15,7 @@
 							<pane-set>
 								<pane title="Activities" bgColor="#F6E8EB" col="col-3">
 									<ng-template pane-content>
-										<!-- <div class="group-by">
+										<div class="group-by mt-2">
 											Group by:
 											<div ngbDropdown class="d-inline-block">
 												<button class="btn" ngbDropdownToggle>None</button>
@@ -34,8 +34,6 @@
 													<button class="dropdown-item">Date</button>
 												</div>
 											</div>
-										</div> -->
-										<div class="pr-2">
 											<span class="float-right" *ngIf="!checkedItems.length">
 												{{ activityList.length }} item(s)
 											</span>
@@ -45,69 +43,18 @@
 										</div>
 										<list-view
 										[items]="activityList" 
+										[hasCheckbox]="true"
 										(onSelectItem)="onSelectItem($event)" 
-										(onCheckItem)="onCheckItem('checkedItems', $event)"></list-view>
+										(onCheckItem)="onCheckItem($event)"></list-view>
 									</ng-template>
 								</pane>
 								<ng-template details>
 									<div class="sub-tabs child-tabs">
 										<ngb-tabset activeId="details" (tabChange)="onSubtabChange($event)">
-											<ng-container *ngIf="selectedActivity && !checkedItems.length">
+											<ng-container *ngIf="selectedActivity && !checkedItems.length || activeSubtabId == 'related'">
 												<ngb-tab title="Details" id="details">
 													<ng-template ngbTabContent>
-														<h4 class="py-4 title activity">
-															<i class="fa fa-caret-right"></i>
-															Activity details
-														</h4>
 														<activity-form [id]="selectedActivity.id"></activity-form>
-													</ng-template>
-												</ngb-tab>
-												<ngb-tab title="Connected" id="connected">
-													<ng-template ngbTabContent>
-														<pane-set>
-															<pane title="Connected" bgColor="#dce5ff" col="col-4">
-																<ng-template pane-content>
-																	<div class="pr-2">
-																		<span class="float-right" *ngIf="!checkedConnectedItems.length">
-																			{{ selectedActivity.connected.length }} item(s)
-																		</span>
-																		<span class="float-right" *ngIf="checkedConnectedItems.length">
-																			{{ checkedConnectedItems.length }} of {{ selectedActivity.connected.length }} selected
-																		</span>
-																	</div>
-																	<list-view
-																	[items]="selectedActivity.connected"
-																	(onSelectItem)="onSelectConnectedItem($event)"
-																	(onCheckItem)="onCheckItem('checkedConnectedItems', $event)"></list-view>
-																</ng-template>
-															</pane>
-															<ng-template details>
-																<div *ngIf="selectedConnectedItemId && !checkedConnectedItems.length">
-																	<h4 class="py-4 title connected">
-																		<i class="fa fa-caret-right"></i>		
-																		Connected details
-																	</h4>
-																	<activity-form [id]="selectedConnectedItemId"></activity-form>
-																</div>
-																<div *ngIf="checkedConnectedItems.length">
-																	<ul class="list-group options-list">
-																		<li class="list-group-item">
-																			<button class="btn-change-status">
-																				<span></span>Change status
-																			</button>
-																		</li>
-																		<li class="list-group-item">
-																			<button class="btn-delete">
-																				<span></span>Delete
-																			</button>
-																		</li>
-																		<li class="list-group-item">
-																			<button (click)="cancelConnectedChecked()">Cancel</button>
-																		</li>
-																	</ul>
-																</div>
-															</ng-template>
-														</pane-set>
 													</ng-template>
 												</ngb-tab>
 												<ngb-tab title="Personnel" id="personnel">
@@ -116,8 +63,63 @@
 														<personnel-form></personnel-form>
 													</ng-template>
 												</ngb-tab>
+												<ngb-tab title="Schedule" id="schedule">
+													<ng-template ngbTabContent>
+														Schedule details
+													</ng-template>
+												</ngb-tab>
+												<ngb-tab title="Related" id="{{ relatedTabId }}">
+													<ng-template ngbTabContent>
+														<pane-set>
+															<pane title="Look-up" bgColor="#dce5ff" col="col-4">
+																<ng-template pane-content>
+																	<div class="p-2">
+																		<label for="lookup">Select filter:</label>
+																		<select id="lookup" class="form-control">
+																			<option value="emplotment">Employment</option>
+																			<option value="experience">Experience</option>
+																			<option value="certificate">Certificates</option>
+																			<option value="none">&lt;None&gt;</option>
+																		</select>
+																		<div class="group-by mt-2">
+																			Group by:
+																			<div ngbDropdown class="d-inline-block">
+																				<button class="btn" ngbDropdownToggle>None</button>
+																				<div ngbDropdownMenu>
+																					<button class="dropdown-item">Personel</button>
+																					<button class="dropdown-item">Status</button>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="sort-by">
+																			Sort by:
+																			<div ngbDropdown class="d-inline-block">
+																				<button class="btn" ngbDropdownToggle>None</button>
+																				<div ngbDropdownMenu>
+																					<button class="dropdown-item">Name</button>
+																					<button class="dropdown-item">Date</button>
+																				</div>
+																			</div>
+																			<span class="float-right mt-1">
+																				{{ selectedActivity.connected.length }} item(s)
+																			</span>
+																		</div>
+																	</div>
+																	<list-view
+																	[items]="selectedActivity.connected"
+																	(onSelectItem)="onSelectRelatedItem($event)"></list-view>
+																</ng-template>
+															</pane>
+															<ng-template details>
+																<div *ngIf="selectedRelatedItemId">
+																	<activity-form [id]="selectedRelatedItemId"></activity-form>
+																</div>
+															</ng-template>
+														</pane-set>
+													</ng-template>
+												</ngb-tab>
 											</ng-container>
-											<ng-container *ngIf="checkedItems.length">
+											<ng-container *ngIf="checkedItems.length && activeSubtabId != 'related'">
 												<ngb-tab title="Options" id="opt">
 													<ng-template ngbTabContent>
 														<h4>{{ checkedItems.length }} item(s) selected</h4>
@@ -160,7 +162,3 @@
 		</ng-template>
 	</pane-set>
 </div>
-
-<!-- <ng-template #modalContent>
-	<table-view [data]="emptyActivityList" [isHasCheckbox]="true"></table-view>
-</ng-template>	 -->

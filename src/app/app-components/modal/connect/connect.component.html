@@ -1,0 +1,60 @@
+<div class="modal-body">
+	<div class="row no-gutters panel">
+		<div class="col-4 left-col">
+			<div class="list-group">
+				<button class="list-group-item list-group-item-action" 
+				[class.active]="i == selectedCategoryIndex"
+				*ngFor="let item of categoryList; let i = index" 
+				(click)="selectCategory(i)">{{ item.name }}</button>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="type">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Avalable Type</th>
+							<th>Remark</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let row of typeList; let i = index" [class.active]="i == selectedTypeIndex" 
+						(click)="selectType(i)">
+							<td>{{ row.name }}</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="controls text-center">
+				<button class="btn" (click)="addChild()">
+					<i class="fa fa-long-arrow-down"></i>
+					Add
+				</button>
+				<button class="btn" (click)="removeChild()">
+					<i class="fa fa-long-arrow-up"></i>
+					Remove
+				</button>
+			</div>
+			<div class="child">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Avalable Type</th>
+							<th>Remark</th>
+						</tr>
+					</thead>
+					<tbody *ngIf="selectedCategoryIndex > -1">
+						<tr *ngFor="let row of categoryList[selectedCategoryIndex].type; let i = index" [class.active]="i == selectedChildIndex" (click)="selectChild(i)">
+							<td>{{ row.name }}</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-primary" (click)="onClose()">Close</button>
+</div>

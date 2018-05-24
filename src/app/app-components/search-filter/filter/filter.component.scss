@@ -21,21 +21,12 @@
 	padding: 5px 6px;
 }
 
-.add-btn, .remove-btn {
-	background-repeat: no-repeat;
+.popup-btn {
 	background-color: transparent;
+	padding: 0;
 	width: 17px;
 	height: 17px;
 	border: 0;
 	cursor: pointer;
-}
-
-.add-btn {
-	background-image: url('../../../../assets/images/save-icon.png');
-	padding: 0;
-}
-
-.remove-btn {
-	background-image: url('../../../../assets/images/data-area-small-icons.png');
-	background-position: -54px top;
+	outline: 0;
 }

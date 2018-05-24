@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableViewModule } from '../table-view/table-view.module';
 import { ModalComponent } from './modal.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { EditConnectedComponent } from './edit-connected/edit-connected.component';
+import { ConnectComponent } from './connect/connect.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
 	imports: [
@@ -11,12 +11,12 @@ import { EditConnectedComponent } from './edit-connected/edit-connected.componen
 		TableViewModule,
 	],
 	declarations: [
-		EditCategoryComponent,
-		EditConnectedComponent,
+		ConnectComponent,
+		EditComponent,
 	],
 	exports: [
-		EditCategoryComponent,
-		EditConnectedComponent,
+		ConnectComponent,
+		EditComponent,
 	]
 })
 export class ModalModule { }

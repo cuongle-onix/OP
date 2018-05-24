@@ -65,6 +65,12 @@
 	background-position: -54px top;
 }
 
+.dropdown-wrapper {
+	.ng-select.custom {
+		width: calc(100% - 30px);
+	}
+}
+
 .popup-btn {
 	background-color: transparent;
 	width: 30px;

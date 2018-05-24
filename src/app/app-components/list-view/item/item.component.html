@@ -1,15 +1,15 @@
 <div class="item" [id]="data.id" [class.selected]="data.isSelected">
 	<div class="item-body">
-		<h5>
-			<input type="checkbox" [checked]="data.isChecked" />
+		<h5 class="clearfix">
+			<input type="checkbox" [checked]="data.isChecked" *ngIf="hasCheckbox" />
 			<span class="float-left category">{{ data.category }}</span>
 			<span class="float-right personnel">{{ data.personnel }}</span>
 		</h5>
-		<div class="description">
+		<div class="description clearfix">
 			<span class="float-left type">{{ data.type }}</span>			
 			<span class="float-right expire-date">{{ data.expireDate }}</span>
 		</div>
-		<div class="details">
+		<div class="details clearfix">
 			<span class="from-date">{{ data.fromDate }}</span>
 			<span class="float-right to-date">{{ data.toDate }}</span>
 		</div>

@@ -1,19 +1,22 @@
 <div class="table-responsive">
-	<table class="table table-hover">
+	<table class="table table-hover" #table>
 		<thead>
 			<tr>
-				<th *ngIf="isHasCheckbox">
+				<th *ngIf="hasCheckbox">
 					<input type="checkbox" (change)="onCheckAll($event)">
 				</th>
 				<th scope="col" *ngFor="let col of headerCols">{{ col }}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let item of data">
-				<td *ngIf="isHasCheckbox">
+			<tr *ngFor="let item of data; let i = index" [class.selected]="i == selectedRowIndex" (click)="toggleEdit(i, $event)">
+				<td *ngIf="hasCheckbox">
 					<input type="checkbox" [(ngModel)]="item.isChecked">
 				</td>
-				<td *ngFor="let key of keys">{{ item[key] }}</td>
+				<td *ngFor="let key of keys" class="text-truncate">
+					<ng-container *ngIf="i != selectedRowIndex || !editable">{{ item[key] }}</ng-container>
+					<input type="text" class="form-control" [(ngModel)]="item[key]" *ngIf="i == selectedRowIndex && editable">
+				</td>
 			</tr>
 		</tbody>
 	</table>

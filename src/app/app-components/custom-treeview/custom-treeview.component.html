@@ -25,7 +25,7 @@
 		<i class="fa fa-list-alt" *ngSwitchCase="TREE_NODE_TYPE.SCOPES"></i>
 		<!-- <i class="fa fa-bars" *ngSwitchDefault></i> -->
 	</ng-container>
-	<label class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
+	<label class="form-check-label text-truncate" title="{{ item.text }}" (click)="item.checked = !item.checked; onCheckedChange()">
 		{{item.text}}
 	</label>
 </ng-template>

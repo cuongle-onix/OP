@@ -1,8 +1,8 @@
 <section class="filter">
 	<h5>Filter &amp; Search</h5>
-	<filter [data]="storedFilters" placeholder="Stored Filter"></filter>
-	<filter [data]="personnelFilters" placeholder="Personnel Filter"></filter>
-	<filter [data]="[]" placeholder="View"></filter>
+	<filter placeholder="Stored Filter" type="search"></filter>
+	<filter placeholder="Personnel Filter" type="personnel"></filter>
+	<filter placeholder="View" type="view"></filter>
 	<div class="d-flex justify-content-center">
 		<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
 		<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>

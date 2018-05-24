@@ -12,14 +12,14 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 	activities: any[] = [
 		{
 			id: 1,
-			category: 'Disiplin',
-			company: 'Marathon',
-			discipline: 'Formann',
-			location: 'Brinhild',
-			type: 'Elektrotermografi - Level 1 (Nor)',
-			status: 'offshore',
-			personnel: 'Amundsen-Færøy',
-			level: 'apache',
+			category: 'Category 1',
+			company: 'Company 1',
+			discipline: 'Discipline 1',
+			location: 'Location 1',
+			type: 'Type 1',
+			status: 'Status 1',
+			personnel: 'Personnel 1',
+			level: 'Level 1',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
 				date: '9/17/1997'
@@ -34,7 +34,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: '05/03/2022'
 			}),
-			group: 'Group',
+			group: 'Group 1',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
 				date: '12/31/2013'
@@ -55,7 +55,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			location: 'Brinhild',
 			type: 'Elektrotermografi - Level 1 (Nor)',
 			status: 'offshore',
-			personnel: 'Amundsen-Færøy',
+			personnel: 'Amundsen-Færøy 2',
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
@@ -71,7 +71,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: '05/03/2022'
 			}),
-			group: '',
+			group: 'Group 2',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
 				date: '12/31/2013'
@@ -93,7 +93,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			location: 'Brinhild',
 			type: 'Elektrotermografi - Level 1 (Nor)',
 			status: 'offshore',
-			personnel: 'Amundsen-Færøy',
+			personnel: 'Amundsen-Færøy 3',
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
@@ -109,7 +109,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: '05/03/2022'
 			}),
-			group: '',
+			group: 'Group 3',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
 				date: '12/31/2013'
@@ -271,7 +271,6 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			isChecked: false
 		}
 	];
-	disciplines: any[]= ["D1", "D2", "D3", "D4", "Formann"];
 
 	constructor() { }
 

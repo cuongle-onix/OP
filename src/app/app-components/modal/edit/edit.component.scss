@@ -1,0 +1,49 @@
+.toolbar {
+	padding-bottom: 15px;
+}
+.btn-new, .btn-delete, .btn-save {
+	padding: 0;
+	min-width: 0;
+	background-color: transparent;
+	margin-right: 5px;
+	&:before {
+		content: "";
+		display: block;
+		width: 20px;
+		height: 20px;
+		background-repeat: no-repeat;
+		background-size: 300px 60px;
+		background-image: url('../../../../assets/images/ribbon-menu-icons.png');
+		margin: auto;
+	}
+	&:after {
+		display: block;
+	}
+}
+
+.btn-new {
+	&:before {
+		background-position: -20px 0;
+	}
+	&:after {
+		content: 'New';
+	}
+}
+
+.btn-save {
+	&:before {
+		background-position: -39px 0;
+	}
+	&:after {
+		content: 'Save';
+	}
+}
+
+.btn-delete {
+	&:before {
+		background-position: -82px 0;
+	}
+	&:after {
+		content: 'Delete';
+	}
+}

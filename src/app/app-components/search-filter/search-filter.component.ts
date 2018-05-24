@@ -32,18 +32,6 @@ export class SearchFilterComponent implements OnInit {
 	searchCount: number;
 	advancedSearchCount: number;
 
-	storedFilters = [
-		{ key: 'f1', value: 'Stored filter 1', isSelected: false },
-		{ key: 'f2', value: 'Stored filter 2', isSelected: false },
-		{ key: 'f3', value: 'Stored filter 3', isSelected: false }
-	];
-
-	personnelFilters = [
-		{ key: 'p1', value: ' Personnel filter 1', isSelected: false },
-		{ key: 'p2', value: ' Personnel filter 2', isSelected: false },
-		{ key: 'p3', value: ' Personnel filter 3', isSelected: false }
-	];
-
 	constructor(private cdRef: ChangeDetectorRef) { }
 
 	ngOnInit() {
@@ -67,9 +55,10 @@ export class SearchFilterComponent implements OnInit {
 			})
 		];
 
-		this.allDepartments = [
+		this.allDepartments = [			
 			new CustomTreeviewItem('department', {
 				text: 'All Departments', value: 7, children: [
+					{ text: '(None)', value: 19 },
 					{ text: '1 - Installasjon Land Sunnhorland', value: 8 },
 					{ text: '2 - Installasjon Marine', value: 9 },
 					{
@@ -80,7 +69,6 @@ export class SearchFilterComponent implements OnInit {
 						]
 					},
 					{ text: '3 - Oje & Gass', value: 10 },
-					{ text: '(None)', value: 19 },
 				]
 			})
 		];
