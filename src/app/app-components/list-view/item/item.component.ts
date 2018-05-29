@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DateService } from '../../../app-services/date.service';
+import { DatepickerModel } from '../../../app-components/datepicker/datepicker.component';
 
 @Component({
 	selector: 'item',
@@ -17,13 +19,13 @@ export class ItemComponent implements OnInit {
 		status: string,
 		personnel: string,
 		level: string,
-		fromDate: string,
+		fromDate: DatepickerModel,
 		percent: number,
-		toDate: string,
+		toDate: DatepickerModel,
 		schedule: string,
-		expireDate: string,
+		expireDate: DatepickerModel,
 		group: string,
-		inLieuTo: string,
+		inLieuTo: DatepickerModel,
 		rotation: string,
 		shift: string,
 		scope: string,
@@ -34,7 +36,7 @@ export class ItemComponent implements OnInit {
 	};
 	@Input() hasCheckbox: boolean = false;
 
-	constructor() { }
+	constructor(private dateService: DateService) { }
 
 	ngOnInit() {
 	}

@@ -12,7 +12,6 @@ export class PaneDirective implements AfterContentChecked {
     @Input() title: string;
     @Input() bgColor: string;
     @Input() isCollapsed = false;
-    @Input() col = 'col-2';
 
     contentTpl: PaneContentDirective | null;
 

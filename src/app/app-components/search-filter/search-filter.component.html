@@ -7,9 +7,19 @@
 		<button class="btn btn-primary btn-search" (click)="onSearch()">Search</button>	
 		<button class="btn btn-clear" (click)="clearSearch(clearType.all, $event)">Clear all</button>
 	</div>
+	<div class="d-flex justify-content-center options">
+		<label for="hide-vacant">
+			<input type="checkbox" id="hide-vacant" [(ngModel)]="isHideVacant">
+			Hide Vacant
+		</label>
+		<label for="incl-children">
+			<input type="checkbox" id="incl-children" [(ngModel)]="isInclChildren">
+			Incl. Children
+		</label>
+	</div>
 </section>
 <section class="search">
-	<ngb-accordion class="search-filter-pane" activeIds="ngb-panel-3" [destroyOnHide]="false" [closeOthers]="true">
+	<ngb-accordion activeIds="ngb-panel-3" [destroyOnHide]="false" [closeOthers]="true">
 		<ngb-panel>
 			<ng-template ngbPanelTitle>
 				<i class="fa fa-caret-right"></i>

@@ -4,6 +4,10 @@
 	position: relative;
 	padding: 0;
 	height: 100%;
+	&.resizable {
+		min-width: 280px;
+		max-width: 400px;
+	}
 	.fa-chevron-left {
 		&.rotate {
 			transform: rotate(180deg);

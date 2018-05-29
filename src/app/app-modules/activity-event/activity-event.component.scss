@@ -1,5 +1,23 @@
 @import '../../../assets/css/standard';
 
+.sort-btn {
+	width: 16px;
+	height: 16px;
+	border: 0;
+	margin-left: 10px;
+	cursor: pointer;
+	background: url('../../../assets/images/sort-az-icon.png') top left no-repeat;
+	&.desc {
+		background-position: top right;
+	}
+}
+
+.check-dropdown {
+	.dropdown-menu {
+		min-width: 0;
+	}
+}
+
 .options-list {
 	max-width: 250px;
 	margin: 20vh auto 0;

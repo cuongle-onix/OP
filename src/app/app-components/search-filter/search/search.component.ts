@@ -91,20 +91,17 @@ export class SearchComponent implements OnInit {
 			group: null,
 			fromDate: new DatepickerModel({
 				paramType: ParamType.operators,
-				placeholder: 'From Date'
 			}),
 			toDate: new DatepickerModel({
 				paramType: ParamType.operators,
-				placeholder: 'To Date'
 			}),
+			isOverlap: null,
 			expireDate: new DatepickerModel({
 				paramType: ParamType.operators,
-				placeholder: 'Expire Date'
 			}),
 			comment: null,
 			message: new DatepickerModel({
 				paramType: ParamType.checkbox,
-				placeholder: 'Message Date'
 			})
 		};
 	}
@@ -163,5 +160,14 @@ export class SearchComponent implements OnInit {
 	updateDate(fieldName, event) {
 		this.searchData[fieldName].date = event;
 		this.countSearch();
+	}
+
+	selectToday() {
+		let today = new Date();
+		this.searchData.fromDate = Object.assign({}, this.searchData.fromDate);
+		this.searchData.fromDate.date = today;
+		this.searchData.toDate = Object.assign({}, this.searchData.toDate);
+		this.searchData.toDate.date = today;
+		this.searchData.isOverlap = true;
 	}
 }

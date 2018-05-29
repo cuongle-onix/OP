@@ -1,37 +1,38 @@
 <div class="search-wrapper">
 	<h4>Search criteria:</h4>
 	<p *ngFor="let row of searchCriteria; let i = index" 
-	(click)="selectCriteriaRow(i)" 
-	[class.selected]="i == selectedRowIndex">{{ row.has }}: {{ row.field }} {{ row.operator }} {{ row.value }}</p>
+	(click)="onSelectRow(i)" 
+	[class.selected]="i == selectedRowIndex">
+		<ng-container *ngIf="row.has.value">{{ row.has.value }}: </ng-container>{{ row.field.value }} {{ row.operator.value }} {{ row.value.value }}
+		<button class="remove-btn" (click)="removeRow(i)"></button>
+	</p>
 </div>
 <form>
 	<div class="form-group">
 		<label for="field" [class.show]="searchRow.field">Field</label>
-		<select name="field" id="field" class="form-control" required [(ngModel)]="searchRow.field">
+		<select name="field" id="field" class="form-control" required [(ngModel)]="searchRow.field.key" (change)="onValueChange($event, 'fields', 'field')">
 			<option value="" hidden disabled selected>Field</option>
 			<option *ngFor="let item of fields" [value]="item.key">{{ item.value }}</option>
 		</select>
 	</div>
 	<div class="form-group">
 		<label for="field" [class.show]="searchRow.operator">Operator</label>
-		<select name="operator" id="operator" class="form-control" required [(ngModel)]="searchRow.operator">
+		<select name="operator" id="operator" class="form-control" required [(ngModel)]="searchRow.operator.key" (change)="onValueChange($event, 'operators', 'operator')">
 			<option value="" hidden disabled selected>Operator</option>
 			<option *ngFor="let item of operators" [value]="item.key">{{ item.value }}</option>
 		</select>
 	</div>
 	<div class="form-group">
 		<label for="value" [class.show]="searchRow.value">Value</label>
-		<ng-select class="custom" id="value" placeholder="Value" [items]="values" [(ngModel)]="searchRow.value" name="type" bindValue="key" bindLabel="value"></ng-select>
+		<ng-select class="custom" id="value" placeholder="Value" [items]="values" [(ngModel)]="searchRow.value.key" name="type" bindValue="key" bindLabel="value" (change)="onValueChange($event, 'values', 'value')"></ng-select>
 	</div>
 	<div class="form-group">
 		<label for="has" [class.show]="searchRow.has">Has</label>
-		<select name="has" id="has" class="form-control" required [(ngModel)]="searchRow.has">
-			<option value="" hidden disabled selected>Has or has not</option>
-			<option *ngFor="let item of has" [ngValue]="item.key">{{ item.value }}</option>
+		<select name="has" id="has" class="form-control" required [(ngModel)]="searchRow.has.key" (change)="onValueChange($event, 'has', 'has')">
+			<option *ngFor="let item of has" [value]="item.key">{{ item.value }}</option>
 		</select>
 	</div>
 </form>
 <div class="d-flex justify-content-center mt-3">
-	<button class="btn btn-primary" (click)="addSearchCriteria()">Add to list</button>
-	<button class="btn btn-white" (click)="removeSearchCriteria()">Remove selected</button>
+	<button class="btn btn-primary" (click)="addSearchRow()">Add to list</button>
 </div>

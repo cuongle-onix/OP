@@ -22,22 +22,26 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'Level 1',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('12/28/1999')
 			}),
+			fromTime: { hour: 0, minute: 0 },
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('09/30/2003')
 			}),
+			toTime: { hour: 0, minute: 0 },
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
+			expireTime: { hour: 0, minute: 0 },
 			group: 'Group 1',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -59,22 +63,26 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
+			fromTime: { hour: 0, minute: 0 },
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
+			toTime: { hour: 0, minute: 0 },
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
+			expireTime: { hour: 0, minute: 0 },
 			group: 'Group 2',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -97,22 +105,26 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
+			fromTime: { hour: 0, minute: 0 },
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
+			toTime: { hour: 0, minute: 0 },
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
+			expireTime: { hour: 0, minute: 0 },
 			group: 'Group 3',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -134,22 +146,23 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
 			group: '',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -171,22 +184,23 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
 			group: '',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -208,22 +222,23 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
 			group: '',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',
@@ -245,22 +260,23 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 			level: 'apache',
 			fromDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '9/17/1997'
+				date: new Date('09/17/1997')
 			}),
 			percent: 30,
+			numInfo: '',
 			toDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			schedule: 'A',
 			expireDate: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '05/03/2022'
+				date: new Date('05/03/2022')
 			}),
 			group: '',
 			inLieuTo: new DatepickerModel({
 				paramType: ParamType.none,
-				date: '12/31/2013'
+				date: new Date('12/31/2013')
 			}),
 			rotation: '5-2',
 			shift: 'Morgen',

@@ -16,7 +16,7 @@ export class PersonnelFormComponent implements OnInit {
 		title: 'mr',
 		dateOfBirth: new DatepickerModel({
 			paramType: ParamType.none,
-			date: '1979/08/27'
+			date: new Date('1979/08/27')
 		}),
 		externalId: 'ABC13245',
 		daWinciId: 'LJLJ7878',

@@ -2,6 +2,7 @@
 
 .activity-form /deep/ {
 	margin-top: 20px;
+	min-width: 700px;
 	.card {
 		border: 0;
 		margin-bottom: 10px;
@@ -29,3 +30,33 @@
 	.card-body {
 	}
 }
+
+.form-group {
+	&:nth-child(1) {
+		padding-right: 40px;
+	}
+	label {
+		width: 115px;
+		float: left;
+	}
+	> div {
+		float: left;
+		width: calc(100% - 120px);
+	}
+}
+
+.percent-info {
+	span {
+		margin: 0 5px;
+	}
+	input {
+		display: inline-block;
+	}
+	#percent {
+		width: 50px;
+	}
+	#num-info {
+		width: calc(100% - 122px);
+	}
+}
+

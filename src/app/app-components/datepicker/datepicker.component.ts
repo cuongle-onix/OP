@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, HostListener, ViewChild, ElementRef, EventEmitter } from '@angular/core';
-import { DatePipe } from '@angular/common'
+import { Component, OnInit, Input, Output, HostListener, ViewChild, ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import * as moment from 'moment';
 import { OPERATORS } from '../../const.global';
 import { DateService } from '../../app-services/date.service';
@@ -14,12 +13,12 @@ export enum ParamType {
 export class DatepickerModel {
 	paramType: ParamType;
 	placeholder: string;
-	date: string;
+	date: Date;
 	operator: any;
 	constructor(options: {
 		paramType?: ParamType,
 		placeholder?: string,
-		date?: string,
+		date?: Date,
 		operator?: number
 	} = {}) {
 		this.paramType = options.paramType;
@@ -32,10 +31,13 @@ export class DatepickerModel {
 @Component({
 	selector: 'datepicker',
 	templateUrl: './datepicker.component.html',
-	styleUrls: ['./datepicker.component.scss']
+	styleUrls: ['./datepicker.component.scss'],
+	host: {
+		class: 'flex-grow-1'
+	}
 })
 
-export class DatepickerComponent implements OnInit {
+export class DatepickerComponent implements OnInit, OnChanges {
 
 	@Input() model: DatepickerModel;
 	@Output() onDateChange: EventEmitter<any> = new EventEmitter();
@@ -57,7 +59,7 @@ export class DatepickerComponent implements OnInit {
 
 	ngOnInit() {
 		this.dateFormat = this.dateService.getLocaleDateFormat();
-		this.dateModel = this.dateService.parse(this.model.date);
+		this.dateModel = this.model.date ? this.dateService.parse(this.model.date.toLocaleDateString()) : null;
 	}
 
 	onChange(date: NgbDateStruct) {
@@ -67,6 +69,12 @@ export class DatepickerComponent implements OnInit {
 			this.onDateChange.emit(dateString);
 		} else {
 			this.onDateChange.emit('');
+		}
+	}
+
+	ngOnChanges(changes) {
+		if (changes.model.currentValue.date && changes.model.currentValue != changes.model.previousValue) {
+			this.dateModel = this.dateService.parse(this.model.date.toLocaleDateString());
 		}
 	}
 }

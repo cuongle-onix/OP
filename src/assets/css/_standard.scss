@@ -29,7 +29,14 @@ textarea {
 	border-color: $border-color;
 }
 
-input {
+select {
+	height: 24px !important;
+}
+
+
+input:not([type='checkbox']):not([type='radio']) {
+	height: 24px;
+	padding: 1px 4px;
 	border-color: $border-color;
 }
 

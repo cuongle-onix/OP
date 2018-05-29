@@ -22,14 +22,14 @@ export class CustomTreeviewComponent implements OnInit {
 
 	TREEVIEW_CONFIG = TREEVIEW_CONFIG;
 	TREE_NODE_TYPE = TREE_NODE_TYPE;
-	treeviewItems: any;
 	nodeCount: number = 0;
 
 	constructor() { }
 
 	ngOnInit() {
-		let node = this.items[0];
-		this.countTreeItem(node);
+		for (let node of this.items) {
+			this.countTreeItem(node);
+		}
 	}
 
 	onSelectedChange(event) {

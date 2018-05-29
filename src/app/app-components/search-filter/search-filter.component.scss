@@ -25,11 +25,20 @@
 		margin-left: 5px;
 		padding-left: 30px;
 	}
+	.options {
+		margin-top: 10px;
+		label {
+			margin: 0 5px 0 0; 
+		}
+		input[type="checkbox"] {
+			vertical-align: text-bottom;
+		}
+	}
 }
 
 .search /deep/ {
 	margin: 0 -15px;
-	height: calc(100% - 189px);
+	height: calc(100% - 223px);
 	background-color: $color-1;
 	.btn-clear {
 		background: transparent url('../../../assets/images/refresh-search-icon.png') no-repeat left center;
@@ -42,7 +51,7 @@
 	}
 	.card {
 		border: 0;
-		max-height: calc(100% - 149px);
+		max-height: calc(100% - 143px);
 		&:last-child {
 			border-bottom: 1px solid $border-color;
 		}

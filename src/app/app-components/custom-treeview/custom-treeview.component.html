@@ -6,10 +6,10 @@
 
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
 
-	<i class="fa"
-	*ngIf="item.children" (click)="onCollapseExpand()" 
-	[class.fa-caret-right]="item.collapsed"
-	[class.fa-caret-down]="!item.collapsed"></i>
+	<i class="fa fa-caret-down"
+	[class.invisible]="!item.children" (click)="onCollapseExpand()" 
+	[class.right]="item.collapsed"></i>
+	<i class="fa fa-caret-down invisible" *ngIf="item.type == TREE_NODE_TYPE.NONE"></i>
 
 	<input type="checkbox"
 	[(ngModel)]="item.checked"

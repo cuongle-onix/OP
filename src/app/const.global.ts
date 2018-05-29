@@ -49,5 +49,6 @@ export const OPERATORS = ['>=', '<=', '='];
 export const TREE_NODE_TYPE = {
 	FOLDER: 'folder',
 	DEPARTMENT: 'department',
-	SCOPES: 'scope'
+	SCOPES: 'scope',
+	NONE: 'none'
 };

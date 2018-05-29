@@ -3,114 +3,99 @@
 		<ngb-panel id="panel-0">
 			<ng-template ngbPanelTitle>
 				<i class="fa fa-caret-right"></i>
-				Activity details
+				Details
 			</ng-template>
 			<ng-template ngbPanelContent>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="company" class="col-sm-3 col-form-label">Company</label>
-							<div class="col-sm-9">
-								<dropdown id="company" [model]="activity.company" type="company"></dropdown>
-							</div>
+						<label for="category" class="col-form-label">Category:</label>
+						<div>
+							<dropdown id="category" [model]="activity.category" type="category"></dropdown>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="category" class="col-sm-3 col-form-label">Category</label>
-							<div class="col-sm-9">
-								<dropdown id="category" [model]="activity.category" type="category"></dropdown>
-							</div>
+						<label for="company" class="col-form-label">Company:</label>
+						<div>
+							<dropdown id="company" [model]="activity.company" type="company"></dropdown>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="location" class="col-sm-3 col-form-label">Location</label>
-							<div class="col-sm-9">
-								<dropdown id="location" [model]="activity.location" type="location"></dropdown>
-							</div>
+						<label for="type" class="col-form-label">Type:</label>
+						<div>
+							<dropdown id="type" [model]="activity.type" type="type"></dropdown>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="type" class="col-sm-3 col-form-label">Type</label>
-							<div class="col-sm-9">
-								<dropdown id="type" [model]="activity.type" type="type"></dropdown>
-							</div>
+						<label for="location" class="col-form-label">Location:</label>
+						<div>
+							<dropdown id="location" [model]="activity.location" type="location"></dropdown>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="discipline" class="col-sm-3 col-form-label">Discipline</label>
-							<div class="col-sm-9">
-								<dropdown id="discipline" [model]="activity.discipline" type="discipline"></dropdown>
-							</div>
+						<label for="personnel" class="col-form-label">Personnel:</label>
+						<div>
+							<ng-select class="custom" id="personnel" [items]="['Personnel 1', 'Amundsen-Færøy 2', 'Amundsen-Færøy 3']" [(ngModel)]="activity.personnel" name="personnel" bindValue="key" bindLabel="value"></ng-select>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="personnel" class="col-sm-3 col-form-label">Personnel</label>
-							<div class="col-sm-9">
-								<ng-select class="custom" id="personnel" [items]="['Personnel 1', 'Amundsen-Færøy 2', 'Amundsen-Færøy 3']" [(ngModel)]="activity.personnel" name="personnel" bindValue="key" bindLabel="value"></ng-select>
-							</div>
+						<label for="discipline" class="col-form-label">Discipline:</label>
+						<div>
+							<dropdown id="discipline" [model]="activity.discipline" type="discipline"></dropdown>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="status" class="col-sm-3 col-form-label">Status</label>
-							<div class="col-sm-9">
-								<dropdown id="status" [model]="activity.status" type="status"></dropdown>
+						<label for="fromDate" class="col-form-label">From Date:</label>
+						<div class="d-flex">
+							<datepicker id="fromDate" [model]="activity.fromDate"></datepicker>
+							<div class="timepicker">
+								<ngb-timepicker name="from-time" [(ngModel)]="activity.fromTime" [spinners]="false"></ngb-timepicker>
 							</div>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="fromDate" class="col-sm-3 col-form-label">From Date</label>
-							<div class="col-sm-9">
-								<datepicker id="fromDate" [model]="activity.fromDate"></datepicker>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="level" class="col-sm-3 col-form-label">Level</label>
-							<div class="col-sm-9">
-								<dropdown id="level" [model]="activity.level" type="level"></dropdown>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="toDate" class="col-sm-3 col-form-label">To Date</label>
-							<div class="col-sm-9">
-								<datepicker id="toDate" [model]="activity.toDate"></datepicker>
-							</div>
+						<label for="status" class="col-form-label">Status:</label>
+						<div>
+							<dropdown id="status" [model]="activity.status" type="status"></dropdown>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="expireDate" class="col-sm-3 col-form-label">Expire Date</label>
-							<div class="col-sm-9">
-								<datepicker id="expireDate" [model]="activity.expireDate"></datepicker>
+						<label for="toDate" class="col-form-label">To Date:</label>
+						<div class="d-flex">
+							<datepicker id="toDate" [model]="activity.toDate"></datepicker>
+							<div class="timepicker">
+								<ngb-timepicker name="to-time" [(ngModel)]="activity.toTime" [spinners]="false"></ngb-timepicker>
 							</div>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="inLieuTo" class="col-sm-3 col-form-label">In Lieu To</label>
-							<div class="col-sm-9">
-								<datepicker id="inLieuTo" [model]="activity.inLieuTo"></datepicker>
+						<label for="level" class="col-form-label">Level:</label>
+						<div>
+							<dropdown id="level" [model]="activity.level" type="level"></dropdown>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-sm-6">
+						<label for="expireDate" class="col-form-label">Expire Date:</label>
+						<div class="d-flex">
+							<datepicker id="expireDate" [model]="activity.expireDate"></datepicker>
+							<div class="timepicker">
+								<ngb-timepicker name="expire-time" [(ngModel)]="activity.expireTime" [spinners]="false"></ngb-timepicker>
 							</div>
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="inLieuTo" class="col-form-label">In Lieu To:</label>
+						<div>
+							<datepicker id="inLieuTo" [model]="activity.inLieuTo"></datepicker>
 						</div>
 					</div>
 				</div>
@@ -124,37 +109,29 @@
 			<ng-template ngbPanelContent>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="schedule" class="col-sm-3 col-form-label">Schedule</label>
-							<div class="col-sm-9">
-								<ng-select class="custom" id="schedule" [items]="['A', 'E', 'B', 'C']" [(ngModel)]="activity.schedule" name="schedule" bindValue="key" bindLabel="value"></ng-select>
-							</div>
+						<label for="schedule" class="col-form-label">Schedule:</label>
+						<div>
+							<ng-select class="custom" id="schedule" [items]="['A', 'E', 'B', 'C']" [(ngModel)]="activity.schedule" name="schedule" bindValue="key" bindLabel="value"></ng-select>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="shift" class="col-sm-3 col-form-label">Shift</label>
-							<div class="col-sm-9">
-								<ng-select class="custom" id="shift" [items]="['ABC', 'Morgen', 'Norway']" [(ngModel)]="activity.shift" name="shift" bindValue="key" bindLabel="value"></ng-select>
-							</div>
+						<label for="rotation" class="col-form-label">Rotation:</label>
+						<div>
+							<ng-select class="custom" id="rotation" [items]="['30-8', '5-2', '3-6']" [(ngModel)]="activity.rotation" name="rotation" bindValue="key" bindLabel="value"></ng-select>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="rotation" class="col-sm-3 col-form-label">Rotation</label>
-							<div class="col-sm-9">
-								<ng-select class="custom" id="rotation" [items]="['30-8', '5-2', '3-6']" [(ngModel)]="activity.rotation" name="rotation" bindValue="key" bindLabel="value"></ng-select>
-							</div>
+						<label for="group" class="col-form-label">Group:</label>
+						<div>
+							<dropdown id="group" [model]="activity.group" type="group"></dropdown>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="group" class="col-sm-3 col-form-label">Group</label>
-							<div class="col-sm-9">
-								<dropdown id="group" [model]="activity.group" type="group"></dropdown>
-							</div>
+						<label for="shift" class="col-form-label">Shift:</label>
+						<div>
+							<ng-select class="custom" id="shift" [items]="['ABC', 'Morgen', 'Norway']" [(ngModel)]="activity.shift" name="shift" bindValue="key" bindLabel="value"></ng-select>
 						</div>
 					</div>
 				</div>				
@@ -168,37 +145,31 @@
 			<ng-template ngbPanelContent>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="percent" class="col-sm-3 col-form-label">Percent</label>
-							<div class="col-sm-9">
-								<input type="number" id="percent" name="percent" class="form-control" [(ngModel)]="activity.percent">
-							</div>
+						<label for="percent" class="col-form-label">Percent:</label>
+						<div class="percent-info">
+							<input type="number" id="percent" name="percent" class="form-control" [(ngModel)]="activity.percent">
+							<span class="col-form-label">Num. Info:</span>
+							<input type="text" id="num-info" name="num-info" class="form-control" [(ngModel)]="activity.numInfo">
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="scope" class="col-sm-3 col-form-label">Scope</label>
-							<div class="col-sm-9">
-								<ng-select class="custom" id="scope" [items]="['Easy', 'Normal', 'Hard']" [(ngModel)]="activity.scope" name="scope" bindValue="key" bindLabel="value"></ng-select>
-							</div>
+						<label for="scope" class="col-form-label">Scope:</label>
+						<div>
+							<ng-select class="custom" id="scope" [items]="['Easy', 'Normal', 'Hard']" [(ngModel)]="activity.scope" name="scope" bindValue="key" bindLabel="value"></ng-select>
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="comment" class="col-sm-3 col-form-label">Comment</label>
-							<div class="col-sm-9">
-								<textarea id="comment" name="comment" class="form-control" [(ngModel)]="activity.comment"></textarea>
-							</div>
+						<label for="comment" class="col-form-label">Comment:</label>
+						<div>
+							<textarea id="comment" name="comment" class="form-control" [(ngModel)]="activity.comment"></textarea>
 						</div>
 					</div>
 					<div class="form-group col-sm-6">
-						<div class="row no-gutters">
-							<label for="internalComment" class="col-sm-3 col-form-label">Internal Comment</label>
-							<div class="col-sm-9">
-								<textarea id="internalComment" name="internalComment" class="form-control" [(ngModel)]="activity.internalComment"></textarea>
-							</div>
+						<label for="internalComment" class="col-form-label">Internal Comment:</label>
+						<div>
+							<textarea id="internalComment" name="internalComment" class="form-control" [(ngModel)]="activity.internalComment"></textarea>
 						</div>
 					</div>
 				</div>

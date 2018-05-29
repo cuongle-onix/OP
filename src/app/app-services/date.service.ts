@@ -35,6 +35,8 @@ export class DateService extends NgbDateParserFormatter {
 	}
 
 	getLocaleDateFormat() {
+		var locale = window.navigator.language;
+		moment.locale(locale);
 		return moment.localeData().longDateFormat('L');
 	}
 

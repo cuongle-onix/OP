@@ -7,11 +7,11 @@
 		</h5>
 		<div class="description clearfix">
 			<span class="float-left type">{{ data.type }}</span>			
-			<span class="float-right expire-date">{{ data.expireDate }}</span>
+			<span class="float-right expire-date">{{ data.expireDate.date | momentPipe }}</span>
 		</div>
 		<div class="details clearfix">
-			<span class="from-date">{{ data.fromDate }}</span>
-			<span class="float-right to-date">{{ data.toDate }}</span>
+			<span class="from-date">{{ data.fromDate.date | momentPipe }}</span>
+			<span class="float-right to-date">{{ data.toDate.date | momentPipe }}</span>
 		</div>
 	</div>
 </div>

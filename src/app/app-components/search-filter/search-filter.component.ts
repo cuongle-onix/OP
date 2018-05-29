@@ -32,6 +32,9 @@ export class SearchFilterComponent implements OnInit {
 	searchCount: number;
 	advancedSearchCount: number;
 
+	isHideVacant: boolean = false;
+	isInclChildren: boolean = false;
+
 	constructor(private cdRef: ChangeDetectorRef) { }
 
 	ngOnInit() {
@@ -55,10 +58,12 @@ export class SearchFilterComponent implements OnInit {
 			})
 		];
 
-		this.allDepartments = [			
+		this.allDepartments = [
+			new CustomTreeviewItem('none', {
+				text: '(None)', value: 99
+			}),
 			new CustomTreeviewItem('department', {
 				text: 'All Departments', value: 7, children: [
-					{ text: '(None)', value: 19 },
 					{ text: '1 - Installasjon Land Sunnhorland', value: 8 },
 					{ text: '2 - Installasjon Marine', value: 9 },
 					{

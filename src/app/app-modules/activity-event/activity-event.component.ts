@@ -5,6 +5,7 @@ import { Textbox, Row } from '../../app-components/forms/dynamic-form/form-contr
 import { Toolbar, Tab, RibbonGroup, RibbonButton, NgSelect } from '../../app-components/toolbar/controls';
 import { NgbTabChangeEvent, NgbTabset, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../app-components/modal/modal.component';
+import { DatepickerModel, ParamType } from '../../app-components/datepicker/datepicker.component';
 
 enum ClearType {
 	all,
@@ -31,6 +32,8 @@ export class ActivityEventComponent implements OnInit {
 
 	relatedTabId: string = 'related';
 	activeSubtabId: string;
+	sortActivityInc: boolean = true;
+	sortRelatedInc: boolean = true;
 
 	constructor(private modalService: NgbModal) { }
 
@@ -46,13 +49,26 @@ export class ActivityEventComponent implements OnInit {
 				status: 'Status 1',
 				personnel: 'Personnel 1',
 				level: 'Level 1',
-				fromDate: '9/17/1997',
+				fromDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/28/1999')
+				}),
 				percent: 30,
-				toDate: '12/31/2013',
-				schedule: '',
-				expireDate: '05/03/2022',
+				numInfo: 'Num info',
+				toDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('09/30/2003')
+				}),
+				schedule: 'A',
+				expireDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('05/03/2022')
+				}),
 				group: 'Group 1',
-				inLieuTo: '',
+				inLieuTo: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/31/2013')
+				}),
 				rotation: '5-2',
 				shift: 'Morgen',
 				scope: 'Normal',
@@ -71,6 +87,7 @@ export class ActivityEventComponent implements OnInit {
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
+						numInfo: 'Num info',
 						toDate: '12/31/2013',
 						schedule: '',
 						expireDate: '05/03/2022',
@@ -96,6 +113,7 @@ export class ActivityEventComponent implements OnInit {
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
+						numInfo: 'Num info',
 						toDate: '12/31/2013',
 						schedule: '',
 						expireDate: '05/03/2022',
@@ -123,13 +141,26 @@ export class ActivityEventComponent implements OnInit {
 				status: 'offshore',
 				personnel: 'Amundsen-Færøy 2',
 				level: 'apache',
-				fromDate: '9/17/1997',
+				fromDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('09/17/1997')
+				}),
 				percent: 30,
-				toDate: '12/31/2013',
-				schedule: '',
-				expireDate: '05/03/2022',
+				numInfo: 'Num info',
+				toDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/31/2013')
+				}),
+				schedule: 'A',
+				expireDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('05/03/2022')
+				}),
 				group: 'Group 2',
-				inLieuTo: '',
+				inLieuTo: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/31/2013')
+				}),
 				rotation: '5-2',
 				shift: 'Morgen',
 				scope: 'Normal',
@@ -149,13 +180,26 @@ export class ActivityEventComponent implements OnInit {
 				status: 'offshore',
 				personnel: 'Amundsen-Færøy 3',
 				level: 'apache',
-				fromDate: '9/17/1997',
+				fromDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('09/17/1997')
+				}),
 				percent: 30,
-				toDate: '12/31/2013',
-				schedule: '',
-				expireDate: '05/03/2022',
+				numInfo: 'Num info',
+				toDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/31/2013')
+				}),
+				schedule: 'A',
+				expireDate: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('05/03/2022')
+				}),
 				group: 'Group 3',
-				inLieuTo: '',
+				inLieuTo: new DatepickerModel({
+					paramType: ParamType.none,
+					date: new Date('12/31/2013')
+				}),
 				rotation: '5-2',
 				shift: 'Morgen',
 				scope: 'Normal',
@@ -174,6 +218,7 @@ export class ActivityEventComponent implements OnInit {
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
+						numInfo: 'Num info',
 						toDate: '12/31/2013',
 						schedule: '',
 						expireDate: '05/03/2022',
@@ -199,6 +244,7 @@ export class ActivityEventComponent implements OnInit {
 						level: 'apache',
 						fromDate: '9/17/1997',
 						percent: 30,
+						numInfo: 'Num info',
 						toDate: '12/31/2013',
 						schedule: '',
 						expireDate: '05/03/2022',
@@ -307,16 +353,18 @@ export class ActivityEventComponent implements OnInit {
 		}
 	}
 
-	cancelChecked() {
-		for (let item of this.activityList) {
-			item.isChecked = false;
-		}
+	checkAll() {
+		this.activityList.map(item => item.isChecked = true);
+		this.checkedItems = this.activityList;
+	}
+
+	uncheckAll() {
+		this.activityList.map(item => item.isChecked = false);
 		this.checkedItems = [];
 	}
 
 	onSubtabChange(event: NgbTabChangeEvent) {
 		let isRelatedTabExist = this.toolbar.tabs.filter(tab => tab.id == this.relatedTabId).length > 0;
-		this.activeSubtabId = event.nextId;
 		if (event.nextId == this.relatedTabId && !isRelatedTabExist) {
 			let connectedTab = new Tab(
 				'Related',
@@ -359,6 +407,10 @@ export class ActivityEventComponent implements OnInit {
 				cv: true
 			}
 		];;
+	}
+
+	toggleSortOrder(listType) {
+		this[listType] = !this[listType];
 	}
 
 	private convertJsonToFormData(obj) {

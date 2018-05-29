@@ -1,5 +1,8 @@
-.fa-caret-right, .fa-caret-down {
+.fa-caret-down {
 	font-size: 15px;
+	&.right {
+		transform: rotate(-90deg);
+	}
 }
 
 input {
@@ -8,5 +11,5 @@ input {
 
 .form-check-label {
 	max-width: 75%;
-	line-height: 12px;
+	vertical-align: text-bottom;
 }
