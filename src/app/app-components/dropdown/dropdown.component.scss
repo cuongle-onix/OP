@@ -22,7 +22,7 @@
 .input-group-append {
 	border: 1px solid $border-color;
 	border-left: 0;
-	padding: 0;
+	padding: 2px 3px;
 }
 
 .add-btn, .remove-btn {
@@ -73,8 +73,10 @@
 
 .popup-btn {
 	background-color: transparent;
-	width: 30px;
-	border: 0;
-	cursor: pointer;
-	outline: 0;
+    padding: 0;
+    width: 17px;
+    height: 17px;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
 }

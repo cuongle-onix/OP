@@ -3,14 +3,14 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { TableViewComponent } from '../../table-view/table-view.component';
 
 @Component({
-	selector: 'edit',
-	templateUrl: './edit.component.html',
-	styleUrls: ['./edit.component.scss', '../modal.component.scss']
+	selector: 'edit-type',
+	templateUrl: './edit-type.component.html',
+	styleUrls: ['./edit-type.component.scss', '../modal.component.scss'],
+	host: { '(window:keydown)': 'hotkeys($event)' },
 })
-export class EditComponent implements OnInit {
+export class EditTypeComponent implements OnInit {
 
 	@Input() data: any[];
-	@Input() title: string;
 	@ViewChild(TableViewComponent) table: TableViewComponent;
 
 	constructor(public modalRef: NgbActiveModal) { }

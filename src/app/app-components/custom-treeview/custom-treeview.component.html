@@ -9,8 +9,6 @@
 	<i class="fa fa-caret-down"
 	[class.invisible]="!item.children" (click)="onCollapseExpand()" 
 	[class.right]="item.collapsed"></i>
-	<i class="fa fa-caret-down invisible" *ngIf="item.type == TREE_NODE_TYPE.NONE"></i>
-
 	<input type="checkbox"
 	[(ngModel)]="item.checked"
 	[disabled]="item.disabled" 

@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './app-components/header/header.component';
 import { UserSettingsComponent } from './app-components/user-settings/user-settings.component';
-import { ModalComponent } from './app-components/modal/modal.component';
-import { ModalModule } from './app-components/modal/modal.module';
+import { EditCategoryComponent } from './app-components/modal/edit-category/edit-category.component';
+import { EditTypeComponent } from './app-components/modal/edit-type/edit-type.component';
+import { ConnectTypeCategoryComponent } from './app-components/modal/connect-type-category/connect-type-category.component';
+import { EditComponent } from './app-components/modal/edit/edit.component';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DateService } from './app-services/date.service';
 import { TableViewModule } from './app-components/table-view/table-view.module';
@@ -17,13 +19,15 @@ import { TableViewModule } from './app-components/table-view/table-view.module';
 		AppComponent,
 		HeaderComponent,
 		UserSettingsComponent,
-		ModalComponent,
+		EditCategoryComponent,
+		EditTypeComponent,
+		ConnectTypeCategoryComponent,
+		EditComponent,
 	],
 	imports: [
 		BrowserModule,
 		NgbModule.forRoot(),
 		AppRoutingModule,
-		ModalModule,
 		TableViewModule,
 	],
 	providers: [
@@ -34,7 +38,10 @@ import { TableViewModule } from './app-components/table-view/table-view.module';
 		}
 	],
 	entryComponents: [
-		ModalComponent,
+		EditCategoryComponent,
+		EditTypeComponent,
+		ConnectTypeCategoryComponent,
+		EditComponent,
 	],
 	bootstrap: [AppComponent]
 })

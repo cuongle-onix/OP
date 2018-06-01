@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-	selector: 'connect',
-	templateUrl: './connect.component.html',
-	styleUrls: ['./connect.component.scss']
+	selector: 'connect-type-category',
+	templateUrl: './connect-type-category.component.html',
+	styleUrls: ['./connect-type-category.component.scss', '../modal.component.scss']
 })
-export class ConnectComponent implements OnInit {
+export class ConnectTypeCategoryComponent implements OnInit {
 
 	constructor(public modalRef: NgbActiveModal) { }
 

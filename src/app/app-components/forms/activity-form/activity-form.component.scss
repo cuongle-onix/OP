@@ -3,6 +3,7 @@
 .activity-form /deep/ {
 	margin-top: 20px;
 	min-width: 700px;
+	max-width: 1000px;
 	.card {
 		border: 0;
 		margin-bottom: 10px;
@@ -42,6 +43,20 @@
 	> div {
 		float: left;
 		width: calc(100% - 120px);
+	}
+
+	.in-lieu-date {
+		max-width: calc(100% - 230px);
+	}
+
+	.in-lieu-label {
+		float: none;
+		width: auto;
+	}
+
+	#calc-in-lieu-to {
+		margin-left: 10px;
+		vertical-align: text-bottom;
 	}
 }
 

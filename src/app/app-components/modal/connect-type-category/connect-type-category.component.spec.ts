@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalComponent } from './modal.component';
+import { ConnectTypeCategoryComponent } from './connect-type-category.component';
 
-describe('ModalComponent', () => {
-  let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
+describe('ConnectComponent', () => {
+  let component: ConnectTypeCategoryComponent;
+  let fixture: ComponentFixture<ConnectTypeCategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalComponent ]
+      declarations: [ ConnectTypeCategoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalComponent);
+    fixture = TestBed.createComponent(ConnectTypeCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

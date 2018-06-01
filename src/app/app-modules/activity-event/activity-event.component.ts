@@ -4,7 +4,8 @@ import { TOOLBAR_BTN_TYPE, DEFAULT_MODAL_CONFIG } from '../../const.global';
 import { Textbox, Row } from '../../app-components/forms/dynamic-form/form-control/controls';
 import { Toolbar, Tab, RibbonGroup, RibbonButton, NgSelect } from '../../app-components/toolbar/controls';
 import { NgbTabChangeEvent, NgbTabset, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../../app-components/modal/modal.component';
+import { EditComponent } from '../../app-components/modal/edit/edit.component';
+import { ConnectTypeCategoryComponent } from '../../app-components/modal/connect-type-category/connect-type-category.component';
 import { DatepickerModel, ParamType } from '../../app-components/datepicker/datepicker.component';
 
 enum ClearType {
@@ -302,15 +303,15 @@ export class ActivityEventComponent implements OnInit {
 							[
 								new RibbonButton({
 									type: TOOLBAR_BTN_TYPE.CATEGORY,
-									click: this.openModal.bind(this, 'edit', 'Edit Category')
+									click: this.openModal.bind(this, EditComponent, 'Edit Category')
 								}),
 								new RibbonButton({
 									type: TOOLBAR_BTN_TYPE.TYPE,
-									click: this.openModal.bind(this, 'edit', 'Edit Type')
+									click: this.openModal.bind(this, EditComponent, 'Edit Type')
 								}),
 								new RibbonButton({
 									type: TOOLBAR_BTN_TYPE.CATEGORY_TYPE,
-									click: this.openModal.bind(this, 'connect', 'Maintain Category & Type')
+									click: this.openModal.bind(this, ConnectTypeCategoryComponent, '')
 								})
 							]
 						)
@@ -375,7 +376,7 @@ export class ActivityEventComponent implements OnInit {
 						[
 							new RibbonButton({
 								type: TOOLBAR_BTN_TYPE.ADD_ACTIVITY,
-								click: this.openModal.bind(this, 'edit', 'Add Activity')
+								click: this.openModal.bind(this, EditComponent, 'Edit Activity')
 							})
 						]
 					),
@@ -389,11 +390,10 @@ export class ActivityEventComponent implements OnInit {
 		}
 	}
 
-	openModal(modalType, modalTitle) {
-		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
-		modalRef.componentInstance.modalType = modalType;
-		modalRef.componentInstance.modalTitle = modalTitle;
-		modalRef.componentInstance.tableData = [
+	openModal(modalType, title) {
+		const modalRef = this.modalService.open(modalType, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
+		modalRef.componentInstance.title = title;
+		modalRef.componentInstance.data = [
 			{
 				category: '1156-2016 Olvondo',
 				categoryLanguage: '1156-2016 Olvondo',

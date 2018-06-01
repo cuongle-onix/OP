@@ -17,3 +17,43 @@ select.form-control {
 	border: 1px solid $border-color;
 	padding: 5px 10px;
 }
+
+
+.custom-datepicker /deep/ {
+	.dropdown-menu.show {
+		border-color: $color-4;
+		border-radius: 0;
+		outline: 0;
+		.ngb-dp-header {
+			background-color: $color-4 !important;
+			padding: .2em 0;
+			ngb-datepicker-navigation {
+				height: auto;
+			}
+		}
+	}
+	.ngb-dp-arrow-btn {
+		min-width: 0;
+		color: #fff;
+	}
+	.custom-select {
+		border-radius: 0;
+	}
+	.ngb-dp-week.ngb-dp-weekdays.bg-light {
+		background-color: #ddd !important;
+		.ngb-dp-weekday {
+			color: #000;
+			font-size: 10.6px;
+			font-weight: bold;
+			font-style: normal !important;
+		}
+	}
+	.ngb-dp-day {
+		.btn-light {
+			border-radius: 0;
+		}
+		.bg-primary {
+			background-color: $color-4 !important;
+		}	
+	}
+}

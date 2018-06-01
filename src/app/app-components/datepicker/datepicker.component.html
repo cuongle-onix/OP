@@ -1,4 +1,4 @@
-<div class="input-group">
+<div class="input-group custom-datepicker">
 	<ng-container *ngIf="model.paramType != ParamType.none">
 		<div class="input-group-append">
 			<ng-container [ngSwitch]="model.paramType">
@@ -29,9 +29,9 @@
 			#dp="ngbDatepicker"
 			(click)="dp.toggle()"
 			(ngModelChange)="onChange($event)">
-			<div class="input-group-append date-icon">
+			<!-- <div class="input-group-append date-icon" (click)="dp.toggle()">
 				<i class="fa fa-calendar"></i>
-			</div>
+			</div> -->
 		</div>
 	</ng-container>
 </div>

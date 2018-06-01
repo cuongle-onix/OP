@@ -43,6 +43,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: true,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -84,6 +85,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: true,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -126,6 +128,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: false,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -164,6 +167,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: false,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -202,6 +206,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: true,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -240,6 +245,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: true,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',
@@ -278,6 +284,7 @@ export class ActivityFormComponent implements OnInit, OnChanges {
 				paramType: ParamType.none,
 				date: new Date('12/31/2013')
 			}),
+			calcInLieuTo: true,
 			rotation: '5-2',
 			shift: 'Morgen',
 			scope: 'Normal',

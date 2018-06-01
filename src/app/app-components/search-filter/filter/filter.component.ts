@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { DEFAULT_MODAL_CONFIG } from '../../../const.global';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../../modal/modal.component';
+import { EditComponent } from '../../modal/edit/edit.component';
 
 @Component({
 	selector: 'filter',
@@ -44,7 +44,7 @@ export class FilterComponent implements OnInit {
 	}
 
 	openPopup() {
-		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
+		const modalRef = this.modalService.open(EditComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
 		let data;
 		switch (this.type) {
 			case 'personnel':
@@ -69,9 +69,8 @@ export class FilterComponent implements OnInit {
 				]
 				break;
 		}
-		modalRef.componentInstance.modalType = 'edit';
-		modalRef.componentInstance.tableData = data;
-		modalRef.componentInstance.modalTitle = `Edit ${this.type}`;
+		modalRef.componentInstance.data = data;
+		modalRef.componentInstance.title = `Edit ${this.type}`;
 	}
 
 }

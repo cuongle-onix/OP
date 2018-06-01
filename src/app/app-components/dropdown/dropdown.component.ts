@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input, HostListener, ElementRef, ViewChildren } from '@angular/core';
 import { DEFAULT_MODAL_CONFIG } from '../../const.global';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
+import { EditComponent } from '../modal/edit/edit.component';
 
 @Component({
 	selector: 'dropdown',
@@ -56,6 +56,12 @@ export class DropdownComponent implements OnInit {
 				break;
 			case 'group':
 				this.data = ['Group 1', 'Group 2', 'Group 3'];
+				break;
+			case 'shift':
+				this.data = ['Shift 1', 'Shift 2', 'Shift 3'];
+				break;
+			case 'scope':
+				this.data = ['Scope 1', 'Scope 2', 'Scope 3'];
 				break;
 		}
 	}
@@ -124,10 +130,9 @@ export class DropdownComponent implements OnInit {
 	// }
 
 	openPopup() {
-		const modalRef = this.modalService.open(ModalComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
-		modalRef.componentInstance.modalType = 'edit';
-		modalRef.componentInstance.modalTitle = `Edit ${this.type}`;
-		modalRef.componentInstance.tableData = [
+		const modalRef = this.modalService.open(EditComponent, <NgbModalOptions>DEFAULT_MODAL_CONFIG);
+		modalRef.componentInstance.title = `Edit ${this.type}`; 
+		modalRef.componentInstance.data = [
 			{
 				category: '1156-2016 Olvondo',
 				categoryLanguage: '1156-2016 Olvondo',

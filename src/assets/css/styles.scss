@@ -84,6 +84,7 @@ $tab-height: calc(100% - 35px);
 	position: relative;
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
+	outline: 0;
 	.ng-select-container {
 		border-radius: 0;
 		border-color: $border-color;
@@ -104,7 +105,7 @@ $tab-height: calc(100% - 35px);
 
 	.ng-arrow-wrapper {
 		border-left: 1px solid $border-color;
-		width: 25px;
+		width: 24px;
 		height: 100%;
 		.ng-arrow {
 			border-width: 6px 3px 2.5px;
@@ -117,7 +118,7 @@ $tab-height: calc(100% - 35px);
 
 .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
 	box-shadow: none;
-	border-color: #80bdff;
+	border-color: $border-color;
 }
 
 /* Custom timepicker */

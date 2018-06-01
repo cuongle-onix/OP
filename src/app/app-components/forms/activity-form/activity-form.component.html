@@ -94,8 +94,19 @@
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="inLieuTo" class="col-form-label">In Lieu To:</label>
-						<div>
+						<div class="in-lieu-date">
 							<datepicker id="inLieuTo" [model]="activity.inLieuTo"></datepicker>
+						</div>
+						<input type="checkbox" id="calc-in-lieu-to" name="calc-in-lieu-to" [(ngModel)]="activity.calcInLieuTo">
+						<label class="in-lieu-label" for="calc-in-lieu-to">Calc. in Lieu To</label>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-sm-6"></div>
+					<div class="form-group col-sm-6">
+						<label for="hour-cost">Hour &amp; Cost</label>
+						<div>
+							<input type="checkbox" id="hour-cost" name="hour-cost" [(ngModel)]="activity.hourCost">
 						</div>
 					</div>
 				</div>
@@ -131,7 +142,7 @@
 					<div class="form-group col-sm-6">
 						<label for="shift" class="col-form-label">Shift:</label>
 						<div>
-							<ng-select class="custom" id="shift" [items]="['ABC', 'Morgen', 'Norway']" [(ngModel)]="activity.shift" name="shift" bindValue="key" bindLabel="value"></ng-select>
+							<dropdown id="shift" [model]="activity.shift" type="shift"></dropdown>
 						</div>
 					</div>
 				</div>				
@@ -155,10 +166,11 @@
 					<div class="form-group col-sm-6">
 						<label for="scope" class="col-form-label">Scope:</label>
 						<div>
-							<ng-select class="custom" id="scope" [items]="['Easy', 'Normal', 'Hard']" [(ngModel)]="activity.scope" name="scope" bindValue="key" bindLabel="value"></ng-select>
+							<dropdown id="scope" [model]="activity.scope" type="scope"></dropdown>
 						</div>
 					</div>
 				</div>
+				
 				<div class="form-row">
 					<div class="form-group col-sm-6">
 						<label for="comment" class="col-form-label">Comment:</label>
